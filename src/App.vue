@@ -4,7 +4,7 @@
 
     <div style="margin-bottom:50px">
       <div>
-        <bo-button @click="openChecklist">选择考场</bo-button >
+        <bo-button  full disabled @click="openChecklist">选择考场</bo-button >
         <button @click="openAlert(0)">Alert</button>
         <button @click="openAlert(1)">Confirm</button>
         <button @click="openAlert(2)">Toast</button>

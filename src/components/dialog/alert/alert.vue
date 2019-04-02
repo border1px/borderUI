@@ -9,8 +9,8 @@
 </template>
 
 <style lang="stylus">
-@import '../common/mixins.styl'
-@import '../common/variables.styl'
+@import '../style/mixins.styl'
+@import '../style/variables.styl'
 
 .pf-alert
   width 80%

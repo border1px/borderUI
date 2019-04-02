@@ -29,8 +29,8 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../common/mixins.styl'
-@import '../common/variables.styl'
+@import '../style/mixins.styl'
+@import '../style/variables.styl'
 
 .pf-notify
   position: fixed

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { pageScroll } from '../common/utils'
+import { pageScroll } from '../../../utils/utils'
 import ConfirmComponent from './confirm.vue'
 
 var instance

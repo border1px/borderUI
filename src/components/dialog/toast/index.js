@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import ToastComponent from './toast.vue'
-import { pageScroll } from '../common/utils'
+import { pageScroll } from '../../../utils/utils'
 
 var instance
 var ToastConstructor = Vue.extend(ToastComponent)

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import AlertComponent from './alert.vue'
-import { pageScroll } from '../common/utils'
+import { pageScroll } from '../../../utils/utils'
 
 var instance
 var AlertConstructor = Vue.extend(AlertComponent)

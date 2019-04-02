@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import LoadingComponent from './loading.vue'
-import { pageScroll } from '../common/utils'
+import { pageScroll } from '../../../utils/utils'
 
 var LoadingConstructor = Vue.extend(LoadingComponent)
 var instance = new LoadingConstructor()

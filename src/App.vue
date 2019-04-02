@@ -4,7 +4,7 @@
 
     <div style="margin-bottom:50px">
       <div>
-        <button @click="openChecklist">选择考场</button>
+        <bo-button @click="openChecklist">选择考场</bo-button >
         <button @click="openAlert(0)">Alert</button>
         <button @click="openAlert(1)">Confirm</button>
         <button @click="openAlert(2)">Toast</button>
@@ -38,6 +38,7 @@
 import checklist from './components/checklist/checklist'
 import { Cell, CellItem } from './components/cell'
 import XSwitch from './components/switch'
+import BoButton from './components/button'
 import { setTimeout } from 'timers'
 
 export default {
@@ -45,7 +46,8 @@ export default {
     checklist,
     Cell,
     CellItem,
-    XSwitch
+    XSwitch,
+    BoButton
   },
   watch: {
     xswitch () {

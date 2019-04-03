@@ -4,12 +4,12 @@
 
     <div style="margin-bottom:50px">
       <div>
-        <bo-button  full disabled @click="openChecklist">选择考场</bo-button >
-        <button @click="openAlert(0)">Alert</button>
-        <button @click="openAlert(1)">Confirm</button>
-        <button @click="openAlert(2)">Toast</button>
-        <button @click="openAlert(3)">Loading</button>
-        <button @click="openAlert(4)">Notify</button>
+        <bo-button type="warning" @click.native="openAlert(0)">Alert</bo-button>
+        <bo-button type="danger" @click="openAlert(1)">Confirm</bo-button>
+        <bo-button color="#66CD00" @click="openAlert(2)">Toast</bo-button>
+        <bo-button color="#EE00EE" @click="openAlert(3)">Loading</bo-button>
+        <bo-button color="#7D26CD" @click="openAlert(4)">Notify</bo-button><br>
+        <bo-button full loading  @click.native="openChecklist">选择考场</bo-button >
       </div>
 
       <!-- 自定义组件 -->

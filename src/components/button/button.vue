@@ -1,9 +1,25 @@
 <template>
-  <button :disabled="disabled" class="pf-button" :class="buttonClass">
-    <div>
-      {{text}}
-      <slot></slot>
-    </div>
+  <button
+    class = "pf-button"
+    @click = "handleClick"
+    :style = "styleObject"
+    :disabled = "disabled || loading"
+    :class = "[
+      type ? 'pf-button-' + type : '',
+      size ? 'pf-button-' + size : '',
+      {
+        'is-full' : full,
+        'is-disabled': disabled
+      }
+    ]"
+  >
+    <span class="pf-button-loading" v-if="loading">
+      <div class="pf-loading-icon"></div>
+      <div v-if="full">{{loadingTxt}}</div>
+    </span>
+    <span v-else>
+      <slot>{{text}}</slot>
+    </span>
   </button>
 </template>
 
@@ -11,26 +27,34 @@
 export default {
   name: 'BoButton',
   props: {
-    type: String,
-    size: String,
+    type: {
+      type: String,
+      default: 'primary'
+    },
+    size: {
+      type: String,
+      default: 'normal'
+    },
     text: String,
-    color: String,
     full: Boolean,
+    color: String,
     loading: Boolean,
+    loadingTxt: {
+      type: String,
+      default: '加载中'
+    },
     disabled: Boolean
   },
   computed: {
-    buttonClass () {
+    styleObject () {
       return {
-        'pf-button-primary'  : true,
-        'pf-button-warning'  : this.type === 'warning',
-        'pf-button-danger'   : this.type === 'danger',
-        'pf-button-normal'   : true,
-        'pf-button-large'    : this.size === 'large',
-        'pf-button-small'    : this.size === 'small',
-        'pf-button-full'     : this.full,
-        'pf-button-disabled' : this.disabled
+        backgroundColor: this.color
       }
+    }
+  },
+  methods: {
+    handleClick (event) {
+      this.$emit('click', event)
     }
   }
 }
@@ -38,6 +62,7 @@ export default {
 
 <style lang="stylus">
 @import '../../style/var.styl'
+@import '../../style/mixins.styl'
 .pf-button
   position relative
   border 0
@@ -47,7 +72,7 @@ export default {
   color #FFF
   border-radius 4px
   &:active
-    // background-color #ADADAD
+    background-color $button-tap-active
   // 按钮类型
   &-primary
     background-color: $button-primary-bg
@@ -57,19 +82,35 @@ export default {
     background-color: $button-danger-bg
   // 按钮尺寸
   &-normal
-    padding: 8px 10px
+    padding: 0 14px
+    line-height 40px
   &-large
-    padding: 12px 16px
+    padding: 0 20px
+    line-height 50px
   &-small
-    padding: 2px 4px
-  &-full
+    padding: 0 10px
+    line-height 30px
+  &.is-full
     width: 100%
     border-radius 0
-  // &-disabled
-  //   position absolute
-  //   top:0
-  //   left:0
-  //   right 0
-  //   bottom 0
-    // background-color:#fff;opacity:0.6;
+  &.is-disabled:after
+    content: ""
+    position absolute
+    top:0
+    left:0
+    right 0
+    bottom 0
+    background-color #fff
+    opacity 0.6
+  .pf-button-loading
+    display flex
+    justify-content center
+    align-items center
+  .pf-loading-icon
+    width: 20px
+    height: 20px
+    margin-right 5px
+    background: url($icon-loading) no-repeat
+    background-size: 100%
+    animation: pf-rotate .45s linear forwards infinite
 </style>

@@ -12,8 +12,8 @@
 </template>
 
 <style lang="stylus">
-@import '../style/mixins.styl'
-@import '../style/variables.styl'
+@import '../../../style/mixins.styl'
+@import '../../../style/var.styl'
 
 .pf-confirm
   width 80%

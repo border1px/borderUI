@@ -16,8 +16,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../style/mixins.styl'
-@import '../style/variables.styl'
+@import '../../../style/mixins.styl'
+@import '../../../style/var.styl'
 
 .pf-mask
   background-color rgba(0,0,0,0)

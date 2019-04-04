@@ -8,14 +8,15 @@
       type ? 'pf-button-' + type : '',
       size ? 'pf-button-' + size : '',
       {
-        'is-full' : full,
+        'is-square' : square,
+        'is-auto' : auto,
         'is-disabled': disabled
       }
     ]"
   >
     <span class="pf-button-loading" v-if="loading">
       <div class="pf-loading-icon"></div>
-      <div v-if="full">{{loadingTxt}}</div>
+      <div>{{loadingTxt}}</div>
     </span>
     <span v-else>
       <slot>{{text}}</slot>
@@ -35,6 +36,11 @@ export default {
       type: String,
       default: 'normal'
     },
+    auto: {
+      type: Boolean,
+      default: false
+    },
+    square: Boolean,
     text: String,
     full: Boolean,
     color: String,
@@ -80,19 +86,28 @@ export default {
     background-color: $button-warning-bg
   &-danger
     background-color: $button-danger-bg
+  &-hollow
+    background-color #ffffff
+    color #000
+    border 1px solid #D9D9D9
   // 按钮尺寸
   &-normal
     padding: 0 14px
-    line-height 40px
+    line-height 35px
   &-large
-    padding: 0 20px
-    line-height 50px
+    padding: 0 16px
+    line-height 40px
   &-small
-    padding: 0 10px
-    line-height 30px
-  &.is-full
+    padding: 0 6px
+    line-height 25px
+  &.is-auto
+    width 100%
+    margin 0 auto
+    display block
+  &.is-square
     width: 100%
     border-radius 0
+    display block
   &.is-disabled:after
     content: ""
     position absolute

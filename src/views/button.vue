@@ -19,12 +19,7 @@
 </template>
 
 <script>
-import BoButton from '../components/button'
-export default {
-  components: {
-    BoButton
-  }
-}
+
 </script>
 
 <style>
@@ -32,7 +27,7 @@ export default {
   margin-right: 5px;
   margin-bottom: 20px;
 }
-.btn-block .pf-button{
-  margin-bottom: 10px;
+.btn-block > button{
+  margin-bottom: 10px!important;
 }
 </style>

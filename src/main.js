@@ -6,9 +6,11 @@ import App from './App.vue'
 import './assets/styles/reset.css'
 import './assets/styles/index.css'
 import './assets/iconfont/iconfont.css'
-import Dialog from './components/dialog/'
-Vue.config.productionTip = false
-
+import Dialog from './components/dialog'
+import Button from './components/button'
+import ButtonGroup from './components/button_group'
+Vue.component(Button.name,Button)
+Vue.component(ButtonGroup.name,ButtonGroup)
 Vue.use(Dialog)
 Vue.use(VueRouter)
 const router = new VueRouter({

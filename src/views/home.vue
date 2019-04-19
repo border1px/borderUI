@@ -5,10 +5,10 @@
         <i class="iconfont icon-anniu"></i>
         <div class="icon-text">Button</div>
       </router-link>
-      <div class="col">
+      <router-link to="/button_group" class="col">
         <i class="iconfont icon-duihuakuang"></i>
         <div class="icon-text">Dialog</div>
-      </div>
+      </router-link>
       <div class="col">
         <i class="iconfont icon-menuonboardsheet"></i>
         <div class="icon-text">Cell</div>

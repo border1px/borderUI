@@ -1,5 +1,6 @@
 import HomeView from './views/home.vue'
 import ButtonView from './views/button.vue'
+import ButtonGroupView from './views/button_group.vue'
 
 const routers = [
   {
@@ -12,7 +13,11 @@ const routers = [
     path: '/button',
     name: 'button',
     component: ButtonView,
-    meta: { index: 2 }
+  },
+  {
+    path: '/button_group',
+    name: 'button_group',
+    component: ButtonGroupView
   }
 ]
 export default routers

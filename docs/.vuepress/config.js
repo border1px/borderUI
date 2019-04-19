@@ -1,6 +1,7 @@
 module.exports = {
   title: 'borderUI',
   description: 'Mobile UI Components built on Vue',
+  // base:'/border-docs/',
   sidebarDepth: 2,
   themeConfig: {
     sidebarDepth: 2, // e'b将同时提取markdown中h2 和 h3 标题，显示在侧边栏上。
@@ -31,11 +32,11 @@ module.exports = {
       },
       {
         title: '组件',
-        // children: [
-        //   ['/FAQ/introduction','Button 按钮'],
-        //   ['/FAQ/quickstart','Dialog 弹框'],
-        //   ['/FAQ/changelog','Cell 单元格']
-        // ]
+        children: [
+          ['Comp/button','Button 按钮'],
+          // ['/FAQ/quickstart','Dialog 弹框'],
+          // ['/FAQ/changelog','Cell 单元格']
+        ]
       },
     ]
   }

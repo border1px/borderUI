@@ -5,12 +5,6 @@ document.body.onpaste = e => {
 }
 
 const s = new Date().toString()
-
-<bo-button type="primary" size="large" >Primary</bo-button>
-<bo-button type="warning" >Warning</bo-button>
-<bo-button type="danger" >Danger</bo-button>
-<bo-button color="#04BE02" >#04BE02</bo-button>
-<bo-button color="#EE30A7" size="small">#EE30A7</bo-button>
 ```
 
 ::: tip 替换tip的标题
@@ -49,21 +43,20 @@ const s = new Date().toString()
 | zebra stripes | are neat      |    $1 |
 
 
-<container title="基础用法">
+<ClientOnly>
+<Common-vue-format title="使用方法">
   <bo-button type="primary" size="large" >Primary</bo-button>
   <bo-button type="warning" >Warning</bo-button>
   <bo-button type="danger" >Danger</bo-button>
   <bo-button color="#04BE02" >#04BE02</bo-button>
   <bo-button color="#EE30A7" size="small">#EE30A7</bo-button>
 
-  <template v-slot:code>
-    <div>
-      <bo-button type="primary" size="large" >Primary</bo-button>
-      <bo-button type="warning" >Warning</bo-button>
-      <bo-button type="danger" >Danger</bo-button>
-      <bo-button color="#04BE02" >#04BE02</bo-button>
-      <bo-button color="#EE30A7" size="small">#EE30A7</bo-button>
-    </div>
-  </template>
-
-</container>
+  <highlight-code slot="codeText" lang="vue">
+    <bo-button type="primary" size="large">Primary</bo-button>
+    <bo-button type="warning">Warning</bo-button>
+    <bo-button type="danger">Danger</bo-button>
+    <bo-button color="#04BE02">#04BE02</bo-button>
+    <bo-button color="#EE30A7" size="small">#EE30A7</bo-button>
+  </highlight-code>
+</Common-vue-format>
+</ClientOnly>

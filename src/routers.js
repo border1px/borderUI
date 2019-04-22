@@ -1,6 +1,7 @@
 import HomeView from './views/home.vue'
 import ButtonView from './views/button.vue'
 import ButtonGroupView from './views/button_group.vue'
+import PickerView from './views/picker.vue'
 
 const routers = [
   {
@@ -12,12 +13,17 @@ const routers = [
   {
     path: '/button',
     name: 'button',
-    component: ButtonView,
+    component: ButtonView
   },
   {
     path: '/button_group',
     name: 'button_group',
     component: ButtonGroupView
+  },
+  {
+    path: '/picker',
+    name: 'picker',
+    component: PickerView
   }
 ]
 export default routers

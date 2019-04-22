@@ -8,9 +8,11 @@ import './assets/styles/index.css'
 import './assets/iconfont/iconfont.css'
 import Dialog from './components/dialog'
 import Button from './components/button'
+import Picker from './components/picker'
 import ButtonGroup from './components/button_group'
-Vue.component(Button.name,Button)
-Vue.component(ButtonGroup.name,ButtonGroup)
+Vue.component(Button.name, Button)
+Vue.component(Picker.name, Picker)
+Vue.component(ButtonGroup.name, ButtonGroup)
 Vue.use(Dialog)
 Vue.use(VueRouter)
 const router = new VueRouter({

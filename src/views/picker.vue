@@ -20,7 +20,7 @@ export default {
       column3: {
         浙江: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
         福建: ['福州', '厦门', '莆田', '三明', '泉州']
-      },
+      }
     }
   },
   computed: {
@@ -54,5 +54,5 @@ export default {
       // this.$toast(this.cancel)
     }
   }
-};
+}
 </script>

@@ -1,9 +1,11 @@
 <template>
   <div class="bo-container">
+    <!--
     <div class="bo-title">
       <h2>{{title}}</h2>
       <small>{{desc}}</small>
     </div>
+    -->
     <div class="bo-body">
       <slot></slot>
     </div>
@@ -39,13 +41,13 @@ export default {
 .bo-code
   height 0
   transition all 5s linear
-  pre 
+  pre
     height 0
     padding: 0
     margin: 0
   &.active
     height auto
-    pre 
+    pre
       height auto;
       padding: 1.25rem 1.5rem;
       margin: 0.85rem 0;

@@ -33,7 +33,7 @@ module.exports = {
       {
         title: '组件',
         children: [
-          ['Comp/button','Button 按钮'],
+          ['md/button','Button 按钮'],
           // ['/FAQ/quickstart','Dialog 弹框'],
           // ['/FAQ/changelog','Cell 单元格']
         ]

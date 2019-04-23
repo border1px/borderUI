@@ -63,10 +63,10 @@
         <i class="iconfont icon-yduiindexcityselect"></i>
         <div class="icon-text">CitySelect</div>
       </div>
-      <div class="col">
+      <router-link to="/picker" class="col">
         <i class="iconfont icon-nianyuerixuanze"></i>
         <div class="icon-text">DatePicker</div>
-      </div>
+      </router-link>
       <div class="col">
         <i class="iconfont icon-houdongfangiconfont04"></i>
         <div class="icon-text">Sort</div>

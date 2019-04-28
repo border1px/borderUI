@@ -67,8 +67,8 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../../../src/style/var.styl'
-@import '../../../../src/style/mixins.styl'
+@import '../../../src/style/var.styl'
+@import '../../../src/style/mixins.styl'
 .pf-button
   position relative
   border 0

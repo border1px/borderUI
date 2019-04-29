@@ -19,13 +19,8 @@ body
 
 .page
   padding-left $sidebarWidth
-  overflow: hidden;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  background-color: #fff;
-  padding-right: 400px;
-  padding-top: $navbarHeight
-  
+  box-sizing: border-box
+
 .navbar
   position fixed
   z-index 20
@@ -196,6 +191,24 @@ th, td
 @require './mobile.styl'
 
 
+
+
+.doc-simulator {
+    z-index: 1;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 6px;
+    background: #fafafa;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    right: 40px;
+    width: 360px;
+    min-width: 360px;
+    top: 100px;
+    -webkit-box-shadow: #ebedf0 0 4px 12px;
+    box-shadow: 0 4px 12px #ebedf0;
+}
+
 @media (min-width: $breakwidth)
   .theme-container
     .sidebar
@@ -204,5 +217,7 @@ th, td
     .page
       width: 1440px;
       margin: 0 auto;
-    // .content
-
+      padding-right: 400px
+    .doc-simulator 
+      right: 50%;
+      margin-right: -680px;

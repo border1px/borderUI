@@ -22,8 +22,8 @@
         class="sidebar-group-items"
         v-if="open || !collapsable"
       >
-        <li v-for="child in item.children">
-          <SidebarLink :item="child"/>
+        <li v-for="child in item.children" @click="triggerLink(child,$event)">
+          <SidebarLink :item="child" />
         </li>
       </ul>
     </DropdownTransition>
@@ -33,11 +33,24 @@
 <script>
 import SidebarLink from './SidebarLink.vue'
 import DropdownTransition from './DropdownTransition.vue'
+import { findComponentUpward } from './assist'
 
 export default {
   name: 'SidebarGroup',
   props: ['item', 'first', 'open', 'collapsable'],
-  components: { SidebarLink, DropdownTransition }
+  components: { SidebarLink, DropdownTransition },
+  methods: {
+    // 点击导航栏组件链接，触发iframe切换组件地址
+    triggerLink(item, target) {
+      var LayoutComp = findComponentUpward(this,'Layout')
+      // 必须是组件导航、必须是一级标题，点击才能让iframe跳转
+      if(item.path.startsWith('/Comp') && target.path.length == 13) {
+        LayoutComp && LayoutComp._triggerLink(item, false);
+      }else{
+        LayoutComp && LayoutComp._triggerLink(item, true);
+      }
+    }
+  }
 }
 </script>
 

@@ -26,6 +26,8 @@ import NavLinks from './NavLinks.vue'
 import { isActive } from './util'
 
 export default {
+  name:'Sidebar',
+
   components: { SidebarGroup, SidebarLink, NavLinks },
 
   props: ['items'],

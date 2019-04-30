@@ -55,6 +55,20 @@ body
   border-right 1px solid $borderColor
   overflow-y auto
 
+.simulator 
+  font-size 15px
+  background-color #fff
+  width $simulatorWidth
+  position fixed
+  z-index 10
+  margin 0
+  top $navbarHeight
+  right 0
+  bottom 0
+  box-sizing border-box
+  border-right 1px solid $borderColor
+  overflow-y auto
+
 .content:not(.custom)
   @extend $wrapper
   > *:first-child
@@ -191,24 +205,6 @@ th, td
 @require './mobile.styl'
 
 
-
-
-.doc-simulator {
-    z-index: 1;
-    overflow: hidden;
-    position: absolute;
-    border-radius: 6px;
-    background: #fafafa;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    right: 40px;
-    width: 360px;
-    min-width: 360px;
-    top: 100px;
-    -webkit-box-shadow: #ebedf0 0 4px 12px;
-    box-shadow: 0 4px 12px #ebedf0;
-}
-
 @media (min-width: $breakwidth)
   .theme-container
     .sidebar
@@ -218,6 +214,6 @@ th, td
       width: 1440px;
       margin: 0 auto;
       padding-right: 400px
-    .doc-simulator 
+    .simulator 
       right: 50%;
       margin-right: -680px;

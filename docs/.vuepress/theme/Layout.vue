@@ -52,6 +52,8 @@
       />
     </Page>
 
+    <Simulator></Simulator>
+
     <SWUpdatePopup :updateEvent="swUpdateEvent"/>
   </div>
 </template>
@@ -63,11 +65,15 @@ import Home from './Home.vue'
 import Navbar from './Navbar.vue'
 import Page from './Page.vue'
 import Sidebar from './Sidebar.vue'
+import Simulator from './Simulator.vue'
 import SWUpdatePopup from './SWUpdatePopup.vue'
 import { resolveSidebarItems } from './util'
+import { findComponentDownward } from './assist'
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, SWUpdatePopup },
+  name: 'Layout',
+
+  components: { Home, Page, Sidebar, Navbar, Simulator, SWUpdatePopup },
 
   data () {
     return {
@@ -150,6 +156,11 @@ export default {
   methods: {
     toggleSidebar (to) {
       this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
+    },
+
+    _triggerLink (data, init) {
+      var SimulatorComp = findComponentDownward(this, 'Simulator')
+      SimulatorComp && SimulatorComp._triggerLink(data, init)
     },
 
     // side swipe

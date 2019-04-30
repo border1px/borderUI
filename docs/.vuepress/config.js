@@ -35,7 +35,7 @@ module.exports = {
         title: '组件',
         collapsable: true,
         children: [
-          ['md/button','Button 按钮'],
+          ['/Comp/button','Button 按钮'],
           // ['/FAQ/quickstart','Dialog 弹框'],
           // ['/FAQ/changelog','Cell 单元格']
         ]

@@ -9,7 +9,7 @@ export default {
   name: 'Simulator',
   data () {
     return {
-      iFrameUrl: 'https://youzan.github.io/vant/mobile.html#/zh-CN/'
+      iFrameUrl: 'http://127.0.0.1:8082/'
     }
   },
   methods: {
@@ -17,9 +17,9 @@ export default {
       document.getElementById('simulator').contentWindow.location.reload(true);
       // $("#h5Content").attr("src","${h5.url}"+"?time="+new Date().getTime());
       if(init){
-        this.iFrameUrl = 'https://youzan.github.io/vant/mobile.html#/zh-CN/button'
+        this.iFrameUrl = 'http://127.0.0.1:8082/button'
       }else{
-        this.iFrameUrl = 'https://youzan.github.io/vant/mobile.html#/zh-CN/'
+        this.iFrameUrl = 'http://127.0.0.1:8082/'
       }
 
     }

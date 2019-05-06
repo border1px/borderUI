@@ -36,7 +36,7 @@ module.exports = {
         collapsable: true,
         children: [
           ['/Comp/button','Button 按钮'],
-          // ['/FAQ/quickstart','Dialog 弹框'],
+          ['/Comp/button_group','Button Group 按钮组'],
           // ['/FAQ/changelog','Cell 单元格']
         ]
       },

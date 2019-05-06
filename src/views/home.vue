@@ -72,6 +72,8 @@
         <div class="icon-text">Sort</div>
       </div>
     </div>
+
+    <bo-layout></bo-layout>
   </div>
 </template>
 

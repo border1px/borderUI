@@ -13,13 +13,13 @@ export default {
   data () {
     return {
       btnArr: [
-        {name: '最近消息',icon:'iconfont icon-yduiindexicons'},
-        {name: '历史通知'}
+        { name: '最近消息', icon: 'iconfont icon-yduiindexicons' },
+        { name: '历史通知' }
       ],
       btnArr2: [
-        {name: '上午'},
-        {name: '中午'},
-        {name: '下午'}
+        { name: '上午' },
+        { name: '中午' },
+        { name: '下午' }
       ]
     }
   }

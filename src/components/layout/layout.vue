@@ -24,7 +24,7 @@ export default {
 <style scoped lang="stylus">
 @import "../../style/var";
 
-.@{css-prefix}
+.{$css-prefix}
   &-test
     color:red
     font-weight bold

@@ -2,8 +2,13 @@ import HomeView from './views/home.vue'
 import ButtonView from './views/button.vue'
 import ButtonGroupView from './views/button_group.vue'
 import PickerView from './views/picker.vue'
-
+import DemoView from './views/demo.vue'
 const routers = [
+  {
+    path: '/demo',
+    name: 'demo',
+    component: DemoView
+  },
   {
     path: '/',
     name: 'home',

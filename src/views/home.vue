@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <bo-layout></bo-layout>
+    <!-- <bo-layout></bo-layout> -->
   </div>
 </template>
 

@@ -10,10 +10,12 @@ import Dialog from './components/dialog'
 import Button from './components/button'
 import Picker from './components/picker'
 import Layout from './components/layout'
+import Navbar from './components/navbar'
 import ButtonGroup from './components/button_group'
 Vue.component(Button.name, Button)
 Vue.component(Picker.name, Picker)
 Vue.component(Layout.name, Layout)
+Vue.component(Navbar.name, Navbar)
 Vue.component(ButtonGroup.name, ButtonGroup)
 Vue.use(Dialog)
 Vue.use(VueRouter)

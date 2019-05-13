@@ -1,21 +1,22 @@
 <template>
-  <div class="pf-navbar">
+  <div class="bo-navbar">
     <div class="left"></div>
-    <div class="content">333</div>
+    <div class="content"></div>
     <div class="right"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BoNavbar'
+  name: 'bo-navbar'
 }
 </script>
 
 <style lang="stylus" scoped>
-.pf-navbar
+.bo-navbar
   display flex
   height 44px
+  background-color pink
   .left
     width 44px
   .content

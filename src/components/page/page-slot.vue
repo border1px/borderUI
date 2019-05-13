@@ -24,7 +24,7 @@
 
 <script type="text/babel">
 export default {
-  name: 'bo-layout'
+  name: 'bo-page'
 }
 </script>
 

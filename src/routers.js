@@ -3,6 +3,8 @@ import ButtonView from './views/button.vue'
 import ButtonGroupView from './views/button_group.vue'
 import PickerView from './views/picker.vue'
 import DemoView from './views/demo.vue'
+import PageView from './views/page.vue'
+
 const routers = [
   {
     path: '/demo',
@@ -29,6 +31,11 @@ const routers = [
     path: '/picker',
     name: 'picker',
     component: PickerView
+  },
+  {
+    path: '/page',
+    name: 'page',
+    component: PageView
   }
 ]
 export default routers

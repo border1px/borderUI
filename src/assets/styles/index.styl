@@ -1,0 +1,40 @@
+html,body{
+  height: 100%;
+  background-color: #F4F4F4;
+}
+#app {
+  height: 100%;
+  width: 100%;
+}
+.body-padding{
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.page
+  position relative
+  .bo-navbar
+    position fixed
+    top 0
+    left 0
+    right 0
+  .bo-toolbar
+    position fixed
+    bottom 0
+    left 0
+    right 0
+  .page-content
+    height: 100%;
+    box-sizing: border-box
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    padding-top 44px
+  &.no-navbar
+    .page-content
+      padding-top 0
+
+
+    
+// .navbar ~ * .page:not(.no-navbar) .page-content, .navbar ~ .page:not(.no-navbar) .page-content, .navbar ~ .page-content, .navbar ~ :not(.page) .page-content {
+//     padding-top: var(--f7-navbar-height);
+// }

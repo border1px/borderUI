@@ -4,18 +4,20 @@ import routers from './routers.js'
 import App from './App.vue'
 
 import './assets/styles/reset.css'
-import './assets/styles/index.css'
+import './assets/styles/index.styl'
 import './assets/iconfont/iconfont.css'
 import Dialog from './components/dialog'
 import Button from './components/button'
 import Picker from './components/picker'
-import Layout from './components/layout'
+import Page from './components/page'
 import Navbar from './components/navbar'
+import Toolbar from './components/toolbar'
 import ButtonGroup from './components/button_group'
 Vue.component(Button.name, Button)
 Vue.component(Picker.name, Picker)
-Vue.component(Layout.name, Layout)
+Vue.component(Page.name, Page)
 Vue.component(Navbar.name, Navbar)
+Vue.component(Toolbar.name, Toolbar)
 Vue.component(ButtonGroup.name, ButtonGroup)
 Vue.use(Dialog)
 Vue.use(VueRouter)

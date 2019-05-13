@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="body-padding">
     <div class="btn-inline">
       <bo-button type="primary" size="large" >Primary</bo-button>
       <bo-button type="warning" >Warning</bo-button>

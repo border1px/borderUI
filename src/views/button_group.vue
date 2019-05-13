@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="body-padding">
     <div class="button-group">
       <bo-button-group :btnArr='btnArr'></bo-button-group>
       <bo-button-group :btnArr='btnArr2'></bo-button-group>

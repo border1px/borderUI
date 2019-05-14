@@ -1,5 +1,5 @@
 <template>
-  <div class="bo-toolbar">
+  <div class="toolbar">
 
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.bo-toolbar
+.toolbar
   display flex
   height 50px
   background-color pink

@@ -11,12 +11,14 @@ import Button from './components/button'
 import Picker from './components/picker'
 import Page from './components/page'
 import Navbar from './components/navbar'
+import Subnavbar from './components/subnavbar'
 import Toolbar from './components/toolbar'
 import ButtonGroup from './components/button_group'
 Vue.component(Button.name, Button)
 Vue.component(Picker.name, Picker)
 Vue.component(Page.name, Page)
 Vue.component(Navbar.name, Navbar)
+Vue.component(Subnavbar.name, Subnavbar)
 Vue.component(Toolbar.name, Toolbar)
 Vue.component(ButtonGroup.name, ButtonGroup)
 Vue.use(Dialog)

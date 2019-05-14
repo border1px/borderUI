@@ -4,11 +4,9 @@ import Mixins from '../utils/mixins'
 import pageContent from './page-content.vue'
 
 const PageProps = Utils.extend({
-  withSubnavbar: Boolean,
   subnavbar: Boolean,
   noNavbar: Boolean,
   noToolbar: Boolean,
-  tabs: Boolean,
   pageContent: {
     type: Boolean,
     default: true
@@ -28,8 +26,8 @@ export default {
     let child = null
     let tag = null
     let pageContentEl
-    // let withSubnavbar
-    // let withSearchbar
+    let withSubnavbar
+    let withSearchbar
     let withMessages
 
     const fixedTags = ('navbar toolbar tabbar subnavbar searchbar messagebar fab list-index').split(' ')
@@ -42,8 +40,10 @@ export default {
           continue; // eslint-disable-line
         }
         let isFixed = false
-        // if (tag.indexOf('subnavbar') >= 0) withSubnavbar = true
-        // if (tag.indexOf('searchbar') >= 0) withSearchbar = true
+        // 只找page下的一级子组件，不再深挖(Vue组件找child，原生找chidlren)
+        if (tag.indexOf('subnavbar') >= 0) withSubnavbar = true
+        if (tag.indexOf('searchbar') >= 0) withSearchbar = true
+
         if (typeof withMessages === 'undefined' && tag.indexOf('messages') >= 0) withMessages = true
         for (let j = 0; j < fixedTags.length; j += 1) {
           if (tag.indexOf(fixedTags[j]) >= 0) {
@@ -56,22 +56,7 @@ export default {
     }
 
     if (self.pageContent) {
-      pageContentEl = h('page-content', {
-        props: {
-          ptr: self.ptr,
-          ptrDistance: self.ptrDistance,
-          ptrPreloader: self.ptrPreloader,
-          infinite: self.infinite,
-          infiniteTop: self.infiniteTop,
-          infiniteDistance: self.infiniteDistance,
-          infinitePreloader: self.infinitePreloader,
-          hideBarsOnScroll: self.hideBarsOnScroll,
-          hideNavbarOnScroll: self.hideNavbarOnScroll,
-          hideToolbarOnScroll: self.hideToolbarOnScroll,
-          messagesContent: self.messagesContent || withMessages,
-          loginScreen: self.loginScreen
-        }
-      }, [self.$slots.static, staticList])
+      pageContentEl = h('page-content', [self.$slots.static, staticList])
     } else {
       pageContentEl = []
       if (self.$slots.default && fixedList.length > 0) {
@@ -98,9 +83,7 @@ export default {
   computed: {
     classes () {
       return {
-        stacked: this.stacked,
-        tabs: this.tabs,
-        'subnavbar': this.subnavbar || this.withSubnavbar,
+        'page-with-subnavbar': this.subnavbar || this.withSubnavbar,
         'no-navbar': this.noNavbar,
         'no-toolbar': this.noToolbar
       }

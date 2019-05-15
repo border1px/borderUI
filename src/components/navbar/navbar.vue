@@ -2,8 +2,6 @@
 <script>
 import Utils from '../utils/utils'
 import Mixins from '../utils/mixins'
-import BoNavLeft from './nav-left.vue'
-import BoNavTitle from './nav-title.vue'
 const NavbarProps = Utils.extend({
   backLink: [Boolean, String],
   title: String,
@@ -14,37 +12,25 @@ const NavbarProps = Utils.extend({
 }, Mixins.colorProps)
 export default {
   name: 'bo-navbar',
-  components: {
-    BoNavLeft,
-    BoNavTitle
-  },
-  render (c) {
+  render (h) {
     const self = this
     let innerEl
     let leftEl
     let titleEl
     if (self.inner) {
       if (self.backLink) {
-        leftEl = c('bo-nav-left', {
-          props: {
-            backLink: self.backLink
-          },
-          on: {
-            'back-click': self.onBackClick
-          }
-        })
+        if (typeof self.backLink === 'boolean') {
+          leftEl = h('div', { staticClass: 'left' }, '《')
+        } else {
+          leftEl = h('div', { staticClass: 'left' }, '《' + this.backLink)
+        }
       }
-      if (self.title || self.subtitle) {
-        titleEl = c('bo-nav-title', {
-          props: {
-            title: self.title,
-            subtitle: self.subtitle
-          }
-        })
+      if (self.title) {
+        titleEl = h('div', { staticClass: 'title' }, this.title)
       }
-      innerEl = c('div', { ref: 'inner', staticClass: 'navbar-inner' }, [leftEl, titleEl, self.$slots.default])
+      innerEl = h('div', { ref: 'inner', staticClass: 'navbar-inner' }, [leftEl, titleEl, self.$slots.default])
 
-      // 自定义的
+      // 是否包含subnavar，有的话加class: navbar-with-subnavbar,用于控制page-content的padding
       let slotsDeault = this.$slots.default
       if (slotsDeault) {
         for (let i = 0; i < slotsDeault.length; i++) {
@@ -53,7 +39,7 @@ export default {
         }
       }
     }
-    return c('div', {
+    return h('div', {
       staticClass: 'navbar',
       class: self.classes
     }, [self.$slots['before-inner'], innerEl, self.$slots['after-inner']])
@@ -84,27 +70,31 @@ export default {
 <style lang="stylus" scoped>
 @import '../../style/var';
 .navbar
+  background-color #FFF
   .navbar-inner
-    height 44px
-    padding 0 8px
+    position relative
+    height $navbar-height
+    padding 0 $navbar-padding
     display flex
     align-items center
     justify-content: space-between
   .title
-    text-align: center
-    position: relative
-    overflow: hidden
-    text-overflow: ellipsis
-    white-space: nowrap
-    flex-shrink: 10
-    font-weight: $navbar-title-font-weight
-    display: inline-block
-    line-height: $navbar-title-line-height
-    text-align: $navbar-title-text-align
-    margin-left: $navbar-title-margin-left
-    margin-right: $f7-navbar-title-margin-left
+    position absolute
+    z-index -1
+    top 0
+    left 0
+    right 0
+    bottom 0
+    display flex
+    justify-content center
+    align-items center
+    font-weight bold
   .left,
   .right
+    color $theme-color
+    flex 0 1 auto
+    height $navbar-height
+    line-height $navbar-height
     flex-shrink: 0
     display: flex
     justify-content: flex-start

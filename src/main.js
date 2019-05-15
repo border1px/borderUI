@@ -10,6 +10,7 @@ import Dialog from './components/dialog'
 import Button from './components/button'
 import Picker from './components/picker'
 import Page from './components/page'
+import Tabbar from './components/tabbar'
 import Navbar from './components/navbar'
 import Subnavbar from './components/subnavbar'
 import Toolbar from './components/toolbar'
@@ -17,6 +18,7 @@ import ButtonGroup from './components/button_group'
 Vue.component(Button.name, Button)
 Vue.component(Picker.name, Picker)
 Vue.component(Page.name, Page)
+Vue.component(Tabbar.name, Tabbar)
 Vue.component(Navbar.name, Navbar)
 Vue.component(Subnavbar.name, Subnavbar)
 Vue.component(Toolbar.name, Toolbar)

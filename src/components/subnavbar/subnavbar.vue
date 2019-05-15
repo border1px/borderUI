@@ -32,10 +32,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../../style/var.styl'
 .subnavbar
+  background-color #FFF
   .subnavbar-inner
-    height 44px
-    padding 0 8px
+    width 100%
+    height $subnavbar-height
+    padding 0 $subnavbar-padding
     display flex
     align-items center
     justify-content: space-between

@@ -1,8 +1,8 @@
 <template>
   <ul class="pf-button-group">
-    <li 
-      v-for="(item, index) in btnArr" 
-      :key='index' 
+    <li
+      v-for="(item, index) in btnArr"
+      :key='index'
       :class="{active : index === btnIndex}"
       @click="clickTab(index)"
     >
@@ -36,6 +36,7 @@ export default {
 @import '../../style/var.styl'
 .pf-button-group
   display flex
+  width 100%
   li
     flex 1
     height 40px
@@ -44,15 +45,14 @@ export default {
     border 1px solid $theme-color
     display flex
     justify-content center
-    align-items center 
-    border-right none 
+    align-items center
+    border-right none
     &:last-child
       border-right 1px solid $theme-color
     &.active
       background-color $theme-color
       color #FFF
-    i 
+    i
       margin-right 5px
       font-size 20px
 </style>
-

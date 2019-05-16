@@ -6,7 +6,9 @@ import App from './App.vue'
 import './assets/styles/reset.css'
 import './assets/styles/index.styl'
 import './assets/iconfont/iconfont.css'
+import './style/iconfont/iconfont.css'
 import Dialog from './components/dialog'
+import Icon from './components/icon'
 import Button from './components/button'
 import Picker from './components/picker'
 import Page from './components/page'
@@ -15,6 +17,7 @@ import Navbar from './components/navbar'
 import Subnavbar from './components/subnavbar'
 import Toolbar from './components/toolbar'
 import ButtonGroup from './components/button_group'
+Vue.component(Icon.name, Icon)
 Vue.component(Button.name, Button)
 Vue.component(Picker.name, Picker)
 Vue.component(Page.name, Page)

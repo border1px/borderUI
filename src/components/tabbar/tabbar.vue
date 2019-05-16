@@ -89,15 +89,15 @@ export default {
       height $tabbar-height-capsule
       line-height $tabbar-height-capsule
       border 1px solid $theme-color
+      border-right none
       &.active
         background-color $theme-color
         color $theme-textcolor-active
       &:first-child
         border-radius $tabbar-radius 0 0 $tabbar-radius
-        border-right none
       &:last-child
         border-radius 0 $tabbar-radius $tabbar-radius 0
-        border-left none
+        border-right 1px solid $theme-color
   // 胶囊tabbar + 两侧对齐
   &-inner.capsule:not(.shrink)
     li

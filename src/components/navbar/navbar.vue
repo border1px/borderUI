@@ -1,7 +1,7 @@
-
 <script>
 import Utils from '../utils/utils'
 import Mixins from '../utils/mixins'
+import Icon from '../icon'
 const NavbarProps = Utils.extend({
   backLink: [Boolean, String],
   title: String,
@@ -12,23 +12,53 @@ const NavbarProps = Utils.extend({
 }, Mixins.colorProps)
 export default {
   name: 'bo-navbar',
+  components: {
+
+  },
   render (h) {
     const self = this
+    const slots = self.$slots
     let innerEl
     let leftEl
     let titleEl
+    let rightEl
     if (self.inner) {
-      if (self.backLink) {
-        if (typeof self.backLink === 'boolean') {
-          leftEl = h('div', { staticClass: 'left' }, '《')
-        } else {
-          leftEl = h('div', { staticClass: 'left' }, '《' + this.backLink)
-        }
+      // 布尔值，只显示返回icon
+      if (self.backLink && typeof self.backLink === 'boolean') {
+        leftEl = h('div', {
+          staticClass: 'left'
+        }, [
+          h(Icon, {
+            props: {
+              name: 'fanhui'
+            }
+          })
+        ])
+      } else if (self.backLink && typeof self.backLink === 'string') {
+        // string, 返回icon + 文字
+        leftEl = h('div', {
+          staticClass: 'left'
+        }, [
+          h(Icon, {
+            props: {
+              name: 'fanhui'
+            }
+          }), self.backLink])
+      } else if (slots['nav-left']) {
+        // [slot]nav-left, 显示自定义left
+        leftEl = h('div', { staticClass: 'left' }, slots['nav-left'])
+      } else {
+        // 如果只有nav-right，保证位置正确
+        leftEl = h('div', { staticClass: 'left' })
       }
-      if (self.title) {
-        titleEl = h('div', { staticClass: 'title' }, this.title)
+
+      if (self.title || slots.title) {
+        titleEl = h('div', { staticClass: 'title' }, self.title || slots.title)
       }
-      innerEl = h('div', { ref: 'inner', staticClass: 'navbar-inner' }, [leftEl, titleEl, self.$slots.default])
+
+      if (slots['nav-right']) {
+        rightEl = h('div', { staticClass: 'right' }, slots['nav-right'])
+      }
 
       // 是否包含subnavar，有的话加class: navbar-with-subnavbar,用于控制page-content的padding
       let slotsDeault = this.$slots.default
@@ -38,6 +68,11 @@ export default {
           if (tag && tag.indexOf('subnavbar') >= 0) self.withSubnavbar = true
         }
       }
+
+      innerEl = h('div', {
+        ref: 'inner',
+        staticClass: 'navbar-inner'
+      }, [leftEl, titleEl, rightEl, this.$slots['default']])
     }
     return h('div', {
       staticClass: 'navbar',
@@ -61,7 +96,6 @@ export default {
   methods: {
     onBackClick (e) {
       this.$emit('back-click', e)
-      this.$emit('click:back', e)
     }
   }
 }
@@ -92,15 +126,10 @@ export default {
   .left,
   .right
     color $theme-color
-    flex 0 1 auto
     height $navbar-height
     line-height $navbar-height
-    flex-shrink: 0
     display: flex
     justify-content: flex-start
     align-items: center
-    transform: translate3d(0, 0, 0)
-  .right:first-child
-    position: absolute
-    height: 100%
+
 </style>

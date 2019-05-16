@@ -6,7 +6,7 @@
       back
       icon="icon-back"
       :class="{'icon-only': (backLink === true || backLink)}"
-      :text="backLink !== true && !$theme.md ? backLink : undefined"
+      :text="backLink !== true || undefined"
       :force="backLinkForce || undefined"
       @click="onBackClick"
       ></f7-link>

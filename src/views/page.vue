@@ -1,18 +1,54 @@
 <template>
-  <bo-page>
-    <bo-navbar title="标题" >
-      <div slot="nav-left">《Back</div>
-      <bo-button size="small" slot="nav-right">Btn1</bo-button>
-      <div slot="title">我是标题</div>
-      <bo-subnavbar>
-        <bo-tabbar :btnArr='btnArr'></bo-tabbar>
-      </bo-subnavbar>
-    </bo-navbar>
+  <!-- <bo-page> -->
     <div>
-      page-content
-      <bo-icon name='fanhui'></bo-icon>
-    </div>
-  </bo-page>
+
+    <demo-item title="最简单用法">
+      <bo-navbar title="我是标题"></bo-navbar>
+    </demo-item>
+
+    <demo-item title="标题 + 返回按钮">
+      <bo-navbar @back-click="onBackClick" back-link title="我是标题"></bo-navbar>
+    </demo-item>
+
+    <demo-item title="标题 + 返回按钮 + 文字">
+      <bo-navbar back-link="back" title="我是标题"></bo-navbar>
+    </demo-item>
+
+    <demo-item title="自定义返回按钮">
+      <bo-navbar title="我是标题">
+        <div slot="nav-left">
+          <bo-button>back</bo-button>
+        </div>
+      </bo-navbar>
+    </demo-item>
+
+    <demo-item title="自定义标题">
+      <bo-navbar>
+        <div slot="title">
+          <bo-button>我是自定义标题</bo-button>
+        </div>
+      </bo-navbar>
+    </demo-item>
+
+    <demo-item title="自定义右侧按钮">
+      <bo-navbar title="我是标题">
+        <div slot="nav-right">
+          <bo-button size="small">按钮1</bo-button>
+          <bo-button size="small">按钮2</bo-button>
+        </div>
+      </bo-navbar>
+    </demo-item>
+
+    <!-- <demo-item title="带工具栏">
+      <bo-navbar title="标题">
+        <bo-subnavbar>
+          <bo-tabbar :btnArr='btnArr'></bo-tabbar>
+        </bo-subnavbar>
+      </bo-navbar>
+    </demo-item> -->
+
+  </div>
+  <!-- </bo-page> -->
 </template>
 
 <script>
@@ -26,6 +62,11 @@ export default {
         { name: '已付款' },
         { name: '待评价' }
       ]
+    }
+  },
+  methods: {
+    onBackClick () {
+      alert('back-click')
     }
   }
 }

@@ -37,7 +37,7 @@ module.exports = {
         children: [
           ['/Comp/button','Button 按钮'],
           ['/Comp/button_group','Button Group 按钮组'],
-          // ['/FAQ/changelog','Cell 单元格']
+          ['/Comp/navbar','Navbar 导航']
         ]
       },
     ]

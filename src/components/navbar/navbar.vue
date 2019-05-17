@@ -26,7 +26,10 @@ export default {
       // 布尔值，只显示返回icon
       if (self.backLink && typeof self.backLink === 'boolean') {
         leftEl = h('div', {
-          staticClass: 'left'
+          staticClass: 'left',
+          on: {
+            click: this.onBackClick
+          }
         }, [
           h(Icon, {
             props: {
@@ -107,6 +110,7 @@ export default {
   background-color #FFF
   .navbar-inner
     position relative
+    z-index 2
     height $navbar-height
     padding 0 $navbar-padding
     display flex
@@ -123,6 +127,7 @@ export default {
     justify-content center
     align-items center
     font-weight bold
+    color $theme-textcolor
   .left,
   .right
     color $theme-color
@@ -131,5 +136,8 @@ export default {
     display: flex
     justify-content: flex-start
     align-items: center
+  .right
+    > div > *
+      margin-left 10px
 
 </style>

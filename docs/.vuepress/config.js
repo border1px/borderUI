@@ -1,7 +1,7 @@
 module.exports = {
   title: 'borderUI',
   description: 'Mobile UI Components built on Vue',
-  // base:'/border-docs/',
+  base:'/border-ui/docs/',
   sidebarDepth: 2,
   themeConfig: {
     sidebarDepth: 2, // e'b将同时提取markdown中h2 和 h3 标题，显示在侧边栏上。
@@ -17,8 +17,8 @@ module.exports = {
           { text: 'Cookbook',link: '' },
         ]
       },
-      { text: '博客', link: 'http://obkoro1.com/' }, // 外部链接
-      { text: 'GitHub', link: 'http://www.baidu.com'}
+      { text: '博客', link: 'http://hicjiajia.cnblogs.com/' }, // 外部链接
+      { text: 'GitHub', link: 'https://github.com/border-1px/borderUI'}
     ],
     sidebar:[
       {

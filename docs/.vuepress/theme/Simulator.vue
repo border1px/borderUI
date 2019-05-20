@@ -9,18 +9,18 @@ export default {
   name: 'Simulator',
   data () {
     return {
-      iFrameUrl: 'http://127.0.0.1:8083/'
+      iFrameUrl: 'https://border-1px.github.io/border-ui/demo'
     }
   },
   methods: {
     _triggerLink (data, init) {
-      document.getElementById('simulator').contentWindow.location.reload(true);
-      // $("#h5Content").attr("src","${h5.url}"+"?time="+new Date().getTime());
-      if(init){
-        this.iFrameUrl = 'http://127.0.0.1:8082/button'
-      }else{
-        this.iFrameUrl = 'http://127.0.0.1:8082/'
-      }
+      // document.getElementById('simulator').contentWindow.location.reload(true);
+      // // $("#h5Content").attr("src","${h5.url}"+"?time="+new Date().getTime());
+      // if(init){
+      //   this.iFrameUrl = 'http://127.0.0.1:8082/button'
+      // }else{
+      //   this.iFrameUrl = 'http://127.0.0.1:8082/'
+      // }
 
     }
   }

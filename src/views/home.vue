@@ -1,5 +1,12 @@
 <template>
   <div class="container">
+
+    <p align="center" style="margin:20px 0">
+      <img src="../assets/logo.png" width="100">
+    </p>
+    <p align="center" style="margin:20px 0">
+      borderUI
+    </p>
     <div class="row">
       <router-link to="/button" class="col">
         <i class="iconfont icon-anniu"></i>

@@ -91,3 +91,53 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.page
+  position relative
+  .navbar
+    position fixed
+    top 0
+    left 0
+    right 0
+    .subnavbar
+      width: 100%;
+      position: absolute
+      left: 0
+      top: 44px
+      z-index: 500
+      box-sizing: border-box
+      display: flex
+      justify-content: space-between
+      align-items: center
+  .toolbar
+    position fixed
+    bottom 0
+    left 0
+    right 0
+  .page-content
+    height: 100%;
+    box-sizing: border-box
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    padding-top 44px
+
+// subnavbar是navbar的子组件，所以不能直接用page来取
+.navbar.navbar-with-subnavbar ~ .page-content
+    padding-top 88px
+
+.page.no-navbar
+  .page-content
+    padding-top 0
+
+.page.page-with-subnavbar
+  .page-content
+    padding-top 88px
+  .subnavbar
+    top: 44px
+
+.page.no-navbar.page-with-subnavbar
+  .page-content
+    padding-top 44px
+
+</style>

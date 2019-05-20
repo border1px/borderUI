@@ -32,7 +32,7 @@ Vue.component(ButtonGroup.name, ButtonGroup)
 Vue.use(Dialog)
 Vue.use(VueRouter)
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes: routers
 })
 

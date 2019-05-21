@@ -6,6 +6,7 @@ import DemoView from './views/demo.vue'
 import NavbarView from './views/navbar.vue'
 import SwitchView from './views/switch.vue'
 import DialogView from './views/dialog.vue'
+import CheckboxView from './views/checkbox.vue'
 
 const routers = [
   {
@@ -48,6 +49,11 @@ const routers = [
     path: '/dialog',
     name: 'dialog',
     component: DialogView
+  },
+  {
+    path: '/checkbox',
+    name: 'checkbox',
+    component: CheckboxView
   }
 ]
 export default routers

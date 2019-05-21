@@ -30,10 +30,10 @@
         <i class="iconfont icon-Popup"></i>
         <div class="icon-text">Dialog</div>
       </router-link>
-      <div class="col">
-        <i class="iconfont icon-radio"></i>
-        <div class="icon-text">Radio</div>
-      </div>
+      <router-link to="/checkbox" class="col">
+        <i class="iconfont icon-check-box"></i>
+        <div class="icon-text">checkbox</div>
+      </router-link>
       <div class="col">
         <i class="iconfont icon-yduiindexauctionsheet"></i>
         <div class="icon-text">ActionSheet</div>

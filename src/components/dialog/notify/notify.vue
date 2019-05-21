@@ -21,7 +21,7 @@ export default {
       } else if (this.type === 'danger') {
         return 'pf-notify-danger'
       } else {
-        return 'pf-notify-default'
+        return 'pf-notify-primary'
       }
     }
   }
@@ -48,12 +48,14 @@ export default {
   animation: pf-notify-in .15s ease forwards;
   &-out
     animation: pf-notify-out .15s ease forwards;
+  &-primary
+    background-color $theme-color
   &-success
     background-color #5cb85c
   &-warning
-    background-color #f0ad4e
+    background-color #FFA500
   &-danger
-    background-color #d9534f
+    background-color #FF3030
   &-default
     background-color: rgba(40, 40, 40, .85)
 

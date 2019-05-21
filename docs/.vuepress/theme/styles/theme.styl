@@ -62,7 +62,7 @@ body
   position fixed
   z-index 10
   margin 0
-  top $navbarHeight
+  top 6rem
   right 0
   bottom 0
   box-sizing border-box
@@ -217,3 +217,7 @@ th, td
     .simulator 
       right: 50%;
       margin-right: -680px;
+@media (max-width: $breakwidth)
+  .theme-container
+    .simulator 
+      display: none

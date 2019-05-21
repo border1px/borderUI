@@ -23,7 +23,7 @@ module.exports = {
     sidebar:[
       {
         title: '指南',
-        collapsable: true,
+        collapsable: false,
         children: [
           ['/FAQ/introduction','介绍'],
           ['/FAQ/quickstart','快速上手'],
@@ -33,11 +33,13 @@ module.exports = {
       },
       {
         title: '组件',
-        collapsable: true,
+        collapsable: false,
         children: [
           ['/Comp/button','Button 按钮'],
           ['/Comp/button_group','Button Group 按钮组'],
-          ['/Comp/navbar','Navbar 导航']
+          ['/Comp/navbar','Navbar 导航'],
+          ['/Comp/switch','Switch 开关'],
+          ['/Comp/dialog','Dialog 弹框']
         ]
       },
     ]

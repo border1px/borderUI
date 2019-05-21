@@ -1,36 +1,33 @@
 <template>
   <div class="pf-switch">
-    <input type="checkbox" class="pf-switch-el" v-model="actived">
+    <input type="checkbox" class="pf-switch-el" v-model="currentValue" @change="onChange">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'pf-switch',
+  name: 'bo-switch',
   props: {
-    checked: {
+    value: {
       type: Boolean,
       default: false
     }
   },
   data () {
     return {
-      actived: this.checked
+      currentValue: this.value
     }
   },
-  watch: {
-    actived () {
-      this.$emit('input', this.actived)
+  methods: {
+    onChange () {
+      this.$emit('change', this.currentValue)
     }
   }
 }
 </script>
 
 <style lang="stylus">
-$switch-main-border-color = #dfdfdf
-$switch-main-bg = #fdfdfd
-$switch-slider-bg = #fff
-$switch-main-color-active = #fd5454
+@import '../../../src/style/var.styl'
 
 .pf-switch-el {
   height: 31px;
@@ -57,8 +54,8 @@ $switch-main-color-active = #fd5454
   transition: all 0.3s ease;
 }
 .pf-switch-el:checked {
-  border: 1px solid $switch-main-color-active ;
-  background-color: $switch-main-color-active ;
+  border: 1px solid $theme-color ;
+  background-color: $theme-color ;
 }
 .pf-switch-el:checked:before {
   left: 21px;

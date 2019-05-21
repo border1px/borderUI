@@ -20,7 +20,11 @@ var initInstance = () => {
 var Toast = (options = {}) => {
   pageScroll.lock()
   initInstance()
-  instance.$props.msg = options.msg || ''
+  if (typeof options === 'string' || typeof options === 'number') {
+    instance.$props.msg = options
+  } else {
+    instance.$props.msg = options.msg || ''
+  }
   instance.$props.timeout = options.timeout || 2000
 
   const timer = setTimeout(() => {

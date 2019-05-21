@@ -10,6 +10,7 @@ import './assets/iconfont/iconfont.css'
 import './style/iconfont/iconfont.css'
 import DemoItem from './components/demo-item'
 import Dialog from './components/dialog'
+import Switch from './components/switch'
 import Icon from './components/icon'
 import Button from './components/button'
 import Picker from './components/picker'
@@ -22,6 +23,7 @@ import ButtonGroup from './components/button_group'
 Vue.component(DemoItem.name, DemoItem)
 Vue.component(Icon.name, Icon)
 Vue.component(Button.name, Button)
+Vue.component(Switch.name, Switch)
 Vue.component(Picker.name, Picker)
 Vue.component(Page.name, Page)
 Vue.component(Tabbar.name, Tabbar)

@@ -2,7 +2,7 @@
   <div class="pf-mask">
     <div class="pf-confirm">
       <div class="pf-confirm-hd">{{title}}</div>
-      <div class="pf-confirm-by">{{content}}</div>
+      <div class="pf-confirm-by">{{msg}}</div>
       <div class="pf-confirm-bt">
         <div class="btn-default" @click="closeConfirm(0)">{{cancelText}}</div>
         <div class="btn-primary" @click="closeConfirm(1)">{{okText}}</div>
@@ -45,17 +45,21 @@
       &:active
         background-color $dialog-btn-bg-active
       &.btn-primary
-        color:$dialog-btn-primary-color
+        color: $theme-color
 </style>
 
 <script>
 export default {
-  data () {
-    return {
-      title: '标题',
-      content: 'arguments是所有函数体都有的局部变量，包含传递的所有参数',
-      cancelText: '取消',
-      okText: '确定'
+  props: {
+    title: String,
+    msg: String,
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
+    okText: {
+      type: String,
+      default: '确定'
     }
   }
 }

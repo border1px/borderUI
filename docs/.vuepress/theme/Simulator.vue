@@ -7,9 +7,16 @@
 <script>
 export default {
   name: 'Simulator',
+  mounted() {
+    if (process.env.NODE_ENV == 'development') {
+      this.iFrameUrl = 'http://localhost:8080/'
+    } else if (process.env.NODE_ENV == 'production') {
+      this.iFrameUrl = 'https://border-1px.github.io/border-ui/demo/'
+    }
+  },
   data () {
     return {
-      iFrameUrl: 'https://border-1px.github.io/border-ui/demo'
+      iFrameUrl: ''
     }
   },
   methods: {
@@ -31,5 +38,12 @@ export default {
 #simulator
   width 100%
   height 646px
+  border 5px solid #000
+  border-radius 10px
+  box-sizing border-box
+  html
+    height 100%
+  body
+    height 100%
 </style>
 

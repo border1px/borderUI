@@ -3,6 +3,10 @@ import Utils from '../utils/utils'
 import Mixins from '../utils/mixins'
 
 const PageContentProps = Utils.extend({
+  padding: {
+    type: String,
+    default: '10px'
+  },
   tab: Boolean,
   tabActive: Boolean,
   ptr: Boolean,
@@ -27,7 +31,9 @@ export default {
   name: 'page-content',
   render (h) {
     const self = this
-    return h('div', { staticClass: 'page-content' }, [self.$slots.default])
+    return h('div', {
+      staticClass: 'page-content'
+    }, [self.$slots.default])
   },
   props: PageContentProps,
   computed: {

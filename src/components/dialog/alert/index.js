@@ -23,6 +23,10 @@ var Alert = (options = {}) => {
   return new Promise((resolve, reject) => {
     pageScroll.lock()
     initInstance()
+
+    // instance.$props.msg = options.msg || ''
+    // instance.$props.title = options.title || ''
+    // instance.$props.buttonText = options.buttonText || '确定'
     Object.assign(instance, options, { resolve, reject })
   })
 }

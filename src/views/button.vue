@@ -1,4 +1,6 @@
 <template>
+<bo-page>
+  <bo-navbar back-link title="Button" @back-click="$router.back()"></bo-navbar>
   <div class="body-padding">
     <div class="btn-inline">
       <bo-button type="primary" size="large" >Primary</bo-button>
@@ -16,10 +18,19 @@
       <bo-button color="#EE30A7" size="large" loading auto>Button</bo-button >
     </div>
   </div>
+</bo-page>
+
 </template>
 
 <script>
-
+export default {
+  methods: {
+    goBack () {
+      // document.frames['simulator'].history.back()
+      // console.log(document.getElementById('simulator'))
+    }
+  }
+}
 </script>
 
 <style>

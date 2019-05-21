@@ -1,11 +1,13 @@
 <template>
+<bo-page>
+  <bo-navbar back-link title="Button" @back-click="$router.back()"></bo-navbar>
   <div class="body-padding">
     <div class="button-group">
       <bo-button-group :btnArr='btnArr'></bo-button-group>
       <bo-button-group :btnArr='btnArr2'></bo-button-group>
     </div>
-
   </div>
+</bo-page>
 </template>
 
 <script>

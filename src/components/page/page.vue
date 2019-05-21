@@ -7,6 +7,7 @@ const PageProps = Utils.extend({
   subnavbar: Boolean,
   noNavbar: Boolean,
   noToolbar: Boolean,
+  padding: String,
   pageContent: {
     type: Boolean,
     default: true

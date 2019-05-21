@@ -13,23 +13,23 @@
         <div class="icon-text">Button</div>
       </router-link>
       <router-link to="/button_group" class="col">
-        <i class="iconfont icon-duihuakuang"></i>
-        <div class="icon-text">Dialog</div>
+        <i class="iconfont icon-anniu"></i>
+        <div class="icon-text">Btn Group</div>
       </router-link>
-      <div class="col">
-        <i class="iconfont icon-menuonboardsheet"></i>
-        <div class="icon-text">Cell</div>
-      </div>
-      <div class="col">
+      <router-link to="/navbar" class="col">
+        <i class="iconfont icon-NavBar-Back" style="font-size:20px"></i>
+        <div class="icon-text">Navbar</div>
+      </router-link>
+      <router-link to="/switch" class="col">
         <i class="iconfont icon-switch"></i>
         <div class="icon-text">Switch</div>
-      </div>
+      </router-link>
     </div>
     <div class="row">
-      <div class="col">
-        <i class="iconfont icon-check-box"></i>
-        <div class="icon-text">Checkbox</div>
-      </div>
+      <router-link to="/dialog" class="col">
+        <i class="iconfont icon-Popup"></i>
+        <div class="icon-text">Dialog</div>
+      </router-link>
       <div class="col">
         <i class="iconfont icon-radio"></i>
         <div class="icon-text">Radio</div>
@@ -79,7 +79,24 @@
         <div class="icon-text">Sort</div>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col">
+        <i class="iconfont icon-YDUI-index-scrolltab"></i>
+        <div class="icon-text">ScrollTab</div>
+      </div>
+      <div class="col">
+        <i class="iconfont icon-yduiindexcityselect"></i>
+        <div class="icon-text">CitySelect</div>
+      </div>
+      <router-link to="/picker" class="col">
+        <i class="iconfont icon-nianyuerixuanze"></i>
+        <div class="icon-text">DatePicker</div>
+      </router-link>
+      <div class="col">
+        <i class="iconfont icon-houdongfangiconfont04"></i>
+        <div class="icon-text">Sort</div>
+      </div>
+    </div>
     <!-- <bo-layout></bo-layout> -->
   </div>
 </template>

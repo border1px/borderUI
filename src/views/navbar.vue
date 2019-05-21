@@ -1,6 +1,6 @@
 <template>
-  <!-- <bo-page> -->
-    <div>
+  <bo-page>
+  <bo-navbar back-link title="Navbar" @back-click="$router.back()"></bo-navbar>
 
     <demo-item title="最简单用法">
       <bo-navbar title="我是标题"></bo-navbar>
@@ -47,8 +47,7 @@
       </bo-navbar>
     </demo-item> -->
 
-  </div>
-  <!-- </bo-page> -->
+  </bo-page>
 </template>
 
 <script>

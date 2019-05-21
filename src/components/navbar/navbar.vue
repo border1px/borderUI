@@ -136,6 +136,7 @@ export default {
     display: flex
     justify-content: flex-start
     align-items: center
+    cursor pointer
   .right
     > div > *
       margin-left 10px

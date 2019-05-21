@@ -2,7 +2,7 @@
   <div class="pf-mask">
     <div class="pf-alert">
       <div class="pf-alert-hd">{{title}}</div>
-      <div class="pf-alert-by">{{content}}</div>
+      <div class="pf-alert-by">{{msg}}</div>
       <div class="pf-alert-bt btn-primary" @click.stop="closeAlert">{{buttonText}}</div>
     </div>
   </div>
@@ -35,18 +35,19 @@
     text-align:center;
     border-1px(,top)
     &.btn-primary
-      color: $dialog-btn-primary-color;
+      color: $theme-color;
     &:active
       background-color $dialog-btn-bg-active
 </style>
 
 <script>
 export default {
-  data () {
-    return {
-      title: '标题',
-      content: 'arguments是所有函数体都有的局部变量，包含传递的所有参数',
-      buttonText: '确定'
+  props: {
+    title: String,
+    msg: String,
+    buttonText: {
+      type: String,
+      default: '确定'
     }
   }
 }

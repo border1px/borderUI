@@ -9,9 +9,8 @@
 </template>
 
 <script>
-import { setTimeout } from 'timers';
 export default {
-  data(){
+  data () {
     return {
       checked: false
     }

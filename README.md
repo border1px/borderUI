@@ -34,7 +34,7 @@ Compiled results will be available in `dist/` folder.
 
 ## Document Development
 
-To run Document with development environment use the following npm scripts:
+To run Document with development environment use the following npm scripts(based on vuepress):
 
 * `docs:dev` - build development versions and run local server. 
 
@@ -46,15 +46,20 @@ To Run Document with production builds (already compiled `/docs/dist/` will be u
 
 Whole source code is located under `/src/` folder.
 
-Framework7 uses Phenome compiler to generate React & Vue components. So all the React & Vue related code is under the `/src/phenome/` folder
+* `/src` - Source Code Root Directory
+* `/src/components` - Source code for each component
+* `/src/style` - Component Style Files and iconfont
+* `/src/views` - One-to-one correspondence with the component folder to demonstrate the use of individual components
+* `/docs` - Docume files
+
 
 ## Contributing
 
-Before you open an issue please review the [contributing](https://github.com/framework7io/framework7/blob/master/CONTRIBUTING.md) guideline.
+Before you open an issue please review the [contributing](https://github.com/) guideline.
 
 **All changes should be commited to `src/` files only!**.
 
-Framework7 uses Stylus compilations, and ES modules JS files.
+borderUI uses Stylus compilations, and ES modules JS files.
 
 The project uses [.editorconfig](http://editorconfig.org/) and [ESLint](https://eslint.org/) to define and lint the coding style of each file. We recommend that you install the Editor Config and ESLint extension for your preferred IDE.
 
@@ -68,4 +73,3 @@ Documentation available at https://border-1px.github.io/border-ui/docs/FAQ/intro
 
 Demo available at https://border-1px.github.io/border-ui/demo/
 
-## Previous Versions

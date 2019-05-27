@@ -22,13 +22,13 @@ $ npm install
 
 The following npm scripts are available to create development builds:
 
-* `serve` - build development versions of all packages
+* `serve` - build development versions
 
 ## Production builds
 
 To build production versions the following npm scripts are available:
 
-* `build` - build production versions of all packages 
+* `build` - build production versions
 
 Compiled results will be available in `dist/` folder.
 

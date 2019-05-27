@@ -10,7 +10,7 @@
 
 ## borderUI Development
 
-borderUI base on `vue-cli@3` to build a development (build) and production versions.
+borderUI base on `vue-cli@3` to build a development and production versions.
 
 Install all dependencies, in repo's root:
 
@@ -22,7 +22,7 @@ $ npm install
 
 The following npm scripts are available to create development builds:
 
-* `serve` - build development versions
+* `serve` - build development versions（Start by default on http://localhost:8080）
 
 ## Production builds
 

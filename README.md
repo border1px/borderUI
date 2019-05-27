@@ -1,14 +1,8 @@
 <p align="center"><a href="https://framework7.io" target="_blank" rel="noopener noreferrer"><img width="150" src="https://cdn.framework7.io/i/logo.svg" alt="Framework7"></a></p>
 
-<p align="center">
-  <a href="https://www.patreon.com/vladimirkharlampidi"><img src="https://cdn.framework7.io/i/support-badge.png" height="20"></a>
-  <a href="https://travis-ci.org/framework7io/framework7"><img src="https://travis-ci.org/framework7io/framework7.svg?branch=master" alt="Build Status"></a>
-  <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/framework7io/Framework7.svg" alt="Greenkeeper"></a>
-</p>
+<h1 align="center">borderUI</h1>
 
-<h1 align="center">Framework7</h1>
-
-<p align="center">Full Featured Mobile HTML Framework For Building iOS & Android Apps</p>
+<p align="center">Mobile UI Components built on Vue</p>
 
 <h2 align="center">Supporting Framework7</h2>
 
@@ -16,81 +10,11 @@ Framework7 is an MIT-licensed open source project with its ongoing development m
 
 * [Become a backer or sponsor on Patreon.](https://www.patreon.com/vladimirkharlampidi)
 
-<h3 align="center">Sponsors</h3>
-
-<table>
-  <tr>
-    <td align="center" valign="middle">
-      <a href="https://www.thoriumbuilder.com/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/thorium.png">
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href="https://kidoverse.app" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/kidoverse.png">
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href="https://www.cyberbrain.nl/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/cyberbrain.png">
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href="https://hicapps.cl/web/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/hicapps.png">
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href="https://edubirdie.com/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/birdie.png">
-      </a>
-    </td>
-
-  </tr>
-  <tr>
-    <td align="center" valign="middle">
-      <a href="https://blokt.com/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/blokt.png">
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href="https://www.activewaiter.com/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/activewaiter.png">
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href="https://wappler.io/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/wappler.png">
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href="https://app-valley.vip/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/appvalley.jpg">
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href="https://www.securcom.me/" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/securcom.png">
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="middle">
-      <a href="http://mytommy.com" target="_blank">
-        <img width="160" src="https://cdn.framework7.io/i/sponsors/tommy.png">
-      </a>
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
 
 ## Getting Started
-  * [Getting Started Guide](https://framework7.io/docs/introduction.html)
+  * [Getting Started Guide](https://border-1px.github.io/border-ui/docs/FAQ/introduction.html)
 
-## Framework7 Development
+## borderUI Development
 
 Framework7 uses `gulp` and `rollup` to build a development (build) and production versions.
 

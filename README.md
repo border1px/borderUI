@@ -1,4 +1,4 @@
-<p align="center"><a href="https://framework7.io" target="_blank" rel="noopener noreferrer"><img width="150" src="https://cdn.framework7.io/i/logo.svg" alt="Framework7"></a></p>
+<p align="center"><a href="https://framework7.io" target="_blank" rel="noopener noreferrer"><img width="150" src="https://s2.ax1x.com/2019/05/27/VZCLE8.png" alt="Framework7"></a></p>
 
 <h1 align="center">borderUI</h1>
 

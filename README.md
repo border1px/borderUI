@@ -6,8 +6,8 @@
 
 
 ## Getting Started
-  * [Getting Started Guide](https://border-1px.github.io/border-ui/docs/FAQ/introduction.html)
-
+  * [Document](https://border-1px.github.io/border-ui/docs/FAQ/introduction.html)
+  * [Demo](https://border-1px.github.io/border-ui/demo/)
 ## borderUI Development
 
 borderUI base on `vue-cli@3` to build a development and production versions.

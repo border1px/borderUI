@@ -19,8 +19,8 @@ import Tabbar from './components/tabbar'
 import Navbar from './components/navbar'
 import Subnavbar from './components/subnavbar'
 import Toolbar from './components/toolbar'
-import Checkbox from './components/checkbox'
-import ButtonGroup from './components/button_group'
+import { Checkbox, CheckboxGroup } from './components/checkbox'
+import ButtonGroup from './components/button-group'
 Vue.component(DemoItem.name, DemoItem)
 Vue.component(Icon.name, Icon)
 Vue.component(Button.name, Button)
@@ -32,6 +32,7 @@ Vue.component(Navbar.name, Navbar)
 Vue.component(Subnavbar.name, Subnavbar)
 Vue.component(Toolbar.name, Toolbar)
 Vue.component(Checkbox.name, Checkbox)
+Vue.component(CheckboxGroup.name, CheckboxGroup)
 Vue.component(ButtonGroup.name, ButtonGroup)
 Vue.use(Dialog)
 Vue.use(VueRouter)

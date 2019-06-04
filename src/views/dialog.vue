@@ -1,7 +1,7 @@
 <template>
 <bo-page>
   <bo-navbar back-link title="Dialog" @back-click="$router.back()"></bo-navbar>
-  <div class="body-padding">
+  <div>
       <demo-item title="Toast">
         <bo-button auto @click="openToast">Toast</bo-button >
       </demo-item>

@@ -1,12 +1,17 @@
 <template>
 <bo-page>
-  <bo-navbar back-link title="Checkbox" @back-click="$router.back()" ></bo-navbar>
+  <bo-navbar back-link title="Radio" @back-click="$router.back()" ></bo-navbar>
   <div >
     <demo-item title="单独使用">
-      <bo-checkbox v-model="check1" >已解决</bo-checkbox>
+      <bo-radio-group v-model="check1" >
+        <bo-radio label="苹果">苹果</bo-radio>
+        <bo-radio label="香蕉">香蕉</bo-radio>
+        <bo-radio label="桃子">桃子</bo-radio>
+        <bo-radio label="荔枝">荔枝</bo-radio>
+      </bo-radio-group>
     </demo-item>
 
-    <demo-item title="禁用状态">
+    <!-- <demo-item title="禁用状态">
       <bo-checkbox disabled>已解决</bo-checkbox>
     </demo-item>
 
@@ -43,7 +48,7 @@
         </bo-cell>
       </bo-checkbox-group>
       {{check4}}
-    </demo-item>
+    </demo-item> -->
   </div>
 </bo-page>
 </template>
@@ -52,7 +57,7 @@
 export default {
   data () {
     return {
-      check1: true,
+      check1: '香蕉',
       check2: ['B'],
       check3: [],
       check4: [],

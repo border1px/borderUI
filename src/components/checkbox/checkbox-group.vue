@@ -1,6 +1,5 @@
 <template>
   <div>
-    Checkbox-Group
     <slot></slot>
   </div>
 </template>
@@ -13,6 +12,7 @@ export default {
       type: Array,
       required: true
     },
+    max: Number,
     disabled: { type: Boolean }
   },
   watch: {
@@ -23,16 +23,17 @@ export default {
   methods: {
     selectItem (item) {
       const { value } = this
+      if (this.max && this.value.length >= this.max) {
+        return
+      }
       this.$emit('input', [...value, item])
     },
     deleteItem (item) {
       const { value: selectItems } = this
-      // console.log(selectItems)
       this.$emit(
         'input',
         selectItems.filter(selectitem => selectitem !== item)
       )
-      console.log(selectItems)
     }
   }
 }

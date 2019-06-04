@@ -7,6 +7,8 @@ import NavbarView from './views/navbar.vue'
 import SwitchView from './views/switch.vue'
 import DialogView from './views/dialog.vue'
 import CheckboxView from './views/checkbox.vue'
+import RadioView from './views/radio.vue'
+import CellView from './views/cell.vue'
 
 const routers = [
   {
@@ -54,6 +56,16 @@ const routers = [
     path: '/checkbox',
     name: 'checkbox',
     component: CheckboxView
+  },
+  {
+    path: '/radio',
+    name: 'radio',
+    component: RadioView
+  },
+  {
+    path: '/cell',
+    name: 'cell',
+    component: CellView
   }
 ]
 export default routers

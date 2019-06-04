@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <transition :name="'slide-' + ($root.direction === 'forward' ? 'in' : 'out')">
-      <router-view class="main-view"></router-view>
+      <keep-alive>
+        <router-view class="main-view"></router-view>
+      </keep-alive>
     </transition>
   </div>
 </template>

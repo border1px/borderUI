@@ -39,7 +39,9 @@ module.exports = {
           ['/Comp/button_group','Button Group 按钮组'],
           ['/Comp/navbar','Navbar 导航'],
           ['/Comp/switch','Switch 开关'],
-          ['/Comp/dialog','Dialog 弹框']
+          ['/Comp/dialog','Dialog 弹框'],
+          ['/Comp/cell','Cell 单元格'],
+          ['/Comp/checkbox','Checkbox 复选框']
         ]
       },
     ]

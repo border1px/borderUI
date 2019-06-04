@@ -2,19 +2,19 @@
   <bo-page>
   <bo-navbar back-link title="Navbar" @back-click="$router.back()"></bo-navbar>
 
-    <demo-item title="最简单用法">
+    <demo-item title="最简单用法" no-padding>
       <bo-navbar title="我是标题"></bo-navbar>
     </demo-item>
 
-    <demo-item title="标题 + 返回按钮">
+    <demo-item title="标题 + 返回按钮" no-padding>
       <bo-navbar @back-click="onBackClick" back-link title="我是标题"></bo-navbar>
     </demo-item>
 
-    <demo-item title="标题 + 返回按钮 + 文字">
+    <demo-item title="标题 + 返回按钮 + 文字" no-padding>
       <bo-navbar back-link="back" title="我是标题"></bo-navbar>
     </demo-item>
 
-    <demo-item title="自定义返回按钮">
+    <demo-item title="自定义返回按钮" no-padding>
       <bo-navbar title="我是标题">
         <div slot="nav-left">
           <bo-button>back</bo-button>
@@ -22,7 +22,7 @@
       </bo-navbar>
     </demo-item>
 
-    <demo-item title="自定义标题">
+    <demo-item title="自定义标题" no-padding>
       <bo-navbar>
         <div slot="title">
           <bo-button>我是自定义标题</bo-button>
@@ -30,7 +30,7 @@
       </bo-navbar>
     </demo-item>
 
-    <demo-item title="自定义右侧按钮">
+    <demo-item title="自定义右侧按钮" no-padding>
       <bo-navbar title="我是标题">
         <div slot="nav-right">
           <bo-button size="small">按钮1</bo-button>

@@ -34,14 +34,14 @@
         <i class="iconfont icon-check-box"></i>
         <div class="icon-text">checkbox</div>
       </router-link>
-      <div class="col">
-        <i class="iconfont icon-yduiindexauctionsheet"></i>
-        <div class="icon-text">ActionSheet</div>
-      </div>
-      <div class="col">
-        <i class="iconfont icon-tab2"></i>
-        <div class="icon-text">Tab</div>
-      </div>
+      <router-link to="/radio" class="col">
+        <i class="iconfont icon-radio"></i>
+        <div class="icon-text">Radio</div>
+      </router-link>
+      <router-link to="/cell" class="col">
+        <i class="iconfont icon-boardsheet-o"></i>
+        <div class="icon-text">Cell</div>
+      </router-link>
     </div>
     <div class="row">
       <div class="col">

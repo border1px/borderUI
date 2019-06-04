@@ -1,31 +1,37 @@
 <template>
-  <label
-    :class="[
-      'checkbox-item',
-      { 'is-checked': isChecked },
-      { 'is-disabled': disabled }
-    ]"
-    @click.stop="handleClick"
-  >
-    <input
-      v-if="false"
-      type="checkbox"
-      v-bind="$attrs"
-      :disabled="disabled"
-      :value="model"
+  <div>
+    <span
+      :class="[
+        'checkbox-item',
+        { 'is-checked': isChecked },
+        { 'is-disabled': isDisabled },
+        { 'is-group': isGroup }
+      ]"
+      @click.stop="toggle"
     >
-    <span class="checkbox-inner">
-      <bo-icon name="radio-checked" size="24px" color="#CCC"/>
-      <span>
-        <slot></slot>
+      <input
+        v-if="false"
+        type="checkbox"
+        v-bind="$attrs"
+        :disabled="disabled"
+        :value="model"
+      >
+      <span class="checkbox-inner">
+        <bo-icon name="radio-checked" :size=iconSize color="#CCC"/>
+        <span class="slot-value">
+          <slot></slot>
+        </span>
       </span>
     </span>
-  </label>
+  </div>
 </template>
 
 <style lang="stylus" scoped>
 @import '../../style/var';
 .checkbox-item
+  &.is-group
+    display inline-block
+    padding 2px 0
   input
     appearance none
   .checkbox-inner
@@ -37,6 +43,10 @@
   &.is-disabled
     i.iconfont
       color #CCC
+    .slot-value
+      color #CCC
+  .slot-value
+    margin-left:5px
 </style>
 
 <script>
@@ -48,6 +58,14 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    iconSize: {
+      type: String,
+      default: '24px'
+    },
+    textSize: {
+      type: String,
+      default: '14px'
     },
     label: String,
     value: {
@@ -79,12 +97,15 @@ export default {
 
         if (isGroup) {
           isChecked
-            ? this.parent.deleteItem(this.label)
-            : this.parent.selectItem(this.label)
+            ? this.parent.deleteItem(this.label || '')
+            : this.parent.selectItem(this.label || '')
         } else {
           this.$emit('input', newValue)
         }
       }
+    },
+    isDisabled () {
+      return (this.parent && this.parent.disabled) || this.disabled
     },
     isChecked () {
       const { isGroup, model } = this
@@ -109,9 +130,9 @@ export default {
     this.parent ? this.isGroup = true : this.isGroup = false
   },
   methods: {
-    handleClick (event) {
-      const { disabled, isGroup, model, value } = this
-      if (!disabled) {
+    toggle (event) {
+      const { isDisabled, isGroup, model, value } = this
+      if (!isDisabled) {
         this.model = isGroup ? value : !model
       }
     }

@@ -1,5 +1,9 @@
 <template>
-  <div class="cell-item" :class="{ taphold : isLink }">
+  <div
+    class="cell-item"
+    :class="{ taphold : isLink || clickable }"
+    @click="onClick"
+  >
     <div class="cell-item-inner">
       <div class="cell-icon" :class="icon" v-if="icon"></div>
       <div class="cell-item-left">
@@ -18,21 +22,24 @@
 
 <script>
 export default {
+  name: 'bo-cell-item',
   props: {
     icon: String,
     title: String,
     value: String,
-    isLink: Boolean
+    isLink: Boolean,
+    clickable: Boolean
+  },
+  methods: {
+    onClick () {
+      this.$emit('click')
+    }
   }
 }
 </script>
 
 <style lang="stylus">
-$cell-bg = #FFF
-$cell-item-height = 50px
-$cell-item-active = #F4F4F4
-$cell-item-border-color = #ECECEC
-$cell-item-right-color = #909090
+@import '../../style/var';
 
 .cell-item
   padding-left 15px
@@ -49,6 +56,8 @@ $cell-item-right-color = #909090
       width 25px
       height 25px
       margin-right 5px
+      &:before
+        font-size 24px
   &-left
     flex:1
   &-right

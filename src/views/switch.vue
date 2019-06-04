@@ -1,7 +1,7 @@
 <template>
 <bo-page>
   <bo-navbar back-link title="Switch" @back-click="$router.back()"></bo-navbar>
-  <div class="body-padding">
+  <div>
     <demo-item title="最简单用法">
       <bo-switch></bo-switch>
     </demo-item>

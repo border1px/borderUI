@@ -20,7 +20,10 @@ import Navbar from './components/navbar'
 import Subnavbar from './components/subnavbar'
 import Toolbar from './components/toolbar'
 import { Checkbox, CheckboxGroup } from './components/checkbox'
+import { Radio, RadioGroup } from './components/radio'
 import ButtonGroup from './components/button-group'
+import { Cell, CellItem } from './components/cell'
+
 Vue.component(DemoItem.name, DemoItem)
 Vue.component(Icon.name, Icon)
 Vue.component(Button.name, Button)
@@ -33,7 +36,11 @@ Vue.component(Subnavbar.name, Subnavbar)
 Vue.component(Toolbar.name, Toolbar)
 Vue.component(Checkbox.name, Checkbox)
 Vue.component(CheckboxGroup.name, CheckboxGroup)
+Vue.component(Radio.name, Radio)
+Vue.component(RadioGroup.name, RadioGroup)
 Vue.component(ButtonGroup.name, ButtonGroup)
+Vue.component(Cell.name, Cell)
+Vue.component(CellItem.name, CellItem)
 Vue.use(Dialog)
 Vue.use(VueRouter)
 const router = new VueRouter({

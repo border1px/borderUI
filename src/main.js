@@ -23,6 +23,7 @@ import { Checkbox, CheckboxGroup } from './components/checkbox'
 import { Radio, RadioGroup } from './components/radio'
 import ButtonGroup from './components/button-group'
 import { Cell, CellItem } from './components/cell'
+import {Swipe,SwipeItem} from './components/swipe'
 
 Vue.component(DemoItem.name, DemoItem)
 Vue.component(Icon.name, Icon)
@@ -41,6 +42,8 @@ Vue.component(RadioGroup.name, RadioGroup)
 Vue.component(ButtonGroup.name, ButtonGroup)
 Vue.component(Cell.name, Cell)
 Vue.component(CellItem.name, CellItem)
+Vue.component(Swipe.name, Swipe)
+Vue.component(SwipeItem.name, SwipeItem)
 Vue.use(Dialog)
 Vue.use(VueRouter)
 const router = new VueRouter({

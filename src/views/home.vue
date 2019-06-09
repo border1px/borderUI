@@ -92,10 +92,10 @@
         <i class="iconfont icon-nianyuerixuanze"></i>
         <div class="icon-text">DatePicker</div>
       </router-link>
-      <div class="col">
+      <router-link to="/swipe" class="col">
         <i class="iconfont icon-houdongfangiconfont04"></i>
-        <div class="icon-text">Sort</div>
-      </div>
+        <div class="icon-text">Swipe</div>
+      </router-link>
     </div>
     <!-- <bo-layout></bo-layout> -->
   </div>

@@ -3,24 +3,41 @@
     @touchstart="handleTouchstart"
     @touchmove="handleTouchmove"
     @touchend="handleTouchend"
-    @touchcancel="handleTouchend"
   >
     <div
       class="bo-swipe-wrapper"
       ref="wrapper"
       :style="wrapperStyle"
     >
+      <component :is="firstSwiperItem"></component>
       <slot></slot>
+      <component :is="lastSwiperItem"></component>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name:'bo-swipe',
-  data() {
+  name: 'bo-swipe',
+  props: {
+    touchable: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data () {
     return {
       transX: 0,
+      startX: 0,
+      startY: 0,
+      deltaX: 0,
+      currentIndex:0,
+      clientWidth:0,
+      swipeItemCount:0,
+      firstSwiperItem: null,
+      lastSwiperItem: null,
+      autoPlayTimer: null,
+      touchStartTime: 0,
       duration: '300'
     }
   },
@@ -32,23 +49,68 @@ export default {
       }
     }
   },
+  mounted () {
+    this.init()
+  },
   methods: {
-    handleTouchstart () {
-
+    init () {
+      this.clientWidth = parseInt(getComputedStyle(this.$el, false).width, 10)
+      
+      var slots = this.$slots.default
+      this.swipeItems = slots
+        .filter(vnode => vnode.tag && vnode.elm.classList.contains('bo-swipe-item'))
+        .map(vnode => vnode.elm)
+      if (!this.swipeItems.length) {
+        // console.warn('The swipe component not contained swipe-item component', this.$el);
+        return false
+      }
+      this.swipeItemCount = this.swipeItems.length
+      this.createVNode(slots)
     },
-    handleTouchmove () {
-
+    createVNode (slots) {
+      this.firstSwiperItem = {
+        render (h) {
+          return h('div', {
+            staticClass: 'bo-swipe-item'
+          }, slots.slice(-1))
+        }
+      }
+      this.lastSwiperItem = {
+        render (h) {
+          return h('div', {
+            staticClass: 'bo-swipe-item'
+          }, slots.slice(0, 1))
+        }
+      }
+      this.$nextTick(() => {
+        this.$refs.wrapper.style.marginLeft = `-${this.clientWidth}px`;
+      })
     },
-    handleTouchend () {
-
+    translate (d) {
+      this.$refs.wrapper.style.transform = `translate3d(${d}px, 0, 0)`;
     },
-    handleTouchend() {
+    handleTouchstart (e) {
+      clearTimeout(this.autoplayTimer)
+      if (!this.touchable) return
+      this.startX = e.touches[0].pageX
+      this.startY = e.touches[0].pageY
+      this.touchStartTime = new Date().getTime()
+    },
+    handleTouchmove (e) {
+      e.preventDefault()
+      if (!this.touchable) return
+      this.deltaX = e.touches[0].pageX - this.startX
 
+      // 怎么计算currentIndex
+      var d = this.currentIndex * this.clientWidth + this.deltaX
+      this.translate(d)
+    },
+    handleTouchend (e) {
+      this.deltaX = 0
     }
   }
 }
 </script>
-
 
 <style lang="stylus" scoped>
 .bo-swipe

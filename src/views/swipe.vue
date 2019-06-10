@@ -4,10 +4,10 @@
   <div>
     <bo-swipe>
       <bo-swipe-item>
-        <div style="height:200px;background-color:pink;"></div>
+        <div style="height:200px;width:100%;background-color:pink;"></div>
       </bo-swipe-item>
       <bo-swipe-item>
-        <div style="height:200px;background-color:blue;"></div>
+        <div style="height:200px;width:100%;background-color:blue;"></div>
       </bo-swipe-item>
     </bo-swipe>
   </div>

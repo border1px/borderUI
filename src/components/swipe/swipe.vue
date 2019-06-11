@@ -9,9 +9,9 @@
       ref="wrapper"
       :style="wrapperStyle"
     >
-      <component :is="firstSwiperItem"></component>
+      <component :is="firstSwipeItem"></component>
       <slot></slot>
-      <component :is="lastSwiperItem"></component>
+      <component :is="lastSwipeItem"></component>
     </div>
   </div>
 </template>
@@ -23,6 +23,15 @@ export default {
     touchable: {
       type: Boolean,
       default: true
+    },
+    loop: {
+      type: Boolean,
+      default: false
+    },
+    threshold: {
+      type: Number,
+      default: 50,
+      validator(val) { return val >= 0 }
     }
   },
   data () {
@@ -34,8 +43,8 @@ export default {
       currentIndex:0,
       clientWidth:0,
       swipeItemCount:0,
-      firstSwiperItem: null,
-      lastSwiperItem: null,
+      firstSwipeItem: null,
+      lastSwipeItem: null,
       autoPlayTimer: null,
       touchStartTime: 0,
       duration: '300'
@@ -65,17 +74,17 @@ export default {
         return false
       }
       this.swipeItemCount = this.swipeItems.length
-      this.createVNode(slots)
+      this.loop && this.createVNode(slots)
     },
     createVNode (slots) {
-      this.firstSwiperItem = {
+      this.firstSwipeItem = {
         render (h) {
           return h('div', {
             staticClass: 'bo-swipe-item'
           }, slots.slice(-1))
         }
       }
-      this.lastSwiperItem = {
+      this.lastSwipeItem = {
         render (h) {
           return h('div', {
             staticClass: 'bo-swipe-item'
@@ -89,6 +98,16 @@ export default {
     translate (d) {
       this.$refs.wrapper.style.transform = `translate3d(${d}px, 0, 0)`;
     },
+    updateCurrentIndex () {
+      if (this.deltaX > 0) {
+        (this.currentIndex == 0) ? (this.currentIndex == 0) : (this.currentIndex --)
+      } else {
+        (this.currentIndex == this.swipeItemCount - 1) ? (this.currentIndex == this.swipeItemCount - 1) : (this.currentIndex ++)
+      }
+
+      var d = -(this.currentIndex * this.clientWidth)
+      this.translate(d)
+    },
     handleTouchstart (e) {
       clearTimeout(this.autoplayTimer)
       if (!this.touchable) return
@@ -101,12 +120,63 @@ export default {
       if (!this.touchable) return
       this.deltaX = e.touches[0].pageX - this.startX
 
+
+      const translate = -(this.currentIndex * this.clientWidth) + this.deltaX
+      // 正常触摸应该移动的距离
+      let finalTranslate = translate;
+      // 考虑 loop 的取值时
+      finalTranslate = this.handleTouchmove_loop(translate);
+
+
       // 怎么计算currentIndex
-      var d = this.currentIndex * this.clientWidth + this.deltaX
-      this.translate(d)
+      // var d = -(this.currentIndex * this.clientWidth) + this.deltaX
+      this.translate(finalTranslate)
     },
     handleTouchend (e) {
+      if (Math.abs(this.deltaX) < this.threshold) {
+        return
+      }
+      var f = (this.deltaX > 0) ? -1 : 1
+      if (this.loop) {
+        this.handleTouchend_loop(f)
+      } else {
+        this.updateCurrentIndex()
+      }
       this.deltaX = 0
+    },
+    handleTouchmove_loop(translate) {
+      if (this.loop) {
+        return translate;
+      }
+      const leftBoundary = 0;
+      const rightBoundary = -this.clientWidth * (this.swipeItemCount - 1);
+      // 左边界
+      if (translate > leftBoundary) {
+        return leftBoundary;
+      }
+      // 右边界
+      if (translate < rightBoundary) {
+        return rightBoundary;
+      }
+      // normal
+      return translate;
+    },
+    handleTouchend_loop (deviation) {
+      if (!this.loop) return;
+      const newValue = this.currentIndex + deviation;
+      // left boundary
+      if (this.currentIndex === 0 && newValue < this.currentIndex) {
+        this.translate(-this.clientWidth * (this.swipeItemCount - 1))
+        this.currentIndex = this.swipeItemCount - 1
+        return;
+      }
+      // right boundary
+      if (this.currentIndex === this.swipeItemCount - 1 && newValue > this.currentIndex) {
+        this.translate(0);
+        this.currentIndex = 0
+        return;
+      }
+      this.updateCurrentIndex()
     }
   }
 }
@@ -120,7 +190,6 @@ export default {
     width 100%
     display flex
     flex-direction: row
-    overflow auto
   &-item
     width 100%
     height 100%

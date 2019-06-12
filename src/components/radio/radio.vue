@@ -9,18 +9,8 @@
     ]"
     @click.stop="toggle"
   >
-    <input
-      v-if="false"
-      class="f-hide"
-      type="radio"
-      :disabled="isDisabled"
-      v-bind="$attrs"
-      :value="model"
-      @click.stop
-    >
     <span class="radio-inner">
-      <bo-icon name="Radio" :size=iconSize color="#CCC" v-if="!isChecked"/>
-      <bo-icon name="radio1" :size=iconSize color="#CCC" v-if="isChecked"/>
+      <bo-icon :name=iconName :size=iconSize :color=iconColor />
       <span class="slot-value">
         <slot></slot>
       </span>
@@ -55,9 +45,22 @@ export default {
     }
   },
   computed: {
+    iconName () {
+      if (this.isDisabled) {
+        return 'jinyong1'
+      } else {
+        return this.isChecked ? 'radio1' : 'Radio'
+      }
+    },
+    iconColor () {
+      if (this.isDisabled) {
+        return '#CCC'
+      } else {
+        return this.isChecked ? '#2196F3' : '#CCC'
+      }
+    },
     isDisabled () {
-      // return this.parent.disabled || this.disabled
-      return false
+      return (this.parent && this.parent.disabled) || this.disabled
     },
     isChecked () {
       const { isGroup, model } = this
@@ -97,8 +100,9 @@ export default {
     display inline-block
     padding 2px 0
   &.is-checked
-    // background-color red
     color $theme-color
+  &.is-disabled
+    color #CCC
   .radio-inner
     i,span
       vertical-align middle

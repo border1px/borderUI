@@ -115,6 +115,11 @@ export default {
 #### CheckboxBroup Props
 | 参数           | 说明                                       | 类型   | 默认值
 | ------------- |:------------------------------------------ | :-----: | :-----: |
-| value         | CheckboxGroup绑定的值                       | Array   | []     |
+| v-model       | 被选中的值                                  | Array   | []     |
 | max           | 最多选择几个                                | Number  |         |
 | disabled      | 是否禁用                                    | Boolean | false   |
+
+#### CheckboxBroup Events
+| 事件名           | 说明                                         | 类型    | 默认值
+| ------------- |:---------------------------------------------- | :-----: | :-----: |
+| change        | Checkbox被选中触发，参数为被选中Checkbox的label  | Function  |         |

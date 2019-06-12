@@ -3,7 +3,7 @@
     @touchstart="handleTouchstart"
     @touchmove="handleTouchmove"
     @touchend="handleTouchend"
-    @touchcancel="handleTouchend"
+    @touchcancel="handleTouchcancel"
   >
     <div
       class="bo-swipe-wrapper"
@@ -17,8 +17,8 @@
 
 <script>
 export default {
-  name:'bo-swipe',
-  data() {
+  name: 'bo-swipe',
+  data () {
     return {
       transX: 0,
       duration: '300'
@@ -32,7 +32,15 @@ export default {
       }
     }
   },
+  mounted () {
+    this.init()
+  },
   methods: {
+    init () {
+      const info = getComputedStyle(this.$el, false).width
+      console.log(this.$el)
+      console.log(info)
+    },
     handleTouchstart () {
 
     },
@@ -42,13 +50,12 @@ export default {
     handleTouchend () {
 
     },
-    handleTouchend() {
+    handleTouchcancel () {
 
     }
   }
 }
 </script>
-
 
 <style lang="stylus" scoped>
 .bo-swipe

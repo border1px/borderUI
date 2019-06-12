@@ -2,12 +2,18 @@
 <bo-page>
   <bo-navbar back-link title="Swipe" @back-click="$router.back()"></bo-navbar>
   <div>
-    <bo-swipe>
+    <bo-swipe loop>
       <bo-swipe-item>
-        <div style="height:200px;background-color:pink;"></div>
+        <div style="height:200px;width:100%;background-color:pink;"></div>
       </bo-swipe-item>
       <bo-swipe-item>
-        <div style="height:200px;background-color:blue;"></div>
+        <div style="height:200px;width:100%;background-color:blue;"></div>
+      </bo-swipe-item>
+      <bo-swipe-item>
+        <div style="height:200px;width:100%;background-color:orange;"></div>
+      </bo-swipe-item>
+      <bo-swipe-item>
+        <div style="height:200px;width:100%;background-color:green;"></div>
       </bo-swipe-item>
     </bo-swipe>
   </div>

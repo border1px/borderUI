@@ -3,10 +3,7 @@
     @touchstart="handleTouchstart"
     @touchmove="handleTouchmove"
     @touchend="handleTouchend"
-<<<<<<< HEAD
-    @touchcancel="handleTouchcancel"
-=======
->>>>>>> tmp
+    @transitionend="transitionendFn"
   >
     <div
       class="bo-swipe-wrapper"
@@ -23,8 +20,6 @@
 <script>
 export default {
   name: 'bo-swipe',
-<<<<<<< HEAD
-=======
   props: {
     touchable: {
       type: Boolean,
@@ -37,19 +32,23 @@ export default {
     threshold: {
       type: Number,
       default: 50,
-      validator(val) { return val >= 0 }
+      validator (val) { return val >= 0 }
+    },
+    maxSlideBoundary: {
+      type: Number,
+      default: 100
     }
   },
->>>>>>> tmp
   data () {
     return {
       transX: 0,
       startX: 0,
       startY: 0,
       deltaX: 0,
-      currentIndex:0,
-      clientWidth:0,
-      swipeItemCount:0,
+      isTransToX: false,
+      currentIndex: 0,
+      clientWidth: 0,
+      swipeItemCount: 0,
       firstSwipeItem: null,
       lastSwipeItem: null,
       autoPlayTimer: null,
@@ -61,7 +60,7 @@ export default {
     wrapperStyle () {
       return {
         transform: `translate3d(${this.transX}px, 0, 0)`,
-        transition: `transform ${this.duration}ms cubic-bezier(0, 0, 0.25, 1)`
+        transition: this.isTransToX ? `transform ${this.duration}ms cubic-bezier(0, 0, 0.25, 1)` : ''
       }
     }
   },
@@ -70,16 +69,7 @@ export default {
   },
   methods: {
     init () {
-<<<<<<< HEAD
-      const info = getComputedStyle(this.$el, false).width
-      console.log(this.$el)
-      console.log(info)
-    },
-    handleTouchstart () {
-
-=======
       this.clientWidth = parseInt(getComputedStyle(this.$el, false).width, 10)
-      
       var slots = this.$slots.default
       this.swipeItems = slots
         .filter(vnode => vnode.tag && vnode.elm.classList.contains('bo-swipe-item'))
@@ -90,7 +80,6 @@ export default {
       }
       this.swipeItemCount = this.swipeItems.length
       this.loop && this.createVNode(slots)
->>>>>>> tmp
     },
     createVNode (slots) {
       this.firstSwipeItem = {
@@ -108,21 +97,11 @@ export default {
         }
       }
       this.$nextTick(() => {
-        this.$refs.wrapper.style.marginLeft = `-${this.clientWidth}px`;
+        this.$refs.wrapper.style.marginLeft = `-${this.clientWidth}px`
       })
     },
     translate (d) {
-      this.$refs.wrapper.style.transform = `translate3d(${d}px, 0, 0)`;
-    },
-    updateCurrentIndex () {
-      if (this.deltaX > 0) {
-        (this.currentIndex == 0) ? (this.currentIndex == 0) : (this.currentIndex --)
-      } else {
-        (this.currentIndex == this.swipeItemCount - 1) ? (this.currentIndex == this.swipeItemCount - 1) : (this.currentIndex ++)
-      }
-
-      var d = -(this.currentIndex * this.clientWidth)
-      this.translate(d)
+      this.$refs.wrapper.style.transform = `translate3d(${d}px, 0, 0)`
     },
     handleTouchstart (e) {
       clearTimeout(this.autoplayTimer)
@@ -131,72 +110,63 @@ export default {
       this.startY = e.touches[0].pageY
       this.touchStartTime = new Date().getTime()
     },
-<<<<<<< HEAD
-    handleTouchcancel () {
-=======
     handleTouchmove (e) {
       e.preventDefault()
       if (!this.touchable) return
       this.deltaX = e.touches[0].pageX - this.startX
-
->>>>>>> tmp
-
-      const translate = -(this.currentIndex * this.clientWidth) + this.deltaX
-      // 正常触摸应该移动的距离
-      let finalTranslate = translate;
-      // 考虑 loop 的取值时
-      finalTranslate = this.handleTouchmove_loop(translate);
-
-
-      // 怎么计算currentIndex
-      // var d = -(this.currentIndex * this.clientWidth) + this.deltaX
-      this.translate(finalTranslate)
+      this.translate(this.moveOffset())
     },
     handleTouchend (e) {
-      if (Math.abs(this.deltaX) < this.threshold) {
-        return
-      }
-      var f = (this.deltaX > 0) ? -1 : 1
       if (this.loop) {
-        this.handleTouchend_loop(f)
+        this.endOffsetLoop()
       } else {
-        this.updateCurrentIndex()
+        this.endOffset()
       }
       this.deltaX = 0
     },
-    handleTouchmove_loop(translate) {
-      if (this.loop) {
-        return translate;
-      }
-      const leftBoundary = 0;
-      const rightBoundary = -this.clientWidth * (this.swipeItemCount - 1);
-      // 左边界
-      if (translate > leftBoundary) {
-        return leftBoundary;
-      }
-      // 右边界
-      if (translate < rightBoundary) {
-        return rightBoundary;
-      }
-      // normal
-      return translate;
+    transitionendFn () {
+
     },
-    handleTouchend_loop (deviation) {
-      if (!this.loop) return;
-      const newValue = this.currentIndex + deviation;
+    moveOffset () {
+      var offset = -(this.currentIndex * this.clientWidth)
+
+      if (!this.loop && this.currentIndex === 0 && this.deltaX > 0) { // 非循环，第一张
+        offset = offset + Math.min(this.deltaX, this.maxSlideBoundary)
+      } else if (!this.loop && this.currentIndex === this.swipeItemCount - 1 && this.deltaX < 0) { // 非循环，最后一张
+        offset = offset + Math.max(this.deltaX, -this.maxSlideBoundary)
+      } else {
+        offset = offset + this.deltaX
+      }
+      return offset
+    },
+    endOffset () {
+      if (Math.abs(this.deltaX) >= this.threshold) {
+        if (this.deltaX > 0) {
+          (this.currentIndex == 0) ? (this.currentIndex == 0) : (this.currentIndex--)
+        } else {
+          (this.currentIndex == this.swipeItemCount - 1) ? (this.currentIndex == this.swipeItemCount - 1) : (this.currentIndex++)
+        }
+      }
+      var offset = -(this.currentIndex * this.clientWidth)
+      this.translate(offset)
+    },
+    endOffsetLoop () {
+      var deviation = (this.deltaX > 0) ? -1 : 1
+      const newValue = this.currentIndex + deviation
       // left boundary
       if (this.currentIndex === 0 && newValue < this.currentIndex) {
         this.translate(-this.clientWidth * (this.swipeItemCount - 1))
         this.currentIndex = this.swipeItemCount - 1
-        return;
+        setTimeout(() => {
+          this.translate(-this.clientWidth * (this.swipeItemCount - 1))
+        }, 50)
+        return
       }
       // right boundary
       if (this.currentIndex === this.swipeItemCount - 1 && newValue > this.currentIndex) {
-        this.translate(0);
+        this.translate(0)
         this.currentIndex = 0
-        return;
       }
-      this.updateCurrentIndex()
     }
   }
 }

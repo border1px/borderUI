@@ -23,7 +23,7 @@ import { Checkbox, CheckboxGroup } from './components/checkbox'
 import { Radio, RadioGroup } from './components/radio'
 import ButtonGroup from './components/button-group'
 import { Cell, CellItem } from './components/cell'
-import {Swipe,SwipeItem} from './components/swipe'
+import { Swipe, SwipeItem } from './components/swipe'
 
 Vue.component(DemoItem.name, DemoItem)
 Vue.component(Icon.name, Icon)

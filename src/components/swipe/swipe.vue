@@ -33,6 +33,14 @@ export default {
     duration: {
       type: Number,
       default: 500
+    },
+    activeIndex: {
+      type: Number,
+      default: 0
+    },
+    threshold: {
+      type: Number,
+      default: 50
     }
   },
   data () {
@@ -50,16 +58,15 @@ export default {
   },
   mounted () {
     this.initialize()
-    // 监听 resize事件,改变窗口重新初始化
-    window.addEventListener('resize', () => {
-      this.initialize()
-    })
   },
   destroyed () {
     clearTimeout(this.timer)
   },
   watch: {
     swipes () {
+      this.initialize()
+    },
+    activeIndex () {
       this.initialize()
     }
   },
@@ -69,8 +76,7 @@ export default {
     },
     trackStyle () {
       return {
-        paddingLeft: this.width + 'px',
-        width: (this.count + 2) * this.width + 'px',
+        width: (this.count + 0) * this.width + 'px',
         transitionDuration: `${this.currentDuration}ms`,
         transform: `translate3d(${this.offset}px, 0, 0)`
       }
@@ -80,12 +86,12 @@ export default {
     }
   },
   methods: {
-    initialize () {
+    initialize (active = this.activeIndex) {
       clearTimeout(this.timer)
       this.width = this.$el.getBoundingClientRect().width
-      this.active = 0
+      this.active = active
       this.currentDuration = 0
-      this.offset = this.count > 1 ? -this.width : 0
+      this.offset = this.count > 1 ? -this.width * this.active : 0
       this.swipes.forEach(swipe => {
         swipe.offset = 0
       })
@@ -115,8 +121,9 @@ export default {
     },
     onTouchEnd () {
       if (this.deltaX) {
-        this.move(Math.abs(this.deltaX) > 50 ? (this.deltaX > 0 ? -1 : 1) : 0)
+        this.move(Math.abs(this.deltaX) > this.threshold ? (this.deltaX > 0 ? -1 : 1) : 0)
         this.currentDuration = this.duration
+        // console.log((this.active) % (this.width-1))
       }
       this.autoPlay()
     },
@@ -135,8 +142,7 @@ export default {
           swipes[0].offset = deltaX < 0 ? count * width : 0
         }
       }
-      this.offset = offset - (this.active + 1) * this.width
-      console.log(this.offset)
+      this.offset = offset - (this.active + 0) * this.width
     },
     autoPlay () {
       const { autoplay } = this
@@ -168,42 +174,38 @@ export default {
 </script>
 
 <style>
-  body{
-    margin:0px;
-    padding:0px;
-  }
-  .bo-swipe{
-    overflow: hidden;
-    position: relative;
-    user-select: none;
-  }
-  .bo-swipe .bo-swipe-item {
-    float: left;
-    height: 100%;
-  }
-  .bo-swipe .bo-swipe-item img{
-    width:100%;
-  }
-  /* .bo-swipe.ic-slider__track {
-    height: 100%;
-    overflow: hidden;
-  }
-  .ic-slider__indicators {
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 12px;
-    transform: translateZ(1px);
-    text-align: center;
-    font-size: 0;
-  }
-  .ic-slider__indicators > i {
-    display: inline-block;
-    margin: 0 4px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ccc;
+.bo-swipe{
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+}
+.bo-swipe .bo-swipe-item {
+  float: left;
+  height: 100%;
+}
+.bo-swipe .bo-swipe-item img{
+  width:100%;
+}
+/* .bo-swipe.ic-slider__track {
+  height: 100%;
+  overflow: hidden;
+}
+.ic-slider__indicators {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 12px;
+  transform: translateZ(1px);
+  text-align: center;
+  font-size: 0;
+}
+.ic-slider__indicators > i {
+  display: inline-block;
+  margin: 0 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
 }
 .ic-slider__indicators .ic-slider__indicator--active {
     width: 20px;

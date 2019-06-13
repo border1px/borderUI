@@ -1,187 +1,213 @@
 <template>
-  <div class="bo-swipe"
-    @touchstart="handleTouchstart"
-    @touchmove="handleTouchmove"
-    @touchend="handleTouchend"
-    @transitionend="transitionendFn"
-  >
+  <div class="bo-swipe">
     <div
-      class="bo-swipe-wrapper"
-      ref="wrapper"
-      :style="wrapperStyle"
+      :style="trackStyle"
+      @touchstart="onTouchStart"
+      @touchmove="onTouchMove"
+      @touchend="onTouchEnd"
+      @touchcancel="onTouchEnd"
+      @transitionend="$emit('change', activeIndicator)"
     >
-      <component :is="firstSwipeItem"></component>
-      <slot></slot>
-      <component :is="lastSwipeItem"></component>
+      <div
+        class="bo-swipe-wrapper"
+        ref="wrapper"
+      >
+        <slot></slot>
+      </div>
     </div>
-  </div>
+    <!-- <div class="ic-slider__indicators" v-if="showIndicators && count > 1">
+      <i v-for="index in count" :class='{ 'ic-slider__indicator--active': index - 1 === activeIndicator }" :key='index' />
+    </div> -->
+</div>
 </template>
 
 <script>
 export default {
   name: 'bo-swipe',
   props: {
-    touchable: {
+    autoplay: Number,
+    showIndicators: {
       type: Boolean,
       default: true
     },
-    loop: {
-      type: Boolean,
-      default: false
-    },
-    threshold: {
+    duration: {
       type: Number,
-      default: 50,
-      validator (val) { return val >= 0 }
-    },
-    maxSlideBoundary: {
-      type: Number,
-      default: 100
+      default: 500
     }
   },
   data () {
     return {
-      transX: 0,
+      width: 0,
+      offset: 0,
       startX: 0,
       startY: 0,
+      active: 0,
       deltaX: 0,
-      isTransToX: false,
-      currentIndex: 0,
-      clientWidth: 0,
-      swipeItemCount: 0,
-      firstSwipeItem: null,
-      lastSwipeItem: null,
-      autoPlayTimer: null,
-      touchStartTime: 0,
-      duration: '300'
-    }
-  },
-  computed: {
-    wrapperStyle () {
-      return {
-        transform: `translate3d(${this.transX}px, 0, 0)`,
-        transition: this.isTransToX ? `transform ${this.duration}ms cubic-bezier(0, 0, 0.25, 1)` : ''
-      }
+      swipes: [],
+      direction: '',
+      currentDuration: 0
     }
   },
   mounted () {
-    this.init()
+    this.initialize()
+    // 监听 resize事件,改变窗口重新初始化
+    window.addEventListener('resize', () => {
+      this.initialize()
+    })
+  },
+  destroyed () {
+    clearTimeout(this.timer)
+  },
+  watch: {
+    swipes () {
+      this.initialize()
+    }
+  },
+  computed: {
+    count () {
+      return this.swipes.length
+    },
+    trackStyle () {
+      return {
+        paddingLeft: this.width + 'px',
+        width: (this.count + 2) * this.width + 'px',
+        transitionDuration: `${this.currentDuration}ms`,
+        transform: `translate3d(${this.offset}px, 0, 0)`
+      }
+    },
+    activeIndicator () {
+      return (this.active + this.count) % this.count
+    }
   },
   methods: {
-    init () {
-      this.clientWidth = parseInt(getComputedStyle(this.$el, false).width, 10)
-      var slots = this.$slots.default
-      this.swipeItems = slots
-        .filter(vnode => vnode.tag && vnode.elm.classList.contains('bo-swipe-item'))
-        .map(vnode => vnode.elm)
-      if (!this.swipeItems.length) {
-        // console.warn('The swipe component not contained swipe-item component', this.$el);
-        return false
-      }
-      this.swipeItemCount = this.swipeItems.length
-      this.loop && this.createVNode(slots)
-    },
-    createVNode (slots) {
-      this.firstSwipeItem = {
-        render (h) {
-          return h('div', {
-            staticClass: 'bo-swipe-item'
-          }, slots.slice(-1))
-        }
-      }
-      this.lastSwipeItem = {
-        render (h) {
-          return h('div', {
-            staticClass: 'bo-swipe-item'
-          }, slots.slice(0, 1))
-        }
-      }
-      this.$nextTick(() => {
-        this.$refs.wrapper.style.marginLeft = `-${this.clientWidth}px`
+    initialize () {
+      clearTimeout(this.timer)
+      this.width = this.$el.getBoundingClientRect().width
+      this.active = 0
+      this.currentDuration = 0
+      this.offset = this.count > 1 ? -this.width : 0
+      this.swipes.forEach(swipe => {
+        swipe.offset = 0
       })
+      this.autoPlay()
     },
-    translate (d) {
-      this.$refs.wrapper.style.transform = `translate3d(${d}px, 0, 0)`
-    },
-    handleTouchstart (e) {
-      clearTimeout(this.autoplayTimer)
-      if (!this.touchable) return
-      this.startX = e.touches[0].pageX
-      this.startY = e.touches[0].pageY
-      this.touchStartTime = new Date().getTime()
-    },
-    handleTouchmove (e) {
-      e.preventDefault()
-      if (!this.touchable) return
-      this.deltaX = e.touches[0].pageX - this.startX
-      this.translate(this.moveOffset())
-    },
-    handleTouchend (e) {
-      if (this.loop) {
-        this.endOffsetLoop()
-      } else {
-        this.endOffset()
-      }
+    onTouchStart (event) {
+      clearTimeout(this.timer)
       this.deltaX = 0
-    },
-    transitionendFn () {
-
-    },
-    moveOffset () {
-      var offset = -(this.currentIndex * this.clientWidth)
-
-      if (!this.loop && this.currentIndex === 0 && this.deltaX > 0) { // 非循环，第一张
-        offset = offset + Math.min(this.deltaX, this.maxSlideBoundary)
-      } else if (!this.loop && this.currentIndex === this.swipeItemCount - 1 && this.deltaX < 0) { // 非循环，最后一张
-        offset = offset + Math.max(this.deltaX, -this.maxSlideBoundary)
-      } else {
-        offset = offset + this.deltaX
+      this.direction = ''
+      this.currentDuration = 0
+      this.startX = event.touches[0].clientX
+      this.startY = event.touches[0].clientY
+      if (this.active <= -1) {
+        this.move(this.count)
       }
-      return offset
+      if (this.active >= this.count) {
+        this.move(-this.count)
+      }
     },
-    endOffset () {
-      if (Math.abs(this.deltaX) >= this.threshold) {
-        if (this.deltaX > 0) {
-          (this.currentIndex == 0) ? (this.currentIndex == 0) : (this.currentIndex--)
-        } else {
-          (this.currentIndex == this.swipeItemCount - 1) ? (this.currentIndex == this.swipeItemCount - 1) : (this.currentIndex++)
+    onTouchMove (event) {
+      this.direction = this.direction || this.getDirection(event.touches[0])
+      if (this.direction === 'horizontal') {
+        event.preventDefault()
+        this.deltaX = event.touches[0].clientX - this.startX
+        this.move(0, this.range(this.deltaX, [-this.width, this.width]))
+      }
+    },
+    onTouchEnd () {
+      if (this.deltaX) {
+        this.move(Math.abs(this.deltaX) > 50 ? (this.deltaX > 0 ? -1 : 1) : 0)
+        this.currentDuration = this.duration
+      }
+      this.autoPlay()
+    },
+    move (move = 0, offset = 0) {
+      const { active, count, swipes, deltaX, width } = this
+      if (move) {
+        if (active === -1) {
+          swipes[count - 1].offset = 0
+        }
+        swipes[0].offset = active === count - 1 && move > 0 ? count * width : 0
+        this.active += move
+      } else {
+        if (active === 0) {
+          swipes[count - 1].offset = deltaX > 0 ? -count * width : 0
+        } else if (active === count - 1) {
+          swipes[0].offset = deltaX < 0 ? count * width : 0
         }
       }
-      var offset = -(this.currentIndex * this.clientWidth)
-      this.translate(offset)
+      this.offset = offset - (this.active + 1) * this.width
+      console.log(this.offset)
     },
-    endOffsetLoop () {
-      var deviation = (this.deltaX > 0) ? -1 : 1
-      const newValue = this.currentIndex + deviation
-      // left boundary
-      if (this.currentIndex === 0 && newValue < this.currentIndex) {
-        this.translate(-this.clientWidth * (this.swipeItemCount - 1))
-        this.currentIndex = this.swipeItemCount - 1
-        setTimeout(() => {
-          this.translate(-this.clientWidth * (this.swipeItemCount - 1))
-        }, 50)
-        return
+    autoPlay () {
+      const { autoplay } = this
+      if (autoplay && this.count > 1) {
+        clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          this.currentDuration = 0
+          if (this.active >= this.count) {
+            this.move(-this.count)
+          }
+          setTimeout(() => {
+            this.currentDuration = this.duration
+            this.move(1)
+            this.autoPlay()
+          }, 30)
+        }, autoplay)
       }
-      // right boundary
-      if (this.currentIndex === this.swipeItemCount - 1 && newValue > this.currentIndex) {
-        this.translate(0)
-        this.currentIndex = 0
-      }
+    },
+    getDirection (touch) {
+      const distanceX = Math.abs(touch.clientX - this.startX)
+      const distanceY = Math.abs(touch.clientY - this.startY)
+      return distanceX > distanceY ? 'horizontal' : distanceX < distanceY ? 'vertical' : ''
+    },
+    range (num, arr) {
+      return Math.min(Math.max(num, arr[0]), arr[1])
     }
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-.bo-swipe
-  overflow: hidden
-  &-wrapper
-    height 100%
-    width 100%
-    display flex
-    flex-direction: row
-  &-item
-    width 100%
-    height 100%
-    flex none
+<style>
+  body{
+    margin:0px;
+    padding:0px;
+  }
+  .bo-swipe{
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+  }
+  .bo-swipe .bo-swipe-item {
+    float: left;
+    height: 100%;
+  }
+  .bo-swipe .bo-swipe-item img{
+    width:100%;
+  }
+  /* .bo-swipe.ic-slider__track {
+    height: 100%;
+    overflow: hidden;
+  }
+  .ic-slider__indicators {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 12px;
+    transform: translateZ(1px);
+    text-align: center;
+    font-size: 0;
+  }
+  .ic-slider__indicators > i {
+    display: inline-block;
+    margin: 0 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+}
+.ic-slider__indicators .ic-slider__indicator--active {
+    width: 20px;
+    border-radius: 5px;
+    background: #fff;
+} */
 </style>

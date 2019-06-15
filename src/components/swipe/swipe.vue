@@ -15,9 +15,20 @@
         <slot></slot>
       </div>
     </div>
-    <!-- <div class="ic-slider__indicators" v-if="showIndicators && count > 1">
-      <i v-for="index in count" :class='{ 'ic-slider__indicator--active': index - 1 === activeIndicator }" :key='index' />
-    </div> -->
+
+    <slot name="indicator">
+      <div
+        v-if="showIndicators && count > 1"
+        class="bo-swipe__indicators"
+        @transitionend.stop
+      >
+        <i
+          v-for="index in count"
+          :class="{ 'bo-swipe__indicator--active': index - 1 === activeIndicator }"
+          :key='index' />
+      </div>
+    </slot>
+
 </div>
 </template>
 
@@ -123,7 +134,6 @@ export default {
       if (this.deltaX) {
         this.move(Math.abs(this.deltaX) > this.threshold ? (this.deltaX > 0 ? -1 : 1) : 0)
         this.currentDuration = this.duration
-        // console.log((this.active) % (this.width-1))
       }
       this.autoPlay()
     },
@@ -158,6 +168,7 @@ export default {
             this.move(1)
             this.autoPlay()
           }, 30)
+          // this.$emit('change', (this.active + this.count) % this.count)
         }, autoplay)
       }
     },
@@ -186,11 +197,11 @@ export default {
 .bo-swipe .bo-swipe-item img{
   width:100%;
 }
-/* .bo-swipe.ic-slider__track {
+.bo-swipe.bo-swipe__track {
   height: 100%;
   overflow: hidden;
 }
-.ic-slider__indicators {
+.bo-swipe__indicators {
   position: absolute;
   right: 0;
   left: 0;
@@ -199,17 +210,17 @@ export default {
   text-align: center;
   font-size: 0;
 }
-.ic-slider__indicators > i {
+.bo-swipe__indicators > i {
   display: inline-block;
   margin: 0 4px;
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background: #ccc;
 }
-.ic-slider__indicators .ic-slider__indicator--active {
+.bo-swipe__indicators .bo-swipe__indicator--active {
     width: 20px;
     border-radius: 5px;
     background: #fff;
-} */
+}
 </style>

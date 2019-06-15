@@ -44,10 +44,10 @@
       </router-link>
     </div>
     <div class="row">
-      <div class="col">
-        <i class="iconfont icon-shurukuang"></i>
-        <div class="icon-text">Form</div>
-      </div>
+      <router-link to="/swipe" class="col">
+        <i class="iconfont icon-swiper"></i>
+        <div class="icon-text">Swipe</div>
+      </router-link>
       <div class="col">
         <i class="iconfont icon-rili"></i>
         <div class="icon-text">Calc</div>

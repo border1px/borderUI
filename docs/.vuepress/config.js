@@ -42,7 +42,8 @@ module.exports = {
           ['/Comp/dialog','Dialog 弹框'],
           ['/Comp/cell','Cell 单元格'],
           ['/Comp/checkbox','Checkbox 复选框'],
-          ['/Comp/radio','Radio 单选框']
+          ['/Comp/radio','Radio 单选框'],
+          ['/Comp/swipe','Swipe 轮播图']
         ]
       },
     ]

@@ -10,6 +10,7 @@ import CheckboxView from './views/checkbox.vue'
 import RadioView from './views/radio.vue'
 import CellView from './views/cell.vue'
 import SwipeView from './views/swipe.vue'
+import TabbarView from './views/tabbar.vue'
 
 const routers = [
   {
@@ -72,6 +73,11 @@ const routers = [
     path: '/swipe',
     name: 'swipe',
     component: SwipeView
+  },
+  {
+    path: '/tabbar',
+    name: 'tabbar',
+    component: TabbarView
   }
 ]
 export default routers

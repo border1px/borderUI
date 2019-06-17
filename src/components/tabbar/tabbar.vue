@@ -46,7 +46,7 @@ export default {
 @import '../../style/var.styl'
 .bo-tabbar
   width 100%
-  background-color $theme-bgcolor
+  // background-color $theme-bgcolor
   color $theme-textcolor
   &-inner
     display flex

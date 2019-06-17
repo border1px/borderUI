@@ -48,10 +48,10 @@
         <i class="iconfont icon-swiper"></i>
         <div class="icon-text">Swipe</div>
       </router-link>
-      <div class="col">
-        <i class="iconfont icon-rili"></i>
-        <div class="icon-text">Calc</div>
-      </div>
+      <router-link to="/tabbar" class="col">
+        <i class="iconfont icon-tab"></i>
+        <div class="icon-text">Tabbar</div>
+      </router-link>
       <div class="col">
         <i class="iconfont icon-yduiindextabbar"></i>
         <div class="icon-text">Toolbar</div>

@@ -56,10 +56,10 @@
         <i class="iconfont icon-yduiindextabbar"></i>
         <div class="icon-text">Toolbar</div>
       </div>
-      <div class="col">
-        <i class="iconfont icon-yduiindexspinner"></i>
-        <div class="icon-text">Number</div>
-      </div>
+      <router-link to="/uploader" class="col">
+        <i class="iconfont icon-tupianshangchuan"></i>
+        <div class="icon-text">Uploader</div>
+      </router-link>
     </div>
     <div class="row">
       <div class="col">

@@ -11,6 +11,7 @@ import RadioView from './views/radio.vue'
 import CellView from './views/cell.vue'
 import SwipeView from './views/swipe.vue'
 import TabbarView from './views/tabbar.vue'
+import UploaderView from './views/uploader.vue'
 
 const routers = [
   {
@@ -78,6 +79,11 @@ const routers = [
     path: '/tabbar',
     name: 'tabbar',
     component: TabbarView
+  },
+  {
+    path: '/uploader',
+    name: 'uploader',
+    component: UploaderView
   }
 ]
 export default routers

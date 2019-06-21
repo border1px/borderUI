@@ -24,6 +24,7 @@ import { Radio, RadioGroup } from './components/radio'
 import ButtonGroup from './components/button-group'
 import { Cell, CellItem } from './components/cell'
 import { Swipe, SwipeItem } from './components/swipe'
+import Uploader from './components/uploader'
 
 Vue.component(DemoItem.name, DemoItem)
 Vue.component(Icon.name, Icon)
@@ -44,6 +45,7 @@ Vue.component(Cell.name, Cell)
 Vue.component(CellItem.name, CellItem)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
+Vue.component(Uploader.name, Uploader)
 Vue.use(Dialog)
 Vue.use(VueRouter)
 const router = new VueRouter({

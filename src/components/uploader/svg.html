@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div class="uploadProgress" v-show="percent > 0 && progressVisible"> -->
+        <div class="uploadProgressBox">
+            <svg width="40" height="40" viewbox="0 0 40 40">
+                <circle cx="20" cy="20" r="18" stroke-width="4" stroke="#D1D3D7" fill="none"></circle>
+                <circle :id="circleElementRef" cx="20" cy="20" r="18" stroke-width="4" stroke="#00A5E0" fill="none" transform="matrix(0,-1,1,0,0,40)" stroke-dasharray="11 113"></circle>
+            </svg>
+            <span class="progressNumber" :id="progressNumberRef"></span>
+        </div>
+    <!-- </div> -->
+    <script>
+        progress: function(percent) {
+            var perimeter = Math.PI * 2 * 18;
+            this.percent = percent.toFixed(2);
+            document.getElementById(this.circleElementRef).setAttribute('stroke-dasharray', perimeter * percent + " " + perimeter * (1 - percent));
+            document.getElementById(this.progressNumberRef).innerText = parseInt(this.percent * 100) + '%';
+        }
+    </script>
+</body>
+</html>

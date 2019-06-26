@@ -92,6 +92,14 @@ export default {
     maxSize: {
       type: Number,
       default: Number.MAX_VALUE
+    },
+    action: {
+      type: String,
+      default: 'http://localhost/upload/up.php'
+    },
+    withCredentials: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -113,8 +121,10 @@ export default {
       if (!files || (this.beforeRead && !this.beforeRead(files))) {
         return
       }
-      files.forEach((file, index) => {
-        (this.files.find(f => f.file === file)) && files.splice(index, 1)
+
+      // 过滤重复文件
+      files = files.filter(file => {
+        return !this.files.find(f => f.file.name === file.name)
       })
 
       Promise.all(files.map(this.readFile)).then(contents => {
@@ -129,6 +139,7 @@ export default {
           }
         })
         this.files = this.files.concat(payload)
+        this.fileUpload()
         // this.onAfterRead(payload, oversize)
       })
     },
@@ -143,6 +154,75 @@ export default {
         } else if (this.resultType === 'text') {
           reader.readAsText(file)
         }
+      })
+    },
+    _onProgress (e) {
+      e.percent = (e.loaded / e.total) * 100
+      console.log(e)
+    },
+    fileUpload () {
+      if (this.files.length > 0) {
+        var allTask = this.files.map(file => {
+          return this._handleUpload(file.file)
+        })
+        Promise.all(allTask)
+          .then(allFiles => {
+            this.$emit('onAllFilesUploaded', allFiles)
+          }).catch(err => {
+            this.$emit('onFileError', this.files, err)
+          })
+      } else {
+        var err = new Error('No files to upload for this field')
+        this.$emit('onFileError', this.files, err)
+      }
+    },
+    _handleUpload (file) {
+      this.$emit('beforeFileUpload', file)
+      var form = new FormData()
+      var xhr = new XMLHttpRequest()
+      form.append('file', file)
+
+      return new Promise((resolve, reject) => {
+        xhr.upload.addEventListener('progress', this._onProgress, false)
+
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState < 4) {
+            return
+          }
+          if (xhr.status < 400) {
+            var res = JSON.parse(xhr.responseText)
+            this.$emit('onFileUpload', file, res)
+            resolve(file)
+          } else {
+            var err = JSON.parse(xhr.responseText)
+            err.status = xhr.status
+            err.statusText = xhr.statusText
+            this.$emit('onFileError', file, err)
+            reject(err)
+          }
+        }
+
+        xhr.onerror = () => {
+          var err = JSON.parse(xhr.responseText)
+          err.status = xhr.status
+          err.statusText = xhr.statusText
+          this.$emit('onFileError', file, err)
+          reject(err)
+        }
+
+        xhr.open(this.method || 'POST', this.action, true)
+        if (this.withCredentials && 'withCredentials' in xhr) {
+          xhr.withCredentials = true
+        }
+
+        var headers = this.headers || {}
+        for (var item in headers) {
+          if (headers.hasOwnProperty(item) && headers[item] !== null) {
+            xhr.setRequestHeader(item, headers[item])
+          }
+        }
+        xhr.send(form)
+        this.$emit('afterFileUpload', file)
       })
     }
   }

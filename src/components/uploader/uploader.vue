@@ -139,7 +139,7 @@ export default {
           }
         })
         this.files = this.files.concat(payload)
-        this.fileUpload()
+        this.fileUpload(files)
         // this.onAfterRead(payload, oversize)
       })
     },
@@ -160,20 +160,20 @@ export default {
       e.percent = (e.loaded / e.total) * 100
       console.log(e)
     },
-    fileUpload () {
-      if (this.files.length > 0) {
-        var allTask = this.files.map(file => {
+    fileUpload (files) {
+      if (files.length > 0) {
+        var allTask = files.map(file => {
           return this._handleUpload(file.file)
         })
         Promise.all(allTask)
           .then(allFiles => {
             this.$emit('onAllFilesUploaded', allFiles)
           }).catch(err => {
-            this.$emit('onFileError', this.files, err)
+            this.$emit('onFileError', files, err)
           })
       } else {
         var err = new Error('No files to upload for this field')
-        this.$emit('onFileError', this.files, err)
+        this.$emit('onFileError', files, err)
       }
     },
     _handleUpload (file) {

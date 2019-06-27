@@ -23,10 +23,10 @@ export default {
   },
   methods: {
     onAllFilesUploaded (e) {
-      console.log(e)
+      console.log('onAllFilesUploaded' ,e)
     },
     onFileUpload (e, r) {
-      console.log(e, r)
+      console.log('onFileUpload', e, r)
     },
     onFileError (e) {
       console.log(e)

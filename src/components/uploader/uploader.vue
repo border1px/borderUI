@@ -95,7 +95,11 @@ export default {
     },
     action: {
       type: String,
-      default: 'http://localhost/upload/up.php'
+      default: 'http://192.168.18.99/upload/up.php'
+    },
+    quality: {
+      type: Number,
+      defalut: 0.5
     },
     withCredentials: {
       type: Boolean,
@@ -163,7 +167,11 @@ export default {
     fileUpload (files) {
       if (files.length > 0) {
         var allTask = files.map(file => {
-          return this._handleUpload(file.file)
+          return this._compressImage(file)
+            .then(file => {
+              this._handleUpload(file)
+            })
+          // return this._handleUpload(file)
         })
         Promise.all(allTask)
           .then(allFiles => {
@@ -176,7 +184,7 @@ export default {
         this.$emit('onFileError', files, err)
       }
     },
-    _handleUpload (file) {
+    async _handleUpload (file) {
       this.$emit('beforeFileUpload', file)
       var form = new FormData()
       var xhr = new XMLHttpRequest()
@@ -189,9 +197,9 @@ export default {
           if (xhr.readyState < 4) {
             return
           }
-          if (xhr.status < 400) {
-            var res = JSON.parse(xhr.responseText)
-            this.$emit('onFileUpload', file, res)
+          if (xhr.status === 200) {
+            // var res = JSON.parse(xhr.responseText)
+            this.$emit('onFileUpload', file, 'res')
             resolve(file)
           } else {
             var err = JSON.parse(xhr.responseText)
@@ -223,6 +231,39 @@ export default {
         }
         xhr.send(form)
         this.$emit('afterFileUpload', file)
+      })
+    },
+    _compressImage (file) {
+      return new Promise((resolve, reject) => {
+        // 获取图片（加载图片是为了获取图片的宽高）
+        const img = new Image()
+        img.src = window.URL.createObjectURL(file)
+        img.onerror = error => reject(error)
+        img.onload = () => {
+          // 画布宽高
+          const canvasWidth = document.documentElement.clientWidth * window.devicePixelRatio
+          const canvasHeight = document.documentElement.clientHeight * window.devicePixelRatio
+
+          // 计算缩放因子
+          // 这里我取水平和垂直方向缩放因子较大的作为缩放因子，这样可以保证图片内容全部可见
+          const scaleX = canvasWidth / img.width
+          const scaleY = canvasHeight / img.height
+          const scale = Math.min(scaleX, scaleY)
+
+          // 将原始图片按缩放因子缩放后，绘制到画布上
+          const canvas = document.createElement('canvas')
+          const ctx = canvas.getContext('2d')
+          canvas.width = canvasWidth
+          canvas.height = canvasHeight
+          const imageWidth = img.width * scale
+          const imageHeight = img.height * scale
+          const dx = (canvasWidth - imageWidth) / 2
+          const dy = (canvasHeight - imageHeight) / 2
+          ctx.drawImage(img, dx, dy, imageWidth, imageHeight)
+          // 导出新图片
+          // 指定图片 MIME 类型为 'image/jpeg', 通过 quality 控制导出的图片质量，进行实现图片的压缩
+          canvas.toBlob(file => resolve(file), 'image/jpeg', this.quality)
+        }
       })
     }
   }

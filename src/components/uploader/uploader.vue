@@ -78,6 +78,7 @@ input[type=file]
 </style>
 
 <script>
+import EXIF from './small-exif.js'
 export default {
   name: 'bo-uploader',
   props: {
@@ -91,7 +92,7 @@ export default {
     },
     maxSize: {
       type: Number,
-      default: Number.MAX_VALUE
+      default: 10
     },
     action: {
       type: String,
@@ -99,11 +100,19 @@ export default {
     },
     quality: {
       type: Number,
-      default: 0.5
+      default: 1
     },
     threshold: {
       type: Number,
-      default: 300
+      default: 2048
+    },
+    autoUpload: {
+      type: Boolean,
+      default: true
+    },
+    maxImgWidth: {
+      type: Number,
+      default: 0
     },
     withCredentials: {
       type: Boolean,
@@ -130,25 +139,23 @@ export default {
         return
       }
 
-      // 过滤重复文件
+      // 过滤重复文件 与 超标尺寸文件
       files = files.filter(file => {
-        return !this.files.find(f => f.file.name === file.name)
+        return !this.files.find(f => f.file.name === file.name) && (this.maxSize && file.size / 1024 / 1024 < this.maxSize)
       })
 
       Promise.all(files.map(this.readFile)).then(contents => {
-        let oversize = false
         const payload = files.map((file, index) => {
-          if (file.size > this.maxSize) {
-            oversize = true
-          }
           return {
             file: files[index],
             content: contents[index]
           }
         })
-        this.files = this.files.concat(payload)
-        this.fileUpload(files)
-        // this.onAfterRead(payload, oversize)
+        if (payload.length) {
+          this.files = this.files.concat(payload)
+          this.$emit('onFilesBase64',this.files.map(file => file.content))
+          this.autoUpload && this.fileUpload(files)
+        }
       })
     },
     readFile (file) {
@@ -171,14 +178,13 @@ export default {
       if (files.length > 0) {
         var allTask = files.map(file => {
           if (file.size / 1024 > this.threshold) {
-            return this._compressImage(file)
-              .then(file => {
-                this._handleUpload(file)
-              })
+            return this._fixImageOrientation(file)
+              .then(file => this._compressImage(file))
+              .then(file => this._handleUpload(file))
+
           } else {
-            return this._handleUpload(file)
+            return this._fixImageOrientation(file).then(file => this._handleUpload(file))
           }
-          // return this._handleUpload(file)
         })
         Promise.all(allTask)
           .then(allFiles => {
@@ -195,7 +201,7 @@ export default {
       this.$emit('beforeFileUpload', file)
       var form = new FormData()
       var xhr = new XMLHttpRequest()
-      form.append('file', file, Date.parse(new Date()) + Math.floor(Math.random()*(1 - 1000) + 1000) + ".jpg")
+      form.append('file', file, Date.parse(new Date()) + Math.floor(Math.random() * (1 - 1000) + 1000) + '.jpg')
 
       return new Promise((resolve, reject) => {
         xhr.upload.addEventListener('progress', this._onProgress, false)
@@ -249,20 +255,66 @@ export default {
         img.onload = () => {
           const canvas = document.createElement('canvas')
           const ctx = canvas.getContext('2d')
-          canvas.width = img.width
-          canvas.height = img.height
-          ctx.drawImage(img, 0, 0, img.width, img.height)
 
-          // var base64 = canvas.toDataURL('image/jpeg', 0.5);
-          // var arr = base64.split(','), mime = arr[0].match(/:(.*?);/)[1],
-          //     bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-          // while(n--){
-          //     u8arr[n] = bstr.charCodeAt(n);
-          // }
-          // resolve(new Blob([u8arr], {type:mime}))
-
+          // 是否限制文件分辨率
+          if (this.maxImgWidth && img.width > this.maxImgWidth) {
+            canvas.width = this.maxImgWidth
+            canvas.height = this.maxImgWidth * (img.height / img.width)
+          } else {
+            canvas.width = img.width
+            canvas.height = img.height
+          }
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
           canvas.toBlob(file => resolve(file), 'image/jpeg', this.quality)
         }
+      })
+    },
+    _fixImageOrientation (file) {
+      return new Promise((resolve, reject) => {
+        resolve(file)
+        // 获取图片
+        // const img = new Image()
+        // img.src = window.URL.createObjectURL(file)
+        // img.onerror = () => resolve(file)
+        // img.onload = () => {
+        //   // 获取图片元数据（EXIF 变量是引入的 exif-js 库暴露的全局变量）
+        //   EXIF.getData(img, function(i) {
+        //     console.log(i)
+        //     // 获取图片旋转标志位
+        //     var orientation = EXIF.getTag(this, "Orientation")
+        //     console.log(orientation)
+        //     // 根据旋转角度，在画布上对图片进行旋转
+        //     if (orientation === 3 || orientation === 6 || orientation === 8) {
+        //       const canvas = document.createElement("canvas")
+        //       const ctx = canvas.getContext("2d")
+        //       switch (orientation) {
+        //         case 3: // 旋转180°
+        //           canvas.width = img.width
+        //           canvas.height = img.height
+        //           ctx.rotate((180 * Math.PI) / 180)
+        //           ctx.drawImage(img, -img.width, -img.height, img.width, img.height)
+        //           break
+        //         case 6: // 旋转90°
+        //           canvas.width = img.height
+        //           canvas.height = img.width
+        //           ctx.rotate((90 * Math.PI) / 180)
+        //           ctx.drawImage(img, 0, -img.height, img.width, img.height)
+        //           break
+        //         case 8: // 旋转-90°
+        //           canvas.width = img.height
+        //           canvas.height = img.width
+        //           ctx.rotate((-90 * Math.PI) / 180)
+        //           ctx.drawImage(img, -img.width, 0, img.width, img.height)
+        //           break
+        //       }
+        //       // 返回新图片
+        //       canvas.toBlob(file => resolve(file), 'image/jpeg', 0.92)
+        //     } else {
+        //       console.log(file)
+        //       return resolve(file)
+        //     }
+        //   })
+        // }
       })
     }
   }

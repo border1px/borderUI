@@ -4,9 +4,12 @@
   <div>
     <demo-item title="基础用法" no-padding>
       <bo-uploader
+        :maxImgWidth="800"
+
         @onAllFilesUploaded = "onAllFilesUploaded"
         @onFileUpload = "onFileUpload"
         @onFileError = "onFileError"
+        @onFilesBase64 = "onFilesBase64"
       ></bo-uploader>
     </demo-item>
   </div>
@@ -22,14 +25,17 @@ export default {
     }
   },
   methods: {
-    onAllFilesUploaded (e) {
-      console.log('onAllFilesUploaded' ,e)
+    onAllFilesUploaded (files) {
+      console.log('onAllFilesUploaded', files)
     },
-    onFileUpload (e, r) {
-      console.log('onFileUpload', e, r)
+    onFileUpload (response) {
+      console.log('onFileUpload', response)
     },
-    onFileError (e) {
-      console.log(e)
+    onFileError (response) {
+      console.log(response)
+    },
+    onFilesBase64(arrBase64) {
+      console.table(arrBase64)
     }
   }
 }

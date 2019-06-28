@@ -44,7 +44,8 @@ module.exports = {
           ['/Comp/checkbox','Checkbox 复选框'],
           ['/Comp/radio','Radio 单选框'],
           ['/Comp/swipe','Swipe 轮播图'],
-          ['/Comp/tabbar','Tabbar 工具栏']
+          ['/Comp/tabbar','Tabbar 工具栏'],
+          ['/Comp/upload','Upload 上传']
         ]
       },
     ]

@@ -78,7 +78,7 @@ input[type=file]
 </style>
 
 <script>
-import EXIF from './small-exif.js'
+// import EXIF from './small-exif.js'
 export default {
   name: 'bo-uploader',
   props: {
@@ -153,7 +153,7 @@ export default {
         })
         if (payload.length) {
           this.files = this.files.concat(payload)
-          this.$emit('onFilesBase64',this.files.map(file => file.content))
+          this.$emit('onFilesBase64', this.files.map(file => file.content))
           this.autoUpload && this.fileUpload(files)
         }
       })
@@ -181,7 +181,6 @@ export default {
             return this._fixImageOrientation(file)
               .then(file => this._compressImage(file))
               .then(file => this._handleUpload(file))
-
           } else {
             return this._fixImageOrientation(file).then(file => this._handleUpload(file))
           }

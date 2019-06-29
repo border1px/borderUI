@@ -78,6 +78,7 @@ input[type=file]
 </style>
 
 <script>
+import EXIF from './small-exif.js'
 export default {
   name: 'bo-uploader',
   props: {
@@ -91,15 +92,27 @@ export default {
     },
     maxSize: {
       type: Number,
-      default: Number.MAX_VALUE
+      default: 10
     },
     action: {
       type: String,
-      default: 'http://192.168.18.99/upload/up.php'
+      default: 'http://192.168.1.3/upload/up.php'
     },
     quality: {
       type: Number,
-      defalut: 0.5
+      default: 1
+    },
+    threshold: {
+      type: Number,
+      default: 2048
+    },
+    autoUpload: {
+      type: Boolean,
+      default: true
+    },
+    maxImgWidth: {
+      type: Number,
+      default: 0
     },
     withCredentials: {
       type: Boolean,
@@ -126,25 +139,23 @@ export default {
         return
       }
 
-      // 过滤重复文件
+      // 过滤重复文件 与 超标尺寸文件
       files = files.filter(file => {
-        return !this.files.find(f => f.file.name === file.name)
+        return !this.files.find(f => f.file.name === file.name) && (this.maxSize && file.size / 1024 / 1024 < this.maxSize)
       })
 
       Promise.all(files.map(this.readFile)).then(contents => {
-        let oversize = false
         const payload = files.map((file, index) => {
-          if (file.size > this.maxSize) {
-            oversize = true
-          }
           return {
             file: files[index],
             content: contents[index]
           }
         })
-        this.files = this.files.concat(payload)
-        this.fileUpload(files)
-        // this.onAfterRead(payload, oversize)
+        if (payload.length) {
+          this.files = this.files.concat(payload)
+          this.$emit('onFilesBase64',this.files.map(file => file.content))
+          this.autoUpload && this.fileUpload(files)
+        }
       })
     },
     readFile (file) {
@@ -162,16 +173,18 @@ export default {
     },
     _onProgress (e) {
       e.percent = (e.loaded / e.total) * 100
-      console.log(e)
     },
     fileUpload (files) {
       if (files.length > 0) {
         var allTask = files.map(file => {
-          return this._compressImage(file)
-            .then(file => {
-              this._handleUpload(file)
-            })
-          // return this._handleUpload(file)
+          if (file.size / 1024 > this.threshold) {
+            return this._fixImageOrientation(file)
+              .then(file => this._compressImage(file))
+              .then(file => this._handleUpload(file))
+
+          } else {
+            return this._fixImageOrientation(file).then(file => this._handleUpload(file))
+          }
         })
         Promise.all(allTask)
           .then(allFiles => {
@@ -188,7 +201,7 @@ export default {
       this.$emit('beforeFileUpload', file)
       var form = new FormData()
       var xhr = new XMLHttpRequest()
-      form.append('file', file)
+      form.append('file', file, Date.parse(new Date()) + Math.floor(Math.random() * (1 - 1000) + 1000) + '.jpg')
 
       return new Promise((resolve, reject) => {
         xhr.upload.addEventListener('progress', this._onProgress, false)
@@ -198,8 +211,8 @@ export default {
             return
           }
           if (xhr.status === 200) {
-            // var res = JSON.parse(xhr.responseText)
-            this.$emit('onFileUpload', file, 'res')
+            var res = JSON.parse(xhr.responseText)
+            this.$emit('onFileUpload', file, res)
             resolve(file)
           } else {
             var err = JSON.parse(xhr.responseText)
@@ -235,35 +248,73 @@ export default {
     },
     _compressImage (file) {
       return new Promise((resolve, reject) => {
-        // 获取图片（加载图片是为了获取图片的宽高）
         const img = new Image()
         img.src = window.URL.createObjectURL(file)
         img.onerror = error => reject(error)
+
         img.onload = () => {
-          // 画布宽高
-          const canvasWidth = document.documentElement.clientWidth * window.devicePixelRatio
-          const canvasHeight = document.documentElement.clientHeight * window.devicePixelRatio
-
-          // 计算缩放因子
-          // 这里我取水平和垂直方向缩放因子较大的作为缩放因子，这样可以保证图片内容全部可见
-          const scaleX = canvasWidth / img.width
-          const scaleY = canvasHeight / img.height
-          const scale = Math.min(scaleX, scaleY)
-
-          // 将原始图片按缩放因子缩放后，绘制到画布上
           const canvas = document.createElement('canvas')
           const ctx = canvas.getContext('2d')
-          canvas.width = canvasWidth
-          canvas.height = canvasHeight
-          const imageWidth = img.width * scale
-          const imageHeight = img.height * scale
-          const dx = (canvasWidth - imageWidth) / 2
-          const dy = (canvasHeight - imageHeight) / 2
-          ctx.drawImage(img, dx, dy, imageWidth, imageHeight)
-          // 导出新图片
-          // 指定图片 MIME 类型为 'image/jpeg', 通过 quality 控制导出的图片质量，进行实现图片的压缩
+
+          // 是否限制文件分辨率
+          if (this.maxImgWidth && img.width > this.maxImgWidth) {
+            canvas.width = this.maxImgWidth
+            canvas.height = this.maxImgWidth * (img.height / img.width)
+          } else {
+            canvas.width = img.width
+            canvas.height = img.height
+          }
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
           canvas.toBlob(file => resolve(file), 'image/jpeg', this.quality)
         }
+      })
+    },
+    _fixImageOrientation (file) {
+      return new Promise((resolve, reject) => {
+        resolve(file)
+        // 获取图片
+        // const img = new Image()
+        // img.src = window.URL.createObjectURL(file)
+        // img.onerror = () => resolve(file)
+        // img.onload = () => {
+        //   // 获取图片元数据（EXIF 变量是引入的 exif-js 库暴露的全局变量）
+        //   EXIF.getData(img, function(i) {
+        //     console.log(i)
+        //     // 获取图片旋转标志位
+        //     var orientation = EXIF.getTag(this, "Orientation")
+        //     console.log(orientation)
+        //     // 根据旋转角度，在画布上对图片进行旋转
+        //     if (orientation === 3 || orientation === 6 || orientation === 8) {
+        //       const canvas = document.createElement("canvas")
+        //       const ctx = canvas.getContext("2d")
+        //       switch (orientation) {
+        //         case 3: // 旋转180°
+        //           canvas.width = img.width
+        //           canvas.height = img.height
+        //           ctx.rotate((180 * Math.PI) / 180)
+        //           ctx.drawImage(img, -img.width, -img.height, img.width, img.height)
+        //           break
+        //         case 6: // 旋转90°
+        //           canvas.width = img.height
+        //           canvas.height = img.width
+        //           ctx.rotate((90 * Math.PI) / 180)
+        //           ctx.drawImage(img, 0, -img.height, img.width, img.height)
+        //           break
+        //         case 8: // 旋转-90°
+        //           canvas.width = img.height
+        //           canvas.height = img.width
+        //           ctx.rotate((-90 * Math.PI) / 180)
+        //           ctx.drawImage(img, -img.width, 0, img.width, img.height)
+        //           break
+        //       }
+        //       // 返回新图片
+        //       canvas.toBlob(file => resolve(file), 'image/jpeg', 0.92)
+        //     } else {
+        //       console.log(file)
+        //       return resolve(file)
+        //     }
+        //   })
+        // }
       })
     }
   }

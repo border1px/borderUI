@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>$mount</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+      <v-button text="Vue.extend + Vue.component"></v-button>
+      <div id="mountNode">
+
+      </div>
+  </div>
+
+  <script>
+    // Vue.extend根据组件对象，返回一个构造函数
+    // 可以new出实例，然后手动$mount挂载(实例化传入的参数是 propsData 而不是 props)
+    // 可以局部/全局挂载，Vue.component(组件名，构造函数)
+
+    // 组件对象，同import Button from './button.vue'
+    var ButtonCompObject = {
+      name:'vButton',
+      template: '<button @click="handleClick">{{text}}</button>',
+      props:{
+        text: String
+      },
+      methods: {
+        handleClick (e) {
+          console.log('vButton')
+        }
+      }
+    }
+
+    // 1 通过组件对象直接 局部/全局注册组件
+    Vue.component(ButtonCompObject.name, ButtonCompObject)
+
+    // 2 Vue.extend 返回组件构造函数(后续逻辑自己处理，可定制化程度高)
+    var ButtonConstructer = Vue.extend(ButtonCompObject)
+    // Vue.component全局注册
+    Vue.component('vButton', ButtonConstructer)
+
+
+    // 2.1 new出实例，手动挂载(会清空挂载点的内容！)
+    new ButtonConstructer({
+      propsData: {
+        text: 'new + $mount'
+      }
+    }).$mount('#mountNode')
+
+
+    // 2.2 原生js挂载1 (通过appendChild追加节点，一般用来做通过api调用的组件，不要手动在页面中写组件名称，例如alert、confirm这种组件)
+    var instance = new ButtonConstructer({
+      el: document.createElement('div'),
+      propsData: {
+        text: 'new + appendChild 1'
+      }
+    })
+    instance.$mount();
+    document.body.appendChild(instance.$el)
+
+
+    // 2.3 原生js挂载2 (同2.1，不同写法而已)
+    var instance = new ButtonConstructer({
+      propsData: {
+        text: 'new + appendChild 2'
+      }
+    })
+    instance.$mount();
+    document.body.appendChild(instance.$el)
+
+
+    var vm = new Vue({
+      el:'#app'
+    })
+  </script>
+</body>
+</html>

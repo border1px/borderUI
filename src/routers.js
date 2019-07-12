@@ -12,6 +12,7 @@ import CellView from './views/cell.vue'
 import SwipeView from './views/swipe.vue'
 import TabbarView from './views/tabbar.vue'
 import UploaderView from './views/uploader.vue'
+import PopupView from './views/popup.vue'
 
 const routers = [
   {
@@ -84,6 +85,11 @@ const routers = [
     path: '/uploader',
     name: 'uploader',
     component: UploaderView
+  },
+  {
+    path: '/popup',
+    name: 'popup',
+    component: PopupView
   }
 ]
 export default routers

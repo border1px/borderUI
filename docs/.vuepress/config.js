@@ -45,7 +45,8 @@ module.exports = {
           ['/Comp/radio','Radio 单选框'],
           ['/Comp/swipe','Swipe 轮播图'],
           ['/Comp/tabbar','Tabbar 工具栏'],
-          ['/Comp/upload','Upload 上传']
+          ['/Comp/upload','Upload 上传'],
+          ['/Comp/popup','Popup 弹框']
         ]
       },
     ]

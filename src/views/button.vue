@@ -16,6 +16,10 @@
       <bo-button color="#04BE02" square auto>#04BE02</bo-button>
       <bo-button type="hollow" auto>hollow</bo-button>
       <bo-button color="#EE30A7" size="large" loading auto>Button</bo-button >
+
+      <!-- <bo-debounce time="1000" events="click">
+        <bo-button auto @click="onClick">Debounce</bo-button >
+      </bo-debounce> -->
     </div>
   </div>
 </bo-page>
@@ -28,6 +32,9 @@ export default {
     goBack () {
       // document.frames['simulator'].history.back()
       // console.log(document.getElementById('simulator'))
+    },
+    onClick () {
+      console.log('click')
     }
   }
 }

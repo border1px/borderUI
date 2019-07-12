@@ -34,7 +34,7 @@ export default {
     onFileError (response) {
       console.log(response)
     },
-    onFilesBase64(arrBase64) {
+    onFilesBase64 (arrBase64) {
       console.table(arrBase64)
     }
   }

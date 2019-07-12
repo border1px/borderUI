@@ -62,10 +62,10 @@
       </router-link>
     </div>
     <div class="row">
-      <div class="col">
+      <router-link to="/popup" class="col">
         <i class="iconfont icon-YDUI-index-scrolltab"></i>
-        <div class="icon-text">ScrollTab</div>
-      </div>
+        <div class="icon-text">Popup</div>
+      </router-link>
       <div class="col">
         <i class="iconfont icon-yduiindexcityselect"></i>
         <div class="icon-text">CitySelect</div>

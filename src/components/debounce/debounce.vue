@@ -30,7 +30,8 @@ export default {
         vnode.context = this._self
         return vnode
       })
-    return h('Button', {
+    return h('div', {
+      abstract: true,
       on: {
         click: this.handleClickLink // 新组件绑定click事件
       },

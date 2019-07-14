@@ -21,36 +21,34 @@
     <bo-button auto @click="onClick(4)">打开ActionSheet</bo-button>
   </demo-item>
 
-
-
-  <bo-action-sheet 
-    :menus="menus" 
+  <bo-action-sheet
+    :menus="menus"
     v-model="show1"
   >
   </bo-action-sheet>
 
-  <bo-action-sheet 
-    :menus="menus2" 
+  <bo-action-sheet
+    :menus="menus2"
     v-model="show2"
   >
   </bo-action-sheet>
 
-  <bo-action-sheet 
-    :menus="menus" 
+  <bo-action-sheet
+    :menus="menus"
     v-model="show3"
     cancel
   >
   </bo-action-sheet>
 
-  <bo-action-sheet 
-    :menus="menus" 
+  <bo-action-sheet
+    :menus="menus"
     v-model="show4"
     closeOnClickOMask
   >
   </bo-action-sheet>
 
-  <bo-action-sheet 
-    :menus="menus" 
+  <bo-action-sheet
+    :menus="menus"
     v-model="show5"
     autoClose
   >
@@ -64,14 +62,14 @@ export default {
   data () {
     return {
       menus: [
-        {name: '确定'},
-        {name: '分享给微信好友'},
-        {name: '分享到朋友圈'}
+        { name: '确定' },
+        { name: '分享给微信好友' },
+        { name: '分享到朋友圈' }
       ],
       menus2: [
-        {name: '确定'},
-        {name: '分享给微信好友', disabled:true},
-        {name: '分享到朋友圈'}
+        { name: '确定' },
+        { name: '分享给微信好友', disabled: true },
+        { name: '分享到朋友圈' }
       ],
       show1: false,
       show2: false,
@@ -83,13 +81,12 @@ export default {
   methods: {
     onClick (type) {
       switch (type) {
-        case 0: this.show1 = true;break;
-        case 1: this.show2 = true;break;
-        case 2: this.show3 = true;break;
-        case 3: this.show4 = true;break;
-        case 4: this.show5 = true;break;
+        case 0: this.show1 = true; break
+        case 1: this.show2 = true; break
+        case 2: this.show3 = true; break
+        case 3: this.show4 = true; break
+        case 4: this.show5 = true; break
       }
-      
     },
     onSelect (index) {
       console.log(index)
@@ -98,7 +95,6 @@ export default {
       console.log('取消')
     }
   }
-
 }
 </script>
 

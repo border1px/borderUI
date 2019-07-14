@@ -1,9 +1,9 @@
 <template>
   <bo-popup v-model="showPopup" :closeOnClickOMask="closeOnClickOMask">
     <ul class="bo-action-sheet">
-      <li 
-        v-for="(menu,index) in menus" 
-        :key="index" 
+      <li
+        v-for="(menu,index) in menus"
+        :key="index"
         @click.stop="handleClick(index, menu.disabled)"
         :class="['menu', {'is-disabled': menu.disabled}]"
       >

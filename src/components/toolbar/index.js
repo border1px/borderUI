@@ -1,3 +1,4 @@
 import Toolbar from './toolbar.vue'
+import ToolbarItem from './toolbar-item.vue'
 
-export default Toolbar
+export { Toolbar, ToolbarItem }

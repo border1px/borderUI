@@ -15,6 +15,12 @@ export default {
 </script>
 
 <style>
+html,body{
+  height: 100%;
+}
+#app{
+  height: 100%;
+}
 .main-view {
   width: 100%;
   height: 100%;

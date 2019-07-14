@@ -28,7 +28,7 @@ module.exports = {
           ['/FAQ/introduction','介绍'],
           ['/FAQ/quickstart','快速上手'],
           ['/FAQ/changelog','更新日志'],
-          ['/FAQ/theme','定制主题'],
+          ['/FAQ/aboutme','与我有关'],
         ]
       },
       {
@@ -46,7 +46,10 @@ module.exports = {
           ['/Comp/swipe','Swipe 轮播图'],
           ['/Comp/tabbar','Tabbar 工具栏'],
           ['/Comp/upload','Upload 上传'],
-          ['/Comp/popup','Popup 弹框']
+          ['/Comp/popup','Popup 弹框'],
+          ['/Comp/icon','Icon 图标'],
+          ['/Comp/table','Table 表格'],
+          ['/Comp/action-sheet','ActionSheet 上拉菜单']
         ]
       },
     ]

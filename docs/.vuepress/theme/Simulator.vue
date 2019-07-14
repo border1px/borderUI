@@ -16,7 +16,8 @@ export default {
   },
   data () {
     return {
-      iFrameUrl: ''
+      iFrameUrl: '',
+      exclude:['introduction','quickstart','changelog','aboutme']
     }
   },
   methods: {
@@ -29,6 +30,15 @@ export default {
       //   this.iFrameUrl = 'http://127.0.0.1:8082/'
       // }
 
+    },
+    _changeRouter (data, init) {
+      // var prefix = 'http://localhost:8080/#/'
+      var prefix = 'https://border-1px.github.io/border-ui/demo/#/'
+      var action = data.path.substring(6, data.path.length -  5)
+
+      if (data.path.indexOf('FAQ') == -1) {
+        this.iFrameUrl = prefix + action
+      }
     }
   }
 }

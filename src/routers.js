@@ -13,6 +13,10 @@ import SwipeView from './views/swipe.vue'
 import TabbarView from './views/tabbar.vue'
 import UploaderView from './views/uploader.vue'
 import PopupView from './views/popup.vue'
+import IconView from './views/icon.vue'
+import ToolbarView from './views/toolbar.vue'
+import TableView from './views/table.vue'
+import ActionSheetView from './views/action-sheet.vue'
 
 const routers = [
   {
@@ -90,6 +94,26 @@ const routers = [
     path: '/popup',
     name: 'popup',
     component: PopupView
+  },
+  {
+    path: '/icon',
+    name: 'icon',
+    component: IconView
+  },
+  {
+    path: '/toolbar',
+    name: 'toolbar',
+    component: ToolbarView
+  },
+  {
+    path: '/table',
+    name: 'table',
+    component: TableView
+  },
+  {
+    path: '/action-sheet',
+    name: 'action-sheet',
+    component: ActionSheetView
   }
 ]
 export default routers

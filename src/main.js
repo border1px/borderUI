@@ -8,6 +8,7 @@ import './assets/styles/index.styl'
 import './style/index.styl'
 import './assets/iconfont/iconfont.css'
 import './style/iconfont/iconfont.css'
+import Test from './components/test'
 import DemoItem from './components/demo-item'
 import Dialog from './components/dialog'
 import Switch from './components/switch'
@@ -18,7 +19,6 @@ import Page from './components/page'
 import Tabbar from './components/tabbar'
 import Navbar from './components/navbar'
 import Subnavbar from './components/subnavbar'
-import Toolbar from './components/toolbar'
 import { Checkbox, CheckboxGroup } from './components/checkbox'
 import { Radio, RadioGroup } from './components/radio'
 import ButtonGroup from './components/button-group'
@@ -27,7 +27,11 @@ import { Swipe, SwipeItem } from './components/swipe'
 import Uploader from './components/uploader'
 import Debounce from './components/debounce'
 import Popup from './components/popup'
+import { Toolbar, ToolbarItem } from './components/toolbar'
+import { Table, TableColumn } from './components/table'
+import ActionSheet from './components/action-sheet'
 
+Vue.component(Test.name, Test)
 Vue.component(DemoItem.name, DemoItem)
 Vue.component(Icon.name, Icon)
 Vue.component(Button.name, Button)
@@ -50,12 +54,18 @@ Vue.component(SwipeItem.name, SwipeItem)
 Vue.component(Uploader.name, Uploader)
 Vue.component(Debounce.name, Debounce)
 Vue.component(Popup.name, Popup)
+Vue.component(Toolbar.name, Toolbar)
+Vue.component(ToolbarItem.name, ToolbarItem)
+Vue.component(Table.name, Table)
+Vue.component(TableColumn.name, TableColumn)
+Vue.component(ActionSheet.name, ActionSheet)
 Vue.use(Dialog)
 Vue.use(VueRouter)
 const router = new VueRouter({
   // mode: 'history',
   routes: routers
 })
+
 
 var APP_HANDLER = new Vue({
   router,
@@ -76,6 +86,8 @@ router.beforeEach(function (to, from, next) {
   const toIndex = history.getItem(to.path)
   const fromIndex = history.getItem(from.path)
 
+  // gotoDocument(to.name)
+
   if (toIndex) {
     if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
       APP_HANDLER.direction = 'forward'
@@ -90,3 +102,10 @@ router.beforeEach(function (to, from, next) {
   }
   next()
 })
+
+// window.parent._changeRouter = function(name) {
+//   window.history.pushState( null, null, `/border-ui/docs/Comp/${name}.html`);
+// }
+// function gotoDocument (name) {
+//   window.parent._changeRouter(name);
+// }

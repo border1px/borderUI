@@ -52,10 +52,10 @@
         <i class="iconfont icon-tab"></i>
         <div class="icon-text">Tabbar</div>
       </router-link>
-      <div class="col">
+      <router-link to="/toolbar" class="col">
         <i class="iconfont icon-yduiindextabbar"></i>
         <div class="icon-text">Toolbar</div>
-      </div>
+      </router-link>
       <router-link to="/uploader" class="col">
         <i class="iconfont icon-tupianshangchuan"></i>
         <div class="icon-text">Uploader</div>
@@ -66,24 +66,24 @@
         <i class="iconfont icon-YDUI-index-scrolltab"></i>
         <div class="icon-text">Popup</div>
       </router-link>
-      <div class="col">
-        <i class="iconfont icon-yduiindexcityselect"></i>
-        <div class="icon-text">CitySelect</div>
-      </div>
+      <router-link to="/icon" class="col">
+        <i class="iconfont icon-yduiindexicons"></i>
+        <div class="icon-text">Icon</div>
+      </router-link>
+      <router-link to="/table" class="col">
+        <i class="iconfont icon-houdongfangiconfont04"></i>
+        <div class="icon-text">Table</div>
+      </router-link>
       <router-link to="/picker" class="col">
         <i class="iconfont icon-nianyuerixuanze"></i>
         <div class="icon-text">DatePicker</div>
       </router-link>
-      <div class="col">
-        <i class="iconfont icon-houdongfangiconfont04"></i>
-        <div class="icon-text">Sort</div>
-      </div>
     </div>
     <div class="row">
-      <div class="col">
+      <router-link to="/action-sheet" class="col">
         <i class="iconfont icon-YDUI-index-scrolltab"></i>
-        <div class="icon-text">ScrollTab</div>
-      </div>
+        <div class="icon-text">ActionSheet</div>
+      </router-link>
       <div class="col">
         <i class="iconfont icon-yduiindexcityselect"></i>
         <div class="icon-text">CitySelect</div>

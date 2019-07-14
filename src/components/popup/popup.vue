@@ -35,7 +35,10 @@ export default {
     },
     width: Number,
     height: Number,
-    closeOnClickOMask: Boolean
+    closeOnClickOMask: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     currentTransition () {

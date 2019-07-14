@@ -1,6 +1,6 @@
 <template>
   <div class="toolbar">
-
+    <slot></slot>
   </div>
 </template>
 
@@ -14,5 +14,7 @@ export default {
 .toolbar
   display flex
   height 50px
-  background-color pink
+  background-color #FFF
+  &-item
+    flex 1
 </style>

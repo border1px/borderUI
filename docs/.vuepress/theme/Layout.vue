@@ -160,7 +160,7 @@ export default {
 
     _triggerLink (data, init) {
       var SimulatorComp = findComponentDownward(this, 'Simulator')
-      SimulatorComp && SimulatorComp._triggerLink(data, init)
+      SimulatorComp && SimulatorComp._changeRouter(data, init)
     },
 
     // side swipe

@@ -15,7 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-fanhui:before {
+.icon-back:before {
   content: "\e774";
 }
 
@@ -27,11 +27,11 @@
   content: "\e6a9";
 }
 
-.icon-umidd17:before {
+.icon-alipay:before {
   content: "\e61a";
 }
 
-.icon-gerenzhongxin:before {
+.icon-avator:before {
   content: "\e628";
 }
 
@@ -55,7 +55,7 @@
   content: "\e600";
 }
 
-.icon-gouwuche:before {
+.icon-cart:before {
   content: "\e606";
 }
 
@@ -135,15 +135,15 @@
   content: "\ec14";
 }
 
-.icon-DOC:before {
+.icon-doc:before {
   content: "\ec17";
 }
 
-.icon-yunduanxiazai:before {
+.icon-download:before {
   content: "\ec1d";
 }
 
-.icon-gerenzhongxin2:before {
+.icon-my:before {
   content: "\e734";
 }
 
@@ -151,11 +151,11 @@
   content: "\ec35";
 }
 
-.icon-ditu-dibiao:before {
+.icon-location:before {
   content: "\ec3f";
 }
 
-.icon-zhexiantu:before {
+.icon-chart:before {
   content: "\ec66";
 }
 
@@ -163,15 +163,15 @@
   content: "\ec68";
 }
 
-.icon-tupiantianjia:before {
+.icon-addpic:before {
   content: "\ec7d";
 }
 
-.icon-charulianjie:before {
+.icon-link:before {
   content: "\ec7f";
 }
 
-.icon-charutupian:before {
+.icon-picture:before {
   content: "\ec80";
 }
 
@@ -179,19 +179,19 @@
   content: "\e61c";
 }
 
-.icon-aixin_shixin:before {
+.icon-loved:before {
   content: "\eca1";
 }
 
-.icon-aixin:before {
+.icon-love:before {
   content: "\eca2";
 }
 
-.icon-shoucang_shixin:before {
+.icon-stored:before {
   content: "\eca6";
 }
 
-.icon-shoucang:before {
+.icon-store:before {
   content: "\eca7";
 }
 
@@ -199,7 +199,7 @@
   content: "\e636";
 }
 
-.icon-weixinzhifu:before {
+.icon-wepay:before {
   content: "\e610";
 }
 

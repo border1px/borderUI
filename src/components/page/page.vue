@@ -19,6 +19,14 @@ export default {
   components: {
     pageContent
   },
+  data () {
+    return {
+      withSubnavbar: false,
+      withSearchbar: false,
+      withToolbar: false,
+      withMessages: false
+    }
+  },
   render (h) {
     const fixedList = []
     const staticList = []
@@ -27,9 +35,6 @@ export default {
     let child = null
     let tag = null
     let pageContentEl
-    let withSubnavbar
-    let withSearchbar
-    let withMessages
 
     const fixedTags = ('navbar toolbar tabbar subnavbar searchbar messagebar fab list-index').split(' ')
     if (self.$slots.default) {
@@ -42,10 +47,11 @@ export default {
         }
         let isFixed = false
         // 只找page下的一级子组件，不再深挖(Vue组件找child，原生找chidlren)
-        if (tag.indexOf('subnavbar') >= 0) withSubnavbar = true
-        if (tag.indexOf('searchbar') >= 0) withSearchbar = true
+        if (tag.indexOf('subnavbar') >= 0) this.withSubnavbar = true
+        if (tag.indexOf('searchbar') >= 0) this.withSearchbar = true
+        if (tag.indexOf('toolbar') >= 0) this.withToolbar = true
 
-        if (typeof withMessages === 'undefined' && tag.indexOf('messages') >= 0) withMessages = true
+        if (typeof this.withMessages === 'undefined' && tag.indexOf('messages') >= 0) this.withMessages = true
         for (let j = 0; j < fixedTags.length; j += 1) {
           if (tag.indexOf(fixedTags[j]) >= 0) {
             isFixed = true
@@ -85,6 +91,7 @@ export default {
     classes () {
       return {
         'page-with-subnavbar': this.subnavbar || this.withSubnavbar,
+        'page-with-toolbar': this.withToolbar,
         'no-navbar': this.noNavbar,
         'no-toolbar': this.noToolbar
       }
@@ -141,4 +148,7 @@ export default {
   .page-content
     padding-top 44px
 
+.page.page-with-toolbar
+  .page-content
+    padding-bottom 50px
 </style>

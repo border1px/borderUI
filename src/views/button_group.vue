@@ -24,7 +24,7 @@ export default {
         { name: '下午' }
       ]
     }
-  }
+  },
 }
 </script>
 

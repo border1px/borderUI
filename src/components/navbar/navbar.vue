@@ -33,7 +33,7 @@ export default {
         }, [
           h(Icon, {
             props: {
-              name: 'fanhui'
+              name: 'back'
             }
           })
         ])
@@ -44,7 +44,7 @@ export default {
         }, [
           h(Icon, {
             props: {
-              name: 'fanhui'
+              name: 'back'
             }
           }), self.backLink])
       } else if (slots['nav-left']) {

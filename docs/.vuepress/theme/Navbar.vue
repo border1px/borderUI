@@ -1,5 +1,6 @@
 <template>
   <header class="navbar">
+    <div class="navbar-inner">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
 
     <router-link
@@ -32,6 +33,7 @@
       />
       <SearchBox v-else-if="$site.themeConfig.search !== false"/>
       <NavLinks class="can-hide"/>
+    </div>
     </div>
   </header>
 </template>
@@ -95,6 +97,11 @@ $navbar-horizontal-padding = 1.5rem
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
   position relative
+  &-inner
+    width: 1400px
+    margin 0 auto
+    display flex
+    justify-content space-between
   a, span, img
     display inline-block
   .logo
@@ -113,9 +120,9 @@ $navbar-horizontal-padding = 1.5rem
     background-color white
     white-space nowrap
     font-size 0.9rem
-    position absolute
-    right $navbar-horizontal-padding
-    top $navbar-vertical-padding
+    // position absolute
+    // right $navbar-horizontal-padding
+    // top $navbar-vertical-padding
     display flex
     .search-box
       flex: 0 0 auto

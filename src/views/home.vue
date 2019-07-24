@@ -85,7 +85,7 @@
         <div class="icon-text">ActionSheet</div>
       </router-link>
       <router-link to="/debounce" class="col">
-        <i class="iconfont icon-yduiindexcityselect"></i>
+        <i class="iconfont icon-sheet-format-cell"></i>
         <div class="icon-text">Debounce</div>
       </router-link>
       <router-link to="/picker" class="col">

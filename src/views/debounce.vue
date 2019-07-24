@@ -1,6 +1,6 @@
 <template>
   <bo-page>
-    <bo-navbar back-link title="Table" @back-click="$router.back()"></bo-navbar>
+    <bo-navbar back-link title="Debounce" @back-click="$router.back()"></bo-navbar>
 
     <demo-item title="函数节流">
       <bo-debounce events="input">

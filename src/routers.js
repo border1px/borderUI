@@ -17,6 +17,7 @@ import IconView from './views/icon.vue'
 import ToolbarView from './views/toolbar.vue'
 import TableView from './views/table.vue'
 import ActionSheetView from './views/action-sheet.vue'
+import DebounceView from './views/debounce.vue'
 
 const routers = [
   {
@@ -114,6 +115,11 @@ const routers = [
     path: '/action-sheet',
     name: 'action-sheet',
     component: ActionSheetView
+  },
+  {
+    path: '/debounce',
+    name: 'debounce',
+    component: DebounceView
   }
 ]
 export default routers

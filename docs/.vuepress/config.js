@@ -49,7 +49,8 @@ module.exports = {
           ['/Comp/popup','Popup 弹框'],
           ['/Comp/icon','Icon 图标'],
           ['/Comp/table','Table 表格'],
-          ['/Comp/action-sheet','ActionSheet 上拉菜单']
+          ['/Comp/action-sheet','ActionSheet 上拉菜单'],
+          ['/Comp/debounce','Debounce 防抖&节流']
         ]
       },
     ]

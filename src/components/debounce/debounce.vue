@@ -1,13 +1,26 @@
 <script>
-function debounce (func, delay, context, event) {
-  func.timer && clearTimeout(func.timer)
-  func.timer = setTimeout(function () {
-    func.call(context, event)
-  }, delay)
+
+function ClosureFactory (child, delay, context) {
+  return function boDebounce (params) {
+    child.timer && clearTimeout(child.timer)
+    child.timer = setTimeout(function () {
+      child.call(context, params)
+    }, delay)
+  }
 }
+
 // 导出新组件
 export default {
-  props: {},
+  props: {
+    events: {
+      type: String,
+      default: ''
+    },
+    delay: {
+      type: Number,
+      default: 500
+    }
+  },
   name: 'bo-debounce',
   data () {
     return {}
@@ -15,31 +28,48 @@ export default {
   mounted () {
     console.log('HOC succeed')
   },
-  methods: {
-    handleClickLink (event) {
-      let that = this
-      console.log('debounce')
-      // that.$listeners.click为绑定在新组件上的click函数
-      debounce(that.$listeners.click, 300, that, event)
-    }
-  },
   render (h) {
-    const slots = Object.keys(this.$slots)
+    var slots = Object.keys(this.$slots)
       .reduce((arr, key) => arr.concat(this.$slots[key]), [])
       .map(vnode => {
-        vnode.context = this._self
+        vnode.context = this
         return vnode
       })
-    return h('div', {
-      abstract: true,
-      on: {
-        click: this.handleClickLink // 新组件绑定click事件
-      },
-      props: this.$props,
-      // 透传 scopedSlots
-      scopedSlots: this.$scopedSlots,
-      attrs: this.$attrs
-    }, slots)
+    var vNode = slots[0]
+    if (slots.length > 1) {
+      console.warn('<bo-debounce> 内部只能包含单个组件')
+      return
+    }
+
+    // 判断内部是组件/原生组件
+    var isComp = vNode.componentOptions
+    var eventList = []
+    var eventProp = []
+    var eventBind = isComp
+      ? Object.keys(vNode.componentOptions.listeners)
+      : Object.keys(vNode.data.on);
+    (this.events) && (eventProp = this.events.split(','))
+
+    // 找到prop中与实际绑定共同存在的事件
+    eventProp.forEach((event, index) => {
+      if (eventBind.some(resolve => resolve.number === event.number)) {
+        eventList.push(event)
+      }
+    })
+
+    if (eventList.length === 0) { eventList = eventBind }
+    console.log(eventList)
+    eventList.forEach(event => {
+      const defaultFun = isComp
+        ? vNode.componentOptions.listeners[event]
+        : vNode.data.on[event]
+
+      const debounceFun = ClosureFactory(defaultFun, this.delay, this) // 获取节流函数
+      isComp
+        ? vNode.componentOptions.listeners[event] = debounceFun
+        : vNode.data.on[event] = debounceFun
+    })
+    return slots
   }
 }
 </script>

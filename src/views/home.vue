@@ -71,30 +71,30 @@
         <div class="icon-text">Icon</div>
       </router-link>
       <router-link to="/table" class="col">
-        <i class="iconfont icon-houdongfangiconfont04"></i>
+        <i class="iconfont icon-yduiindexgrids"></i>
         <div class="icon-text">Table</div>
       </router-link>
-      <router-link to="/picker" class="col">
-        <i class="iconfont icon-nianyuerixuanze"></i>
-        <div class="icon-text">DatePicker</div>
+      <router-link to="/action-sheet" class="col">
+        <i class="iconfont icon-yduiindexauctionsheet"></i>
+        <div class="icon-text">ActionSheet</div>
       </router-link>
     </div>
     <div class="row">
-      <router-link to="/action-sheet" class="col">
-        <i class="iconfont icon-YDUI-index-scrolltab"></i>
-        <div class="icon-text">ActionSheet</div>
-      </router-link>
       <router-link to="/debounce" class="col">
         <i class="iconfont icon-sheet-format-cell"></i>
         <div class="icon-text">Debounce</div>
+      </router-link>
+      <router-link to="/picker" class="col">
+        <i class="iconfont icon-popupiconflip"></i>
+        <div class="icon-text">Picker</div>
       </router-link>
       <router-link to="/picker" class="col">
         <i class="iconfont icon-nianyuerixuanze"></i>
         <div class="icon-text">DatePicker</div>
       </router-link>
       <router-link to="/swipe" class="col">
-        <i class="iconfont icon-houdongfangiconfont04"></i>
-        <div class="icon-text">Swipe</div>
+        <i class="iconfont icon-yduiindexcityselect"></i>
+        <div class="icon-text">CityPicker</div>
       </router-link>
     </div>
     <!-- <bo-layout></bo-layout> -->

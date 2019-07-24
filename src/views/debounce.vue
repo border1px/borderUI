@@ -2,18 +2,18 @@
   <bo-page>
     <bo-navbar back-link title="Debounce" @back-click="$router.back()"></bo-navbar>
 
-    <demo-item title="函数节流">
-      <bo-debounce events="input">
-        <input type="text" @input="onInput" @blur="onBlur">
-      </bo-debounce>
-      <div>{{inputText}}</div>
-    </demo-item>
-
     <demo-item title="基础用法">
       <bo-debounce events="click">
         <input type="text" @click="onClick($event,1)" @blur="onBlur">
       </bo-debounce>
       <div v-html="richText1"></div>
+    </demo-item>
+
+    <demo-item title="函数节流">
+      <bo-debounce events="input">
+        <input type="text" @input="onInput" @blur="onBlur">
+      </bo-debounce>
+      <div>{{inputText}}</div>
     </demo-item>
 
     <demo-item title="劫持某个事件">

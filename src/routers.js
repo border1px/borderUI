@@ -18,6 +18,8 @@ import ToolbarView from './views/toolbar.vue'
 import TableView from './views/table.vue'
 import ActionSheetView from './views/action-sheet.vue'
 import DebounceView from './views/debounce.vue'
+import TableRenderView from './views/table-render.vue'
+import TimeLineView from './views/timeline.vue'
 
 const routers = [
   {
@@ -120,6 +122,16 @@ const routers = [
     path: '/debounce',
     name: 'debounce',
     component: DebounceView
+  },
+  {
+    path: '/table-render',
+    name: 'table-render',
+    component: TableRenderView
+  },
+  {
+    path: '/timeline',
+    name: 'timeline',
+    component: TimeLineView
   }
 ]
 export default routers

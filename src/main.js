@@ -30,6 +30,7 @@ import Popup from './components/popup'
 import { Toolbar, ToolbarItem } from './components/toolbar'
 import { Table, TableColumn } from './components/table'
 import ActionSheet from './components/action-sheet'
+import { Timeline, TimelineItem } from './components/timeline'
 
 Vue.component(Test.name, Test)
 Vue.component(DemoItem.name, DemoItem)
@@ -59,13 +60,14 @@ Vue.component(ToolbarItem.name, ToolbarItem)
 Vue.component(Table.name, Table)
 Vue.component(TableColumn.name, TableColumn)
 Vue.component(ActionSheet.name, ActionSheet)
+Vue.component(Timeline.name, Timeline)
+Vue.component(TimelineItem.name, TimelineItem)
 Vue.use(Dialog)
 Vue.use(VueRouter)
 const router = new VueRouter({
   // mode: 'history',
   routes: routers
 })
-
 
 var APP_HANDLER = new Vue({
   router,

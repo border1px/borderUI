@@ -14,29 +14,29 @@ export default {
       align: 'left'
     }
   },
-  inject: ["boTable"],
-  created() {
+  inject: ['boTable'],
+  created () {
     this.$nextTick(() => {
       this.align = this.boTable.align
 
-      let dom = this.$el.parentNode;
-      let index = null;
+      let dom = this.$el.parentNode
+      let index = null
 
-      while (dom.tagName !== "TR") {
-        dom = dom.parentNode;
+      while (dom.tagName !== 'TR') {
+        dom = dom.parentNode
       }
 
-      index = dom.getAttribute("data-index");
-      if (index === "0") {
-        this.boTable.addLabel(this.label);
+      index = dom.getAttribute('data-index')
+      if (index === '0') {
+        this.boTable.addLabel(this.label)
 
         this.$destroy = () => {
-          this.boTable.delLabel(this.label);
-        };
+          this.boTable.delLabel(this.label)
+        }
       }
-    });
+    })
   }
-};
+}
 </script>
 
 <style lang="stylus">

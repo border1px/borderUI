@@ -19,9 +19,9 @@
   </thead>
   <!-- Table-body -->
   <tbody class="bo-table-body">
-    <tr 
-      v-for="(item, index) in data" 
-      :key="index" :data-index="index" 
+    <tr
+      v-for="(item, index) in data"
+      :key="index" :data-index="index"
       :class="[
         'tr-wrapper',
         {'is-underline': underline}
@@ -38,21 +38,21 @@ export default {
   name: 'bo-table',
   props: {
     data: { type: Array, default: () => [] },
-    align: { type: String, default: "center" },
+    align: { type: String, default: 'center' },
     stripe: { type: Boolean, default: false },
-    thBg: { type: String, default: ''},
-    thColor: { type: String, default: '#000'},
-    underline: { type: Boolean, default: false},
+    thBg: { type: String, default: '' },
+    thColor: { type: String, default: '#000' },
+    underline: { type: Boolean, default: false },
     border: { type: Boolean, default: false }
   },
-  provide() {
+  provide () {
     return {
       boTable: this
-    };
+    }
   },
-  data() {
+  data () {
     return {
-      labels: []  // 表头
+      labels: [] // 表头
     }
   },
   computed: {
@@ -65,26 +65,25 @@ export default {
     }
   },
   methods: {
-    addLabel(label) {
-      const { labels } = this;
-      const existItem = labels.find(item => item.label === label);
+    addLabel (label) {
+      const { labels } = this
+      const existItem = labels.find(item => item.label === label)
       // 利用 colspan 来处理合并表头的情况
       if (existItem) {
-        existItem.colspan += 1;
+        existItem.colspan += 1
       } else {
         labels.push({
           label,
           colspan: 1
-        });
+        })
       }
     },
-    delLabel(label) {
-      this.labels = this.labels.filter(item => item.label !== label);
+    delLabel (label) {
+      this.labels = this.labels.filter(item => item.label !== label)
     }
   }
 }
 </script>
-
 
 <style lang="stylus">
 $border-color = #CCC
@@ -104,7 +103,7 @@ $underline-color = #dddddd
       // border-top none
   &.is-stripe
     .bo-table-body
-      .tr-wrapper:nth-child(2n) 
+      .tr-wrapper:nth-child(2n)
         background: $line-bg
   .tr-wrapper
     font-size 14px
@@ -123,4 +122,3 @@ $underline-color = #dddddd
     &.text-right
       text-align: right
 </style>
-

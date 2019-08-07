@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>实战 5：可用 Render 自定义列的表格组件 —— Table</h3>
+        <h3>可用 Render 自定义列的表格组件 —— Table</h3>
 
         <table-render :columns="columns" :data="data"></table-render>
     </div>
@@ -21,7 +21,7 @@ export default {
 
             // 当前行为聚焦行时
             if (this.editIndex === index) {
-              edit = [h('input', {
+              edit = h('input', {
                 domProps: {
                   value: row.name
                 },
@@ -30,7 +30,7 @@ export default {
                     this.editName = event.target.value
                   }
                 }
-              })]
+              })
             } else {
               edit = row.name
             }

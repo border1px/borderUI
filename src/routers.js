@@ -20,6 +20,8 @@ import ActionSheetView from './views/action-sheet.vue'
 import DebounceView from './views/debounce.vue'
 import TableRenderView from './views/table-render.vue'
 import TimeLineView from './views/timeline.vue'
+import TableSlotView from './views/table-slot.vue'
+import TableRenderSlotView from './views/table-render-slot.vue'
 
 const routers = [
   {
@@ -127,6 +129,16 @@ const routers = [
     path: '/table-render',
     name: 'table-render',
     component: TableRenderView
+  },
+  {
+    path: '/table-slot',
+    name: 'table-slot',
+    component: TableSlotView
+  },
+  {
+    path: '/table-render-slot',
+    name: 'table-render-slot',
+    component: TableRenderSlotView
   },
   {
     path: '/timeline',

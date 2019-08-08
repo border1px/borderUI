@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { constants } from 'crypto'
 export default {
   name: 'bo-swipe',
   props: {

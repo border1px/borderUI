@@ -23,10 +23,6 @@
 </template>
 
 <script>
-// import create from '../utils/create';
-import deepClone from '../utils/deep-clone'
-import { isObj, range } from '../utils'
-
 const DEFAULT_DURATION = 200
 
 export default {
@@ -43,11 +39,11 @@ export default {
 
   data () {
     return {
+      options: this.deepClone(this.initialOptions),
       startY: 0,
       offset: 0,
       duration: 0,
       startOffset: 0,
-      options: deepClone(this.initialOptions),
       currentIndex: this.defaultIndex
     }
   },
@@ -99,6 +95,34 @@ export default {
   },
 
   methods: {
+    deepClone (obj) {
+      if (typeof obj !== 'object') return obj
+      if (obj === null) return null
+      if (obj instanceof Date) return new Date(obj)
+      if (obj instanceof RegExp) return new RegExp(obj)
+      if (obj instanceof Array) {
+        let arr = []
+        for (let i in obj) {
+          arr[i] = this.deepClone(obj[i])
+        }
+        return arr
+      }
+      var o = {}
+      for (var attr in obj) {
+        o[attr] = this.deepClone(obj[attr])
+      }
+      return o
+    },
+
+    range (num, min, max) {
+      return Math.min(Math.max(num, min), max)
+    },
+
+    isObj (x) {
+      const type = typeof x
+      return x !== null && (type === 'object' || type === 'function')
+    },
+
     onTouchStart (event) {
       this.startY = event.touches[0].clientY
       this.startOffset = this.offset
@@ -107,7 +131,7 @@ export default {
 
     onTouchMove (event) {
       const deltaY = event.touches[0].clientY - this.startY
-      this.offset = range(
+      this.offset = this.range(
         this.startOffset + deltaY,
         -(this.count * this.itemHeight),
         this.itemHeight
@@ -117,7 +141,7 @@ export default {
     onTouchEnd () {
       if (this.offset !== this.startOffset) {
         this.duration = DEFAULT_DURATION
-        const index = range(
+        const index = this.range(
           Math.round(-this.offset / this.itemHeight),
           0,
           this.count - 1
@@ -127,7 +151,7 @@ export default {
     },
 
     adjustIndex (index) {
-      index = range(index, 0, this.count)
+      index = this.range(index, 0, this.count)
       for (let i = index; i < this.count; i++) {
         if (!this.isDisabled(this.options[i])) return i
       }
@@ -137,11 +161,11 @@ export default {
     },
 
     isDisabled (option) {
-      return isObj(option) && option.disabled
+      return this.isObj(option) && option.disabled
     },
 
     getOptionText (option) {
-      return isObj(option) && this.valueKey in option
+      return this.isObj(option) && this.valueKey in option
         ? option[this.valueKey]
         : option
     },

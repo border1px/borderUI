@@ -1,6 +1,28 @@
 <template>
   <div class="pf-picker">
     <div
+      v-if="showToolbar"
+      class="pf-picker__toolbar"
+    >
+      <slot>
+        <div
+          v-text="cancelButtonText || '取消'"
+          class="pf-picker__cancel"
+          @click="emit('cancel')"
+        />
+        <div
+          v-if="title"
+          v-text="title"
+          class="pf-picker__title"
+        />
+        <div
+          v-text="confirmButtonText || '确定'"
+          class="pf-picker__confirm"
+          @click="emit('confirm')"
+        />
+      </slot>
+    </div>
+    <div
       class="pf-picker__columns"
       :style="columnsStyle"
       @touchmove.prevent
@@ -9,10 +31,10 @@
         v-for="(item, index) in (simple ? [columns] : columns)"
         :key="index"
         :value-key="valueKey"
-        :initial-options="simple ? item : item.values"
         :class-name="item.className"
-        :default-index="item.defaultIndex"
+        :default-index="simple ? defaultIndex : item.defaultIndex"
         :item-height="itemHeight"
+        :initial-options="simple ? item : item.values"
         :visible-item-count="visibleItemCount"
         class="pf-picker-column"
         @change="onChange(index)"
@@ -23,23 +45,33 @@
 </template>
 
 <script>
-// import create from '../utils/create';
 import PickerColumn from './picker-column.vue'
-import deepClone from '../utils/deep-clone'
-import PickerMixin from './mixins_picker'
 
 export default {
   name: 'BoPicker',
-  mixins: [PickerMixin],
   components: {
     PickerColumn
   },
 
   props: {
     columns: Array,
+    defaultIndex: Number,
     valueKey: {
       type: String,
       default: 'text'
+    },
+    title: String,
+    loading: Boolean,
+    showToolbar: Boolean,
+    cancelButtonText: String,
+    confirmButtonText: String,
+    visibleItemCount: {
+      type: Number,
+      default: 5
+    },
+    itemHeight: {
+      type: Number,
+      default: 44
     }
   },
 
@@ -74,10 +106,28 @@ export default {
   },
 
   methods: {
+    deepClone (obj) {
+      if (typeof obj !== 'object') return obj
+      if (obj === null) return null
+      if (obj instanceof Date) return new Date(obj)
+      if (obj instanceof RegExp) return new RegExp(obj)
+      if (obj instanceof Array) {
+        let arr = []
+        for (let i in obj) {
+          arr[i] = this.deepClone(obj[i])
+        }
+        return arr
+      }
+      var o = {}
+      for (var attr in obj) {
+        o[attr] = this.deepClone(obj[attr])
+      }
+      return o
+    },
     setColumns () {
       const columns = this.simple ? [{ values: this.columns }] : this.columns
       columns.forEach((column, index) => {
-        this.setColumnValues(index, deepClone(column.values))
+        this.setColumnValues(index, this.deepClone(column.values))
       })
     },
 
@@ -181,11 +231,12 @@ export default {
     height: 44px;
     line-height: 44px;
     justify-content: space-between;
+    border-bottom 1px solid #F2F2F2
   }
 
   &__cancel,
   &__confirm {
-    color: @blue;
+    color: $theme-color;
     padding: 0 15px;
     font-size: 14px;
 

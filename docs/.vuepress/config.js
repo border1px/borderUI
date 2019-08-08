@@ -50,7 +50,8 @@ module.exports = {
           ['/Comp/icon','Icon 图标'],
           ['/Comp/table','Table 表格'],
           ['/Comp/action-sheet','ActionSheet 上拉菜单'],
-          ['/Comp/debounce','Debounce 防抖&节流']
+          ['/Comp/debounce','Debounce 防抖&节流'],
+          ['/Comp/picker','Picker 选择器']
         ]
       },
     ]

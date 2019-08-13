@@ -4,6 +4,7 @@
 
 <p align="center">Mobile UI Components built on Vue</p>
 
+![demo](https://cdn.img.wenhairu.com/images/2019/08/13/8miFD.png)
 
 ## Getting Started
   * [Document](https://border-1px.github.io/border-ui/docs/FAQ/introduction.html)

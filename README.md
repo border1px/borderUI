@@ -67,7 +67,6 @@ borderUI uses Stylus compilations, and ES modules JS files.
 
 The project uses [.editorconfig](http://editorconfig.org/) and [ESLint](https://eslint.org/) to define and lint the coding style of each file. We recommend that you install the Editor Config and ESLint extension for your preferred IDE.
 
-If you want to help in borderUI development and make it event better visit this page: http://framework7.io/contribute/
 
 ## Docs
 

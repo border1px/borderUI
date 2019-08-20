@@ -7,6 +7,7 @@
 
 ## 代码示例
 #### 基础用法
+
 <ClientOnly>
 <Common-code-format>
   <highlight-code slot="codeText" lang="vue">
@@ -68,7 +69,6 @@ export default {
   }
 }
 ```
-
 
 ## props
 | 参数              | 说明                                        | 类型     | 默认值

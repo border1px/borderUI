@@ -1,8 +1,12 @@
-<p align="center"><a href="https://framework7.io" target="_blank" rel="noopener noreferrer"><img width="150" src="https://s2.ax1x.com/2019/05/27/VZCLE8.png" alt="Framework7"></a></p>
 
 <h1 align="center">borderUI</h1>
 
 <p align="center">Mobile UI Components built on Vue</p>
+
+
+<p align="center">
+<img src='https://cdn.img.wenhairu.com/images/2019/08/13/8miFD.png' align='center' style=' width:300px;'/>
+</p>
 
 
 ## Getting Started
@@ -63,7 +67,6 @@ borderUI uses Stylus compilations, and ES modules JS files.
 
 The project uses [.editorconfig](http://editorconfig.org/) and [ESLint](https://eslint.org/) to define and lint the coding style of each file. We recommend that you install the Editor Config and ESLint extension for your preferred IDE.
 
-If you want to help in borderUI development and make it event better visit this page: http://framework7.io/contribute/
 
 ## Docs
 

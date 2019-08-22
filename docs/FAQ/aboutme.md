@@ -28,7 +28,7 @@
 ### 开源项目
 
 - [borderUI](https://github.com/border-1px/borderUI)：基于Vue的移动端UI开发框架
-- [WXYZ](http://github.com/yourname/projectname)：
+- [iLayout](https://github.com/border-1px/iLayout)：移动端应用设计器
 
 ### 技术文章
 - [ 从0开始写“脉脉”(系列文章)](https://community.apicloud.com/bbs/thread-408-1-21.html)
@@ -43,7 +43,7 @@
 # 技能清单
 
 - **前端框架**：Vue/Bootstrap/Framework7/ES6
-- **后端框架**：NodeJS/ThinkPHP
+- **后端语言**：NodeJS/PHP/.Net/Python
 - **混合APP**：Apicloud/Uni-app/Cordova
 - **嵌入式**：熟悉STC单片机、C/C++
 - **前端工具**：Webpack/Bower/Gulp/Sass/Less/Stylus

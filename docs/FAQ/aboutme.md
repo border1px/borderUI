@@ -43,7 +43,7 @@
 # 技能清单
 
 - **前端框架**：Vue/Bootstrap/Framework7/ES6
-- **后端语言**：NodeJS/PHP/.Net/Python
+- **后端语言**：NodeJS/PHP/C#
 - **混合APP**：Apicloud/Uni-app/Cordova
 - **嵌入式**：熟悉STC单片机、C/C++
 - **前端工具**：Webpack/Bower/Gulp/Sass/Less/Stylus

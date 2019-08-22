@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="favicon.ico" />
+  <title>border-1px</title>
+  <link href="css/app.ea145b67.css" rel="preload" as="style" />
+  <link href="js/app.98141cd9.js" rel="preload" as="script" />
+  <link href="js/chunk-vendors.7e4347ec.js" rel="preload" as="script" />
+  <link href="css/app.ea145b67.css" rel="stylesheet" />
+  <style>
+    .loader-box {
+      width: 100%;
+      height: 100%;
+      font-size: 30px;
+      vertical-align: center;
+      -webkit-transition: .3s color, .3s border;
+      transition: .3s color, .3s border;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-box-pack: center;
+      -webkit-box-align: center;
+    }
+    .loader-ani {
+      width: 1em;
+      height: 1em;
+      background-color: #7D8085;
+      -webkit-animation: loader-ani 1.2s infinite ease-in-out;
+      animation: loader-ani 1.2s infinite ease-in-out;
+    }
+    .loader-txt{
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    @-webkit-keyframes loader-ani {
+      0% {
+          -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+          transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+      }
+      50% {
+          -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+          transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+      }
+      100% {
+          -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+          transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      }
+    }
+    @keyframes loader-ani {
+      0% {
+          -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+          transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+      }
+      50% {
+          -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+          transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+      }
+      100% {
+          -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+          transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <noscript>
+   <strong>We're sorry but border-1px doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <div id="app">
+    <div class="loader-box">
+      <div class="loader-ani"></div>
+      <div class="loader-txt">loading...</div>
+    </div>
+  </div>
+  <script src="js/chunk-vendors.7e4347ec.js"></script>
+  <script src="js/app.98141cd9.js"></script>
+ </body>
+</html>

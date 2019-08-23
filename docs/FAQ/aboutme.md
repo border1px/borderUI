@@ -47,7 +47,7 @@
 - **混合APP**：Apicloud/Uni-app/Cordova
 - **嵌入式**：熟悉STC单片机、C/C++
 - **前端工具**：Webpack/Bower/Gulp/Sass/Less/Stylus
-- **数据库相关**：MySQL/SQLite
+- **数据库相关**：MySQL/SQL Server/SQLite
 - **版本管理、自动化**：Git/NPM
 - **云和开放平台**：SAE/BAE/AWS/微博开放平台/微信应用开发
 

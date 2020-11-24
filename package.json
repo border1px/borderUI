@@ -21,7 +21,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
-    "highlight.js": "^9.15.6",
+    "highlight.js": "^10.1.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-highlight.js": "2.2.0",

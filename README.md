@@ -5,7 +5,7 @@
 
 
 <p align="center">
-<img src='https://cdn.img.wenhairu.com/images/2019/08/13/8miFD.png' align='center' style=' width:300px;'/><br/>
+<img src='https://github.com/border1px/borderUI/blob/master/preview.png?raw=true' align='center' style=' width:300px;'/><br/>
 Pictures are loading...
 </p>
 

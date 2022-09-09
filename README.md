@@ -11,8 +11,8 @@ Pictures are loading...
 
 
 ## Getting Started
-  * [Document](https://border-1px.github.io/border-ui/docs/FAQ/introduction.html)
-  * [Demo](https://border-1px.github.io/border-ui/)
+  * [Document](https://border1px.github.io/border-ui/docs/FAQ/introduction.html)
+  * [Demo](https://border1px.github.io/border-ui/)
 ## borderUI Development
 
 borderUI base on `vue-cli@3` to build a development and production versions.
@@ -71,9 +71,9 @@ The project uses [.editorconfig](http://editorconfig.org/) and [ESLint](https://
 
 ## Docs
 
-Documentation available at https://border-1px.github.io/border-ui/docs/FAQ/introduction.html
+Documentation available at https://border1px.github.io/border-ui/docs/FAQ/introduction.html
 
 ## Demos
 
-Demo available at https://border-1px.github.io/border-ui/demo/
+Demo available at https://border1px.github.io/border-ui/demo/
 

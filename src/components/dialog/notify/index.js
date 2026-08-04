@@ -1,23 +1,23 @@
 import Vue from 'vue'
 import NotifyComponent from './notify.vue'
 
-var instance = null
-var timer = null
-var flag = false
+let instance = null
+let timer = null
+let flag = false
 
-var NotifyConstructor = Vue.extend(NotifyComponent)
+const NotifyConstructor = Vue.extend(NotifyComponent)
 
 NotifyConstructor.prototype.closeNotify = () => {
   instance.$el.classList.add('pf-notify-out')
 
   timer = setTimeout(() => {
-    var el = instance.$el
+    const el = instance.$el
     el.parentNode && el.parentNode.removeChild(el)
     flag = false
   }, 20)
 }
 
-var Notify = (options = {}) => {
+const Notify = (options = {}) => {
   // 同时只能有一个notify
   if (flag) return
   flag = true

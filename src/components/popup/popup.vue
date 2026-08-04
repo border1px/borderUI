@@ -45,7 +45,7 @@ export default {
       return `popup-slide-${this.position}`
     },
     popupStyle () {
-      var style = {}
+      const style = {}
       if (this.position === 'top' || this.position === 'bottom') {
         style.maxHeight = this.maxHeight + 'px'
         style.minHeight = this.minHeight + 'px'
@@ -94,7 +94,7 @@ export default {
       this.closeOnClickOMask && this.close()
     },
     renderOverlay () {
-      var node = document.createElement('div')
+      const node = document.createElement('div')
       node.setAttribute('class', 'bo-popup-overlay')
       node.onclick = this.onMaskClick
       document.body.appendChild(node)

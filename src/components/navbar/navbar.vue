@@ -64,10 +64,10 @@ export default {
       }
 
       // 是否包含subnavar，有的话加class: navbar-with-subnavbar,用于控制page-content的padding
-      let slotsDeault = this.$slots.default
+      const slotsDeault = this.$slots.default
       if (slotsDeault) {
         for (let i = 0; i < slotsDeault.length; i++) {
-          var tag = slotsDeault[i].tag
+          const tag = slotsDeault[i].tag
           if (tag && tag.indexOf('subnavbar') >= 0) self.withSubnavbar = true
         }
       }
@@ -75,7 +75,7 @@ export default {
       innerEl = h('div', {
         ref: 'inner',
         staticClass: 'navbar-inner'
-      }, [leftEl, titleEl, rightEl, this.$slots['default']])
+      }, [leftEl, titleEl, rightEl, this.$slots.default])
     }
     return h('div', {
       staticClass: 'navbar',

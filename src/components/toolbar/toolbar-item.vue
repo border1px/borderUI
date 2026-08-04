@@ -11,13 +11,8 @@
 </template>
 
 <script>
-import Icon from '../icon'
-
 export default {
   inheritAttrs: false,
-  components: {
-    Icon
-  },
   name: 'bo-toolbar-item',
   props: {
     icon: String,

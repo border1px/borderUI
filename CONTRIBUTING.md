@@ -17,22 +17,21 @@ name, browser or WebView, operating system, Vue version, and a reproduction.
 ## Development workflow
 
 1. Fork the repository and create a branch from `master`.
-2. Install dependencies with `yarn install`.
+2. Use Node.js 22 (`nvm use`) and install dependencies with `npm ci`.
 3. Make one focused change.
 4. Run the checks relevant to your change:
 
    ```bash
-   yarn lint
-   yarn build
-   yarn docs:build
+   npm run lint
+   npm run build
+   npm run docs:build
    ```
 
 5. Update documentation when behavior or public APIs change.
 6. Open a pull request using the repository template.
 
-The legacy toolchain does not yet have a fully documented supported Node.js
-version. If installation or a build fails, include your Node and Yarn versions
-in the pull request so the failure can be reproduced.
+If installation or a build fails, include your Node and npm versions in the
+pull request so the failure can be reproduced.
 
 ## Pull request guidelines
 

@@ -69,7 +69,7 @@ const router = new VueRouter({
   routes: routers
 })
 
-var APP_HANDLER = new Vue({
+const APP_HANDLER = new Vue({
   router,
   data () {
     return {

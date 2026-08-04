@@ -176,7 +176,7 @@ export default {
     },
     fileUpload (files) {
       if (files.length > 0) {
-        var allTask = files.map(file => {
+        const allTask = files.map(file => {
           if (file.size / 1024 > this.threshold) {
             return this._fixImageOrientation(file)
               .then(file => this._compressImage(file))
@@ -192,14 +192,14 @@ export default {
             this.$emit('onFileError', files, err)
           })
       } else {
-        var err = new Error('No files to upload for this field')
+        const err = new Error('No files to upload for this field')
         this.$emit('onFileError', files, err)
       }
     },
     async _handleUpload (file) {
       this.$emit('beforeFileUpload', file)
-      var form = new FormData()
-      var xhr = new XMLHttpRequest()
+      const form = new FormData()
+      const xhr = new XMLHttpRequest()
       form.append('file', file, Date.parse(new Date()) + Math.floor(Math.random() * (1 - 1000) + 1000) + '.jpg')
 
       return new Promise((resolve, reject) => {
@@ -210,11 +210,11 @@ export default {
             return
           }
           if (xhr.status === 200) {
-            var res = JSON.parse(xhr.responseText)
+            const res = JSON.parse(xhr.responseText)
             this.$emit('onFileUpload', file, res)
             resolve(file)
           } else {
-            var err = JSON.parse(xhr.responseText)
+            const err = JSON.parse(xhr.responseText)
             err.status = xhr.status
             err.statusText = xhr.statusText
             this.$emit('onFileError', file, err)
@@ -223,7 +223,7 @@ export default {
         }
 
         xhr.onerror = () => {
-          var err = JSON.parse(xhr.responseText)
+          const err = JSON.parse(xhr.responseText)
           err.status = xhr.status
           err.statusText = xhr.statusText
           this.$emit('onFileError', file, err)
@@ -235,9 +235,9 @@ export default {
           xhr.withCredentials = true
         }
 
-        var headers = this.headers || {}
-        for (var item in headers) {
-          if (headers.hasOwnProperty(item) && headers[item] !== null) {
+        const headers = this.headers || {}
+        for (const item in headers) {
+          if (Object.prototype.hasOwnProperty.call(headers, item) && headers[item] !== null) {
             xhr.setRequestHeader(item, headers[item])
           }
         }

@@ -1,6 +1,20 @@
 module.exports = {
   title: 'borderUI',
   description: 'Mobile UI Components built on Vue',
+  chainWebpack (config) {
+    for (const ruleName of ['modules', 'normal']) {
+      config.module
+        .rule('stylus')
+        .oneOf(ruleName)
+        .use('stylus-loader')
+        .tap(options => ({
+          stylusOptions: {
+            import: options.import
+          },
+          webpackImporter: options.preferPathResolver === 'webpack'
+        }))
+    }
+  },
   base:'/border-ui/docs/',
   sidebarDepth: 2,
   themeConfig: {

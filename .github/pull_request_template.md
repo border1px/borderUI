@@ -8,12 +8,12 @@ Closes #
 
 ## Validation
 
-List the commands and manual checks you ran, including Node.js and Yarn
+List the commands and manual checks you ran, including Node.js and npm
 versions when build tooling is affected.
 
-- [ ] `yarn lint`
-- [ ] `yarn build`
-- [ ] `yarn docs:build`
+- [ ] `npm run lint`
+- [ ] `npm run build`
+- [ ] `npm run docs:build`
 - [ ] Relevant manual component checks
 
 If a check could not be run, explain why and what evidence is available.

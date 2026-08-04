@@ -2,9 +2,9 @@ import Vue from 'vue'
 import AlertComponent from './alert.vue'
 import { pageScroll } from '../../../utils/utils'
 
-var instance
-var AlertConstructor = Vue.extend(AlertComponent)
-let initInstance = () => {
+let instance
+const AlertConstructor = Vue.extend(AlertComponent)
+const initInstance = () => {
   instance = new AlertConstructor({
     el: document.createElement('div')
   })
@@ -19,7 +19,7 @@ AlertConstructor.prototype.closeAlert = () => {
   instance.resolve()
 }
 
-var Alert = (options = {}) => {
+const Alert = (options = {}) => {
   return new Promise((resolve, reject) => {
     pageScroll.lock()
     initInstance()

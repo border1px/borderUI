@@ -112,14 +112,14 @@ export default {
       if (obj instanceof Date) return new Date(obj)
       if (obj instanceof RegExp) return new RegExp(obj)
       if (obj instanceof Array) {
-        let arr = []
-        for (let i in obj) {
+        const arr = []
+        for (const i in obj) {
           arr[i] = this.deepClone(obj[i])
         }
         return arr
       }
-      var o = {}
-      for (var attr in obj) {
+      const o = {}
+      for (const attr in obj) {
         o[attr] = this.deepClone(obj[attr])
       }
       return o

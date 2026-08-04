@@ -31,7 +31,7 @@ export default {
     const fixedList = []
     const staticList = []
     // -- 分割线
-    var self = this
+    const self = this
     let child = null
     let tag = null
     let pageContentEl

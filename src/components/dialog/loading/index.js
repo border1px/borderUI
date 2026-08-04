@@ -2,12 +2,12 @@ import Vue from 'vue'
 import LoadingComponent from './loading.vue'
 import { pageScroll } from '../../../utils/utils'
 
-var LoadingConstructor = Vue.extend(LoadingComponent)
-var instance = new LoadingConstructor()
+const LoadingConstructor = Vue.extend(LoadingComponent)
+const instance = new LoadingConstructor()
 
 LoadingConstructor.prototype.close = () => {
   pageScroll.unlock()
-  var el = instance.$el
+  const el = instance.$el
   el.parentNode && el.parentNode.removeChild(el)
 }
 

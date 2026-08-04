@@ -83,18 +83,18 @@ export default {
       this.isOpen = false
     },
     selectedItem (event) {
-      var targetNode = event.target.previousElementSibling
-      var classList = targetNode.classList
+      const targetNode = event.target.previousElementSibling
+      const classList = targetNode.classList
       classList.contains('selected') ? classList.remove('selected') : classList.add('selected')
     },
     onConfirm () {
       this.isOpen = false
       const checkboxValue = this.checkboxValue
-      var res = []
+      const res = []
 
-      for (var i = 0; i < checkboxValue.length; i++) {
-        var obj = {}
-        var item = checkboxValue[i].split('|')
+      for (let i = 0; i < checkboxValue.length; i++) {
+        const obj = {}
+        const item = checkboxValue[i].split('|')
         obj.label = item[0]
         obj.value = item[1]
         res.push(obj)
@@ -105,7 +105,7 @@ export default {
   },
   watch: {
     checkboxValue (val) {
-      const listDom = this.$refs['list']
+      const listDom = this.$refs.list
       const lines = listDom.querySelectorAll('.line-wrapper')
       if (val.length === this.max) {
         let item = null

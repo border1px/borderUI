@@ -1,4 +1,3 @@
-
 export const Utils = {
   isTrueProp (val) {
     return val === true || val === ''

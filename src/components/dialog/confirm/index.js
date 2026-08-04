@@ -2,10 +2,10 @@ import Vue from 'vue'
 import { pageScroll } from '../../../utils/utils'
 import ConfirmComponent from './confirm.vue'
 
-var instance
-var ConfirmConstructor = Vue.extend(ConfirmComponent)
+let instance
+const ConfirmConstructor = Vue.extend(ConfirmComponent)
 
-var initInstance = () => {
+const initInstance = () => {
   instance = new ConfirmConstructor()
   instance.$mount()
   document.body.appendChild(instance.$el)
@@ -13,7 +13,7 @@ var initInstance = () => {
 
 ConfirmConstructor.prototype.closeConfirm = (index) => {
   pageScroll.unlock()
-  var el = instance.$el
+  const el = instance.$el
   el.parentNode && el.parentNode.removeChild(el)
   instance.resolve(index)
 }

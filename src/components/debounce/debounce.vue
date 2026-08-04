@@ -29,23 +29,23 @@ export default {
     console.log('HOC succeed')
   },
   render (h) {
-    var slots = Object.keys(this.$slots)
+    const slots = Object.keys(this.$slots)
       .reduce((arr, key) => arr.concat(this.$slots[key]), [])
       .map(vnode => {
         vnode.context = this
         return vnode
       })
-    var vNode = slots[0]
+    const vNode = slots[0]
     if (slots.length > 1) {
       console.warn('<bo-debounce> 内部只能包含单个组件')
       return
     }
 
     // 判断内部是组件/原生组件
-    var isComp = vNode.componentOptions
-    var eventList = []
-    var eventProp = []
-    var eventBind = isComp
+    const isComp = vNode.componentOptions
+    let eventList = []
+    let eventProp = []
+    const eventBind = isComp
       ? Object.keys(vNode.componentOptions.listeners)
       : Object.keys(vNode.data.on);
     (this.events) && (eventProp = this.events.split(','))

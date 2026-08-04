@@ -12,6 +12,9 @@
   <a href="https://github.com/border1px/borderUI/pulls">
     <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/border1px/borderUI">
   </a>
+  <a href="https://github.com/border1px/borderUI/actions/workflows/ci.yml">
+    <img alt="CI status" src="https://github.com/border1px/borderUI/actions/workflows/ci.yml/badge.svg">
+  </a>
 </p>
 
 <p align="center">
@@ -21,10 +24,9 @@
 ## Project status
 
 > **Maintenance has resumed.** This repository was originally developed in 2019
-> and currently uses the legacy Vue 2, Vue CLI 3, and VuePress 0.x toolchain.
-> The first maintenance milestone focuses on restoring reproducible builds,
-> automated checks, documentation, and dependency security before adding new
-> components.
+> and remains on the end-of-life Vue 2 line. The compatibility baseline uses
+> Vue 2.6.14, Vue CLI 5, Node.js 22, and automated CI while a Vue 3 and
+> Vite migration is planned.
 
 The current repository is a source and demonstration project. It is marked as
 private in `package.json` and is **not published as an installable npm package**.
@@ -61,13 +63,12 @@ milestone is complete.
 
 ## Local development
 
-The repository currently uses Yarn Classic through the committed `yarn.lock`.
-Until the build-recovery milestone is complete, a modern Node.js version is not
-guaranteed to work with the legacy dependency tree.
+Use Node.js 22, as recorded in `.nvmrc`, and the npm lockfile committed to the
+repository.
 
 ```bash
-yarn install
-yarn serve
+npm ci
+npm run serve
 ```
 
 The development server is available at <http://localhost:8080> by default.
@@ -75,10 +76,11 @@ The development server is available at <http://localhost:8080> by default.
 Other scripts:
 
 ```bash
-yarn lint        # lint source files
-yarn build       # build the demo application
-yarn docs:dev    # start the documentation site
-yarn docs:build  # build the documentation site
+npm run lint        # lint source files
+npm run build       # build the demo application
+npm run audit:prod  # reject high/critical production dependency findings
+npm run docs:dev    # start the documentation site
+npm run docs:build  # build the documentation site
 ```
 
 ## Repository structure

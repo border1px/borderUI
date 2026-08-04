@@ -17,12 +17,7 @@
 </template>
 
 <script>
-import Checklist from '../components/checklist'
-
 export default {
-  components: {
-    Checklist
-  },
   data () {
     return {
       showPopup: false,
@@ -40,7 +35,7 @@ export default {
       this.showPopup = true
     },
     showCheckList () {
-      this.$refs['checklist'].show()
+      this.$refs.checklist.show()
     }
   }
 }

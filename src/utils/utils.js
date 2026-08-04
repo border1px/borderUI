@@ -1,4 +1,4 @@
-var pageScroll = {
+const pageScroll = {
   // https://uedsky.com/2016-06/mobile-modal-scroll/
 
   // .modal-open {

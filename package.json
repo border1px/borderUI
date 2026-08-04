@@ -1,31 +1,37 @@
 {
   "name": "border-1px",
   "version": "0.1.0",
+  "description": "Mobile UI components and demos built with Vue 2",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "npm@11.12.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --no-fix",
+    "audit:prod": "npm audit --omit=dev --audit-level=high --registry=https://registry.npmjs.org",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
-    "vue": "^2.6.6",
-    "vue-router": "^3.0.2"
+    "vue": "2.6.14",
+    "vue-router": "^3.6.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-eslint": "^3.4.0",
-    "@vue/cli-service": "^3.4.0",
-    "@vue/eslint-config-standard": "^4.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "highlight.js": "^9.15.6",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
-    "vue-highlight.js": "2.2.0",
-    "vue-template-compiler": "^2.5.21",
-    "vuepress": "^0.14.11"
+    "@babel/eslint-parser": "^7.29.7",
+    "@vue/cli-plugin-babel": "^5.0.9",
+    "@vue/cli-plugin-eslint": "^5.0.9",
+    "@vue/cli-service": "^5.0.9",
+    "@vue/eslint-config-standard": "^8.0.1",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.33.0",
+    "highlight.js": "^10.7.3",
+    "prismjs": "^1.30.0",
+    "stylus": "^0.64.0",
+    "stylus-loader": "4.3.3",
+    "vue-template-compiler": "2.6.14",
+    "vuepress": "^1.9.10"
   }
 }

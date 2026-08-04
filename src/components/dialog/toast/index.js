@@ -2,22 +2,22 @@ import Vue from 'vue'
 import ToastComponent from './toast.vue'
 import { pageScroll } from '../../../utils/utils'
 
-var instance
-var ToastConstructor = Vue.extend(ToastComponent)
+let instance
+const ToastConstructor = Vue.extend(ToastComponent)
 
 ToastConstructor.prototype.closeToast = () => {
   pageScroll.unlock()
-  var el = instance.$el
+  const el = instance.$el
   el.parentNode && el.parentNode.removeChild(el)
 }
 
-var initInstance = () => {
+const initInstance = () => {
   instance = new ToastConstructor()
   instance.$mount()
   document.body.appendChild(instance.$el)
 }
 
-var Toast = (options = {}) => {
+const Toast = (options = {}) => {
   pageScroll.lock()
   initInstance()
   if (typeof options === 'string' || typeof options === 'number') {

@@ -35,3 +35,15 @@ remain private until a fix or coordinated disclosure plan is ready.
 Dependency alerts and automated update pull requests are triaged against the
 current tested dependency graph. Historical lockfile-only updates may be closed
 when a newer dependency refresh supersedes them.
+
+## Current dependency posture
+
+The August 2026 recovery baseline has one low-severity production finding in
+Vue 2.6.14. npm identifies Vue 3 as the available fix, so this remains visible
+until the planned Vue 3 migration.
+
+The legacy Vue CLI and VuePress 1 development toolchain still includes
+high- and critical-severity transitive findings. These packages are used to
+build the demo and documentation rather than shipped as production
+dependencies. CI rejects any new high- or critical-severity production finding,
+and replacing the legacy toolchain is tracked in the maintenance roadmap.

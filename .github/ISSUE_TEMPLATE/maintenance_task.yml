@@ -1,0 +1,48 @@
+name: Maintenance task
+description: Track repository, build, documentation, security, or migration work.
+title: "[Maintenance]: "
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Project governance
+        - Build and CI
+        - Dependencies and security
+        - Documentation
+        - Testing
+        - Vue 3 and Vite migration
+        - Release
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Explain the current limitation, risk, or maintainer need.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed scope
+      description: List the work that belongs in this task and anything intentionally excluded.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Provide a checklist of observable completion criteria.
+      placeholder: |
+        - [ ] The application build passes on the documented Node.js version.
+        - [ ] The CI workflow runs on pull requests.
+        - [ ] The supported version is documented.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and related work
+      description: Link related issues, pull requests, alerts, or external documentation.

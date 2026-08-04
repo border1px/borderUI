@@ -1,0 +1,43 @@
+name: Feature request
+description: Propose an improvement to an existing component or workflow.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        New component work is currently lower priority than build, security,
+        documentation, and migration work. Focused improvements are welcome.
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: Which component, documentation section, or maintainer workflow is affected?
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the user problem rather than only the proposed implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Explain the desired behavior and API, including compatibility concerns.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe workarounds or other approaches you considered.
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I would be willing to help implement or document this change.

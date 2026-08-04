@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://border1px.github.io/border-ui/docs/FAQ/introduction.html
+    about: Read the existing component documentation before opening an issue.
+  - name: Security vulnerability
+    url: https://github.com/border1px/borderUI/security/advisories/new
+    about: Report suspected vulnerabilities privately.

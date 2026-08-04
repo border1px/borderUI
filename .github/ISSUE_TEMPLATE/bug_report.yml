@@ -1,0 +1,66 @@
+name: Bug report
+description: Report reproducible behavior that appears to be incorrect.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve borderUI. Please search existing issues
+        and do not use this form for security vulnerabilities.
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      description: Which component or part of the project is affected?
+      placeholder: picker, popup, documentation build, and so on
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Provide a repository, sandbox, or concise reproduction steps.
+      placeholder: |
+        1. Render the component with...
+        2. Interact with...
+        3. Observe...
+    validations:
+      required: true
+  - type: input
+    id: vue-version
+    attributes:
+      label: Vue version
+      placeholder: 2.6.14
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser or WebView, operating system, device, Node.js, and Yarn versions as relevant.
+      placeholder: Chrome 126 on Android 14
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add logs, screenshots, or related links. Remove secrets and personal data.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and pull requests.
+          required: true
+        - label: This report does not disclose a security vulnerability.
+          required: true

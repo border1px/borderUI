@@ -1,79 +1,105 @@
-
 <h1 align="center">borderUI</h1>
 
-<p align="center">Mobile UI Components built on Vue</p>
-
+<p align="center">A mobile UI component collection built with Vue.</p>
 
 <p align="center">
-<img src='https://github.com/border1px/borderUI/blob/master/preview.png?raw=true' align='center' style=' width:300px;'/><br/>
-Pictures are loading...
+  <a href="https://github.com/border1px/borderUI/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg">
+  </a>
+  <a href="https://github.com/border1px/borderUI/issues">
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/border1px/borderUI">
+  </a>
+  <a href="https://github.com/border1px/borderUI/pulls">
+    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/border1px/borderUI">
+  </a>
 </p>
 
+<p align="center">
+  <img src="https://github.com/border1px/borderUI/blob/master/preview.png?raw=true" alt="borderUI preview" width="300">
+</p>
 
-## Getting Started
-  * [Document](https://border1px.github.io/border-ui/docs/FAQ/introduction.html)
-  * [Demo](https://border1px.github.io/border-ui/)
-## borderUI Development
+## Project status
 
-borderUI base on `vue-cli@3` to build a development and production versions.
+> **Maintenance has resumed.** This repository was originally developed in 2019
+> and currently uses the legacy Vue 2, Vue CLI 3, and VuePress 0.x toolchain.
+> The first maintenance milestone focuses on restoring reproducible builds,
+> automated checks, documentation, and dependency security before adding new
+> components.
 
-Install all dependencies, in repo's root:
+The current repository is a source and demonstration project. It is marked as
+private in `package.json` and is **not published as an installable npm package**.
+Do not confuse it with the unrelated `border-1px` package on npm.
 
+- [Documentation](https://border1px.github.io/border-ui/docs/FAQ/introduction.html)
+- [Interactive demo](https://border1px.github.io/border-ui/)
+- [Maintenance roadmap](ROADMAP.md)
+- [How to contribute](CONTRIBUTING.md)
+
+## Components
+
+borderUI contains mobile-oriented components and examples, including:
+
+- Action Sheet
+- Button and Button Group
+- Cell
+- Checkbox and Radio
+- Debounce
+- Dialog, Alert, Confirm, Loading, Notify, and Toast
+- Icon
+- Navbar and Tabbar
+- Picker
+- Popup
+- Swipe
+- Switch
+- Table
+- Timeline and Toolbar
+- Uploader
+
+Some undocumented or experimental components may also exist under
+`src/components`. Their APIs should be treated as unstable until the maintenance
+milestone is complete.
+
+## Local development
+
+The repository currently uses Yarn Classic through the committed `yarn.lock`.
+Until the build-recovery milestone is complete, a modern Node.js version is not
+guaranteed to work with the legacy dependency tree.
+
+```bash
+yarn install
+yarn serve
 ```
-$ npm install
+
+The development server is available at <http://localhost:8080> by default.
+
+Other scripts:
+
+```bash
+yarn lint        # lint source files
+yarn build       # build the demo application
+yarn docs:dev    # start the documentation site
+yarn docs:build  # build the documentation site
 ```
 
-## Development Builds
+## Repository structure
 
-The following npm scripts are available to create development builds:
-
-* `serve` - build development versions（Start by default on http://localhost:8080）
-
-## Production builds
-
-To build production versions the following npm scripts are available:
-
-* `build` - build production versions
-
-Compiled results will be available in `dist/` folder.
-
-## Document Development
-
-To run Document with development environment use the following npm scripts(based on vuepress):
-
-* `docs:dev` - build development versions and run local server. 
-
-To Run Document with production builds (already compiled `/docs/dist/` will be used), use the following npm scripts:
-
-* `docs:build` - build Kitchen Sinks with production versions
-
-## Source Code
-
-Whole source code is located under `/src/` folder.
-
-* `/src` - Source Code Root Directory
-* `/src/components` - Source code for each component
-* `/src/style` - Component Style Files and iconfont
-* `/src/views` - One-to-one correspondence with the component folder to demonstrate the use of individual components
-* `/docs` - Docume files
-
+```text
+src/components/  Component source
+src/style/       Shared styles and icon font
+src/views/       Component demonstrations
+docs/            VuePress documentation
+public/          Static demo assets
+```
 
 ## Contributing
 
-Before you open an issue please review the [contributing](https://github.com/) guideline.
+Bug reports, focused improvements, documentation fixes, and migration help are
+welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue
+or pull request and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-**All changes should be commited to `src/` files only!**.
+Please report suspected vulnerabilities privately according to
+[SECURITY.md](SECURITY.md).
 
-borderUI uses Stylus compilations, and ES modules JS files.
+## License
 
-The project uses [.editorconfig](http://editorconfig.org/) and [ESLint](https://eslint.org/) to define and lint the coding style of each file. We recommend that you install the Editor Config and ESLint extension for your preferred IDE.
-
-
-## Docs
-
-Documentation available at https://border1px.github.io/border-ui/docs/FAQ/introduction.html
-
-## Demos
-
-Demo available at https://border1px.github.io/border-ui/demo/
-
+Licensed under the [MIT License](LICENSE).

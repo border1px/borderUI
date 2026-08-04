@@ -8,6 +8,8 @@
 # 介绍
 **borderUI** 是基于Vue(2.x)开发的移动端UI组件库，由我个人维护，从项目实践中总结和提炼的可复用模块。项目目前正处于开发阶段，不建议用于生产系统，如果你愿意为 borderUI 贡献代码或提供建议，请阅读以下内容。
 
+> **维护状态：** 项目已重新进入维护恢复阶段。当前优先处理可重复构建、自动化检查、依赖安全和文档，再逐步推进 Vue 3 与 Vite 迁移。最新状态请查看 [维护路线图](https://github.com/border1px/borderUI/blob/master/ROADMAP.md) 和 [贡献指南](https://github.com/border1px/borderUI/blob/master/CONTRIBUTING.md)。
+
 ### 完成度
 ```50%```
 

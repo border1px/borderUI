@@ -18,7 +18,7 @@ module.exports = {
         ]
       },
       { text: '博客', link: 'http://hicjiajia.cnblogs.com/' }, // 外部链接
-      { text: 'GitHub', link: 'https://github.com/border-1px/borderUI'}
+      { text: 'GitHub', link: 'https://github.com/border1px/borderUI'}
     ],
     sidebar:[
       {

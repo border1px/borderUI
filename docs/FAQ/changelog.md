@@ -6,6 +6,7 @@
 5. 将项目升级到 Vue 2.6.14、Vue CLI 5、Node.js 22 与 npm 锁文件基线
 6. 恢复应用构建、代码检查和 VuePress 文档构建
 7. 增加 GitHub Actions、生产依赖安全门禁及低噪声 Dependabot 配置
+8. 增加 Button、Switch、Cell 组件 smoke tests，并明确移动端浏览器支持基线
 
 ### 2019-08-08
 1. 增加Picker组件

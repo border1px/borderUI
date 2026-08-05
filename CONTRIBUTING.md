@@ -23,6 +23,7 @@ name, browser or WebView, operating system, Vue version, and a reproduction.
 
    ```bash
    npm run lint
+   npm run test:unit
    npm run build
    npm run docs:build
    ```

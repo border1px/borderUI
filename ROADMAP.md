@@ -10,7 +10,7 @@ clearer.
 - [x] Add contribution, conduct, and security policies.
 - [x] Add issue and pull request templates.
 - [x] Add an open-source license, pending maintainer confirmation of rights.
-- [ ] Create the public maintenance tracking issue and milestone.
+- [x] Create the public maintenance tracking issue and milestone.
 - [ ] Review repository topics, description, homepage, and branch settings.
 
 ## Milestone 2: reproducible builds and CI
@@ -18,20 +18,21 @@ clearer.
 - [x] Identify and document supported Node.js and package-manager versions.
 - [x] Restore application, documentation, and lint builds.
 - [x] Add GitHub Actions checks for pull requests.
-- [ ] Add a small smoke-test baseline for core components.
+- [x] Add a small smoke-test baseline for core components.
 - [ ] Enable required checks before merging.
 
 ## Milestone 3: dependency and security recovery
 
 - [x] Audit direct and transitive dependencies.
 - [x] Replace the historical lockfile with a tested dependency baseline.
-- [ ] Triage repository security alerts.
-- [ ] Close superseded historical Dependabot pull requests with context.
+- [x] Triage repository security alerts.
+- [x] Close superseded historical Dependabot pull requests with context.
 - [x] Configure grouped, low-noise dependency updates.
 
 ## Milestone 4: modernization
 
-- [ ] Define the supported component API and browser baseline.
+- [x] Define the supported browser baseline.
+- [ ] Define the supported component API.
 - [ ] Plan migration from Vue 2 and Vue CLI to Vue 3 and Vite.
 - [ ] Migrate VuePress 1 to a maintained documentation toolchain.
 - [ ] Add component tests and visual regression coverage.

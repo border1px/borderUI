@@ -1,3 +1,8 @@
-> 1%
+# Mobile-first maintenance baseline. Keep this aligned with README.md.
+> 0.5%
 last 2 versions
-not ie <= 8
+Firefox ESR
+not dead
+not IE 11
+iOS >= 12
+Android >= 8

@@ -77,11 +77,22 @@ Other scripts:
 
 ```bash
 npm run lint        # lint source files
+npm run test:unit   # run core component smoke tests
 npm run build       # build the demo application
 npm run audit:prod  # reject high/critical production dependency findings
 npm run docs:dev    # start the documentation site
 npm run docs:build  # build the documentation site
 ```
+
+## Supported environments
+
+The maintenance build targets iOS 12+, Android 8+, and the last two versions of
+actively maintained browsers. Internet Explorer is not supported. Embedded
+WebViews should use an engine equivalent to those platform versions.
+
+This is the compilation and maintenance baseline recorded in
+`.browserslistrc`, not a guarantee that every historical or experimental
+component has been manually verified on every device.
 
 ## Repository structure
 
@@ -89,6 +100,7 @@ npm run docs:build  # build the documentation site
 src/components/  Component source
 src/style/       Shared styles and icon font
 src/views/       Component demonstrations
+tests/unit/      Core component smoke tests
 docs/            VuePress documentation
 public/          Static demo assets
 ```

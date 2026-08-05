@@ -12,6 +12,7 @@ List the commands and manual checks you ran, including Node.js and npm
 versions when build tooling is affected.
 
 - [ ] `npm run lint`
+- [ ] `npm run test:unit`
 - [ ] `npm run build`
 - [ ] `npm run docs:build`
 - [ ] Relevant manual component checks

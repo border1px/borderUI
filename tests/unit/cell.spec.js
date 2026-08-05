@@ -32,6 +32,8 @@ describe('Cell components', () => {
 
     expect(CellItem.name).toBe('bo-cell-item')
     expect(wrapper.classes()).toContain('taphold')
+    expect(wrapper.attributes('role')).toBe('button')
+    expect(wrapper.attributes('tabindex')).toBe('0')
     expect(wrapper.get('.icon-right').exists()).toBe(true)
     expect(wrapper.get('.title-extra').text()).toBe('Required')
     expect(wrapper.get('.value-extra').text()).toBe('Now')
@@ -47,5 +49,28 @@ describe('Cell components', () => {
     await wrapper.trigger('click')
 
     expect(wrapper.emitted('click')).toHaveLength(1)
+  })
+
+  it('supports keyboard activation for interactive items', async () => {
+    const wrapper = mount(CellItem, {
+      propsData: {
+        clickable: true
+      }
+    })
+
+    await wrapper.trigger('keydown', { key: 'Enter' })
+    await wrapper.trigger('keydown', { key: ' ' })
+
+    expect(wrapper.emitted('click')).toHaveLength(2)
+  })
+
+  it('does not expose button semantics for static items', async () => {
+    const wrapper = mount(CellItem)
+
+    await wrapper.trigger('keydown', { key: 'Enter' })
+
+    expect(wrapper.attributes('role')).toBeUndefined()
+    expect(wrapper.attributes('tabindex')).toBeUndefined()
+    expect(wrapper.emitted('click')).toBeUndefined()
   })
 })

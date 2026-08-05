@@ -50,6 +50,14 @@
 </Common-code-format>
 </ClientOnly> 
 
+#### 原生按钮类型
+组件默认渲染为 `type="button"`，避免在表单中被浏览器当作提交按钮。
+需要提交或重置表单时，可以显式设置 `native-type="submit"` 或 `native-type="reset"`。
+
+```vue
+<bo-button native-type="submit">提交</bo-button>
+```
+
 
 #### 满屏按钮
 属性auto会让按钮占满屏幕宽度
@@ -87,4 +95,7 @@
 | size          | 可选值为：large、normal、small              | String | normal |
 | color         | 自定义RGB颜色                               | String | #2196F3 |
 | auto          | 宽度100%                                   | Boolean | False |
-| loading       | 加载状态                                   | Boolean | False |
+| loading       | 加载状态，同时禁用按钮                      | Boolean | False |
+| loading-txt   | 加载状态显示文本                            | String | 加载中 |
+| disabled      | 禁用状态                                   | Boolean | False |
+| native-type   | 原生按钮类型：button、submit、reset          | String | button |

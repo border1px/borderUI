@@ -40,6 +40,9 @@ Cell组件一般会成组的出现，由一个Cell包裹着多个CellItem来使�
 
 ```clickable```属性同样会有点击背景高亮效果，但它不会有右侧箭头。
 
+设置 `isLink` 或 `clickable` 后，CellItem 会进入键盘焦点顺序，并支持 Enter
+或 Space 触发 `click` 事件。
+
 <ClientOnly>
 <Common-code-format>
   <highlight-code slot="codeText" lang="vue">
@@ -107,6 +110,8 @@ Cell组件一般会成组的出现，由一个Cell包裹着多个CellItem来使�
 | isLink        | 是否作为链接显示(右侧有箭头+点击背景高亮)     | Boolean | false |
 | clickable     | 是否可点击(点击背景高亮)                     | Boolean | False |
 | icon          | cell-item左侧icon图标                       | Boolean | False |
+
+交互式 CellItem 在鼠标点击、Enter 或 Space 激活时触发 `click` 事件。
 
 #### Cell
 | 参数           | 说明                                      | 类型   | 默认值

@@ -1,8 +1,11 @@
 <template>
   <div
     class="cell-item"
-    :class="{ taphold : isLink || clickable }"
+    :class="{ taphold: interactive }"
+    :role="interactive ? 'button' : null"
+    :tabindex="interactive ? 0 : null"
     @click="onClick"
+    @keydown="onKeydown"
   >
     <div class="cell-item-inner">
       <div class="cell-icon" :class="icon" v-if="icon"></div>
@@ -30,9 +33,24 @@ export default {
     isLink: Boolean,
     clickable: Boolean
   },
+  computed: {
+    interactive () {
+      return this.isLink || this.clickable
+    }
+  },
   methods: {
     onClick () {
       this.$emit('click')
+    },
+    onKeydown (event) {
+      if (!this.interactive || event.target !== event.currentTarget) {
+        return
+      }
+
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        this.onClick()
+      }
     }
   }
 }

@@ -15,7 +15,18 @@ describe('BoButton', () => {
       'pf-button-primary',
       'pf-button-normal'
     ]))
+    expect(wrapper.attributes('type')).toBe('button')
     expect(wrapper.text()).toContain('Continue')
+  })
+
+  it('supports an explicit native button type', () => {
+    const wrapper = mount(Button, {
+      propsData: {
+        nativeType: 'submit'
+      }
+    })
+
+    expect(wrapper.attributes('type')).toBe('submit')
   })
 
   it('emits the native event when clicked', async () => {
@@ -41,8 +52,12 @@ describe('BoButton', () => {
     })
 
     expect(disabled.attributes('disabled')).toBe('disabled')
+    expect(disabled.attributes('aria-disabled')).toBe('true')
     expect(disabled.classes()).toContain('is-disabled')
     expect(loading.attributes('disabled')).toBe('disabled')
+    expect(loading.attributes('aria-busy')).toBe('true')
+    expect(loading.attributes('aria-disabled')).toBe('true')
+    expect(loading.classes()).toContain('is-disabled')
     expect(loading.text()).toContain('Please wait')
   })
 })

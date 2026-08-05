@@ -32,7 +32,7 @@ clearer.
 ## Milestone 4: modernization
 
 - [x] Define the supported browser baseline.
-- [ ] Define the supported component API.
+- [x] Define the supported component API.
 - [ ] Plan migration from Vue 2 and Vue CLI to Vue 3 and Vite.
 - [ ] Migrate VuePress 1 to a maintained documentation toolchain.
 - [ ] Add component tests and visual regression coverage.

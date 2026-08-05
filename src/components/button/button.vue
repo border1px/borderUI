@@ -3,14 +3,17 @@
     class = "pf-button"
     @click = "handleClick"
     :style = "styleObject"
+    :type = "nativeType"
     :disabled = "disabled || loading"
+    :aria-busy = "loading ? 'true' : null"
+    :aria-disabled = "disabled || loading ? 'true' : null"
     :class = "[
       type ? 'pf-button-' + type : '',
       size ? 'pf-button-' + size : '',
       {
         'is-square' : square,
         'is-auto' : auto,
-        'is-disabled': disabled
+        'is-disabled': disabled || loading
       }
     ]"
   >
@@ -31,6 +34,11 @@ export default {
     type: {
       type: String,
       default: 'primary'
+    },
+    nativeType: {
+      type: String,
+      default: 'button',
+      validator: value => ['button', 'submit', 'reset'].includes(value)
     },
     size: {
       type: String,

@@ -7,6 +7,8 @@
 6. 恢复应用构建、代码检查和 VuePress 文档构建
 7. 增加 GitHub Actions、生产依赖安全门禁及低噪声 Dependabot 配置
 8. 增加 Button、Switch、Cell 组件 smoke tests，并明确移动端浏览器支持基线
+9. 完善 Switch 的 Vue 2 v-model、Button 表单安全和 CellItem 键盘操作契约
+10. 增加核心组件 API 维护基线及对应回归测试
 
 ### 2019-08-08
 1. 增加Picker组件

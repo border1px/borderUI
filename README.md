@@ -33,6 +33,7 @@ private in `package.json` and is **not published as an installable npm package**
 Do not confuse it with the unrelated `border-1px` package on npm.
 
 - [Documentation](https://border1px.github.io/border-ui/docs/FAQ/introduction.html)
+- [Maintained component API](docs/FAQ/component-api.md)
 - [Interactive demo](https://border1px.github.io/border-ui/)
 - [Maintenance roadmap](ROADMAP.md)
 - [How to contribute](CONTRIBUTING.md)

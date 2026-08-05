@@ -1,6 +1,13 @@
 <template>
   <div class="pf-switch">
-    <input type="checkbox" class="pf-switch-el" v-model="currentValue" @change="onChange">
+    <input
+      type="checkbox"
+      class="pf-switch-el"
+      :checked="value"
+      :disabled="disabled"
+      :aria-label="ariaLabel"
+      @change="onChange"
+    >
   </div>
 </template>
 
@@ -11,16 +18,16 @@ export default {
     value: {
       type: Boolean,
       default: false
-    }
-  },
-  data () {
-    return {
-      currentValue: this.value
-    }
+    },
+    disabled: Boolean,
+    ariaLabel: String
   },
   methods: {
-    onChange () {
-      this.$emit('change', this.currentValue)
+    onChange (event) {
+      const checked = event.target.checked
+
+      this.$emit('input', checked)
+      this.$emit('change', checked)
     }
   }
 }
@@ -59,5 +66,9 @@ export default {
 }
 .pf-switch-el:checked:before {
   left: 21px;
+}
+.pf-switch-el:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>

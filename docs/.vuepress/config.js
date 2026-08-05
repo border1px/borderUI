@@ -41,6 +41,7 @@ module.exports = {
         children: [
           ['/FAQ/introduction','介绍'],
           ['/FAQ/quickstart','快速上手'],
+          ['/FAQ/component-api','组件 API 维护基线'],
           ['/FAQ/changelog','更新日志'],
           ['/FAQ/aboutme','与我有关'],
         ]

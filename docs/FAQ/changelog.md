@@ -9,6 +9,7 @@
 8. 增加 Button、Switch、Cell 组件 smoke tests，并明确移动端浏览器支持基线
 9. 完善 Switch 的 Vue 2 v-model、Button 表单安全和 CellItem 键盘操作契约
 10. 增加核心组件 API 维护基线及对应回归测试
+11. 升级 GitHub Actions 运行时，增加并发取消与 Actions 依赖自动更新
 
 ### 2019-08-08
 1. 增加Picker组件

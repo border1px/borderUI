@@ -31,6 +31,10 @@ name, browser or WebView, operating system, Vue version, and a reproduction.
 5. Update documentation when behavior or public APIs change.
 6. Open a pull request using the repository template.
 
+Release branches and tags follow the documented [release process](RELEASING.md).
+Normal feature and fix branches are intentionally short-lived and may be
+deleted after merge.
+
 If installation or a build fails, include your Node and npm versions in the
 pull request so the failure can be reproduced.
 

@@ -40,8 +40,8 @@ clearer.
 
 ## Milestone 5: release
 
-- [ ] Publish a maintained prerelease with release notes.
-- [ ] Document compatibility, known limitations, and upgrade steps.
+- [x] Publish a maintained prerelease with release notes.
+- [x] Document compatibility, known limitations, and upgrade steps.
 - [ ] Decide on a unique package name before any npm publication.
 - [ ] Establish a regular triage and release cadence.
 

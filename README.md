@@ -15,6 +15,9 @@
   <a href="https://github.com/border1px/borderUI/actions/workflows/ci.yml">
     <img alt="CI status" src="https://github.com/border1px/borderUI/actions/workflows/ci.yml/badge.svg">
   </a>
+  <a href="https://github.com/border1px/borderUI/releases/tag/v0.2.0-alpha.1">
+    <img alt="Release: v0.2.0-alpha.1" src="https://img.shields.io/badge/release-v0.2.0--alpha.1-orange.svg">
+  </a>
 </p>
 
 <p align="center">
@@ -35,7 +38,9 @@ Do not confuse it with the unrelated `border-1px` package on npm.
 - [Documentation](https://border1px.github.io/border-ui/docs/FAQ/introduction.html)
 - [Maintained component API](docs/FAQ/component-api.md)
 - [Interactive demo](https://border1px.github.io/border-ui/)
+- [Latest maintenance prerelease](https://github.com/border1px/borderUI/releases/tag/v0.2.0-alpha.1)
 - [Maintenance roadmap](ROADMAP.md)
+- [Release process and branch strategy](RELEASING.md)
 - [How to contribute](CONTRIBUTING.md)
 
 ## Components

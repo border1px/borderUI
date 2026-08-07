@@ -10,6 +10,7 @@
 9. 完善 Switch 的 Vue 2 v-model、Button 表单安全和 CellItem 键盘操作契约
 10. 增加核心组件 API 维护基线及对应回归测试
 11. 升级 GitHub Actions 运行时，增加并发取消与 Actions 依赖自动更新
+12. 审查并升级 GitHub Actions v7，阻止 Vue 核心与编译器的非协调更新
 
 ### 2019-08-08
 1. 增加Picker组件

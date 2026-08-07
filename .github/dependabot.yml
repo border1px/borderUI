@@ -20,6 +20,10 @@ updates:
       - dependency-name: "*"
         update-types:
           - version-update:semver-major
+      # Vue 2 runtime and compiler changes must be evaluated together. An
+      # independent compiler update fails CI with a package version mismatch.
+      - dependency-name: vue
+      - dependency-name: vue-template-compiler
 
   - package-ecosystem: github-actions
     directory: /

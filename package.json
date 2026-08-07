@@ -1,6 +1,6 @@
 {
   "name": "border-1px",
-  "version": "0.1.0",
+  "version": "0.2.0-alpha.1",
   "description": "Mobile UI components and demos built with Vue 2",
   "private": true,
   "engines": {

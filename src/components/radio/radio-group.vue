@@ -1,6 +1,8 @@
 <template>
   <div
-    name="radio-group"
+    role="radiogroup"
+    :aria-label="ariaLabel"
+    :aria-disabled="disabled ? 'true' : null"
     :class="[
       'radio-group'
     ]"
@@ -13,7 +15,14 @@ export default {
   name: 'bo-radio-group',
   props: {
     value: { type: [String, Number] },
-    disabled: { type: Boolean }
+    disabled: Boolean,
+    name: String,
+    ariaLabel: String
+  },
+  computed: {
+    nativeName () {
+      return this.name || `bo-radio-group-${this._uid}`
+    }
   },
   watch: {
     value (newValue) {

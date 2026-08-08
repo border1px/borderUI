@@ -1,7 +1,7 @@
 # 组件 API 维护基线
 
 borderUI 恢复维护后，将文档、单元测试和持续集成共同覆盖的接口视为当前维护基线。
-现阶段该基线优先覆盖 `Button`、`Switch`、`Cell` 和 `CellItem`；其他历史组件仍可使用，
+现阶段该基线优先覆盖 `Button`、`Switch`、`Cell`、`CellItem`、`Checkbox` 和 `Radio`；其他历史组件仍可使用，
 但在补齐自动化验证前，其接口应视为待确认状态。
 
 ## 稳定交互契约
@@ -35,6 +35,14 @@ borderUI 恢复维护后，将文档、单元测试和持续集成共同覆盖�
 - `isLink` 或 `clickable` 为 `true` 时，`CellItem` 具有按钮语义并进入键盘焦点顺序。
 - 交互式 `CellItem` 支持鼠标点击、Enter 和 Space 激活，并触发 `click`。
 - 静态 `CellItem` 不会声明按钮语义。
+
+### Checkbox 与 Radio
+
+- Checkbox 和 Radio 均渲染受控的原生表单输入，支持键盘和辅助技术。
+- 独立 Checkbox 支持 `trueValue`、`falseValue`、`input` 和 `change` 契约。
+- CheckboxGroup 支持数组 `v-model`、`max` 限制和组级禁用状态。
+- 独立 Radio 通过 `value === label` 判断选中状态。
+- RadioGroup 为组内原生输入提供一致的 `name`，并支持 `radiogroup` 语义。
 
 ## 兼容性与变更原则
 

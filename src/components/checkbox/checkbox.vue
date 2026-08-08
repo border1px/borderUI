@@ -1,39 +1,50 @@
 <template>
   <div>
-    <span
+    <label
       :class="[
         'checkbox-item',
         { 'is-checked': isChecked },
         { 'is-disabled': isDisabled },
         { 'is-group': isGroup }
       ]"
-      @click.stop="toggle"
+      @click.stop
     >
       <input
-        v-if="false"
-        type="checkbox"
         v-bind="$attrs"
-        :disabled="disabled"
-        :value="model"
+        class="checkbox-native"
+        type="checkbox"
+        :checked="isChecked"
+        :disabled="isDisabled"
+        :value="label === undefined ? trueValue : label"
+        @change="onChange"
       >
       <span class="checkbox-inner">
         <bo-icon name="radio-checked" :size=iconSize color="#CCC"/>
-        <span class="slot-value">
+        <span class="slot-value" :style="{ fontSize: textSize }">
           <slot></slot>
         </span>
       </span>
-    </span>
+    </label>
   </div>
 </template>
 
 <style lang="stylus" scoped>
 @import '../../style/var';
 .checkbox-item
+  position relative
+  cursor pointer
   &.is-group
     display inline-block
     padding 2px 0
-  input
-    appearance none
+  .checkbox-native
+    position absolute
+    width 1px
+    height 1px
+    opacity 0
+    pointer-events none
+    &:focus + .checkbox-inner
+      outline 2px solid $theme-color
+      outline-offset 2px
   .checkbox-inner
     i,span
       vertical-align middle
@@ -41,6 +52,7 @@
     i.iconfont
       color $theme-color !important
   &.is-disabled
+    cursor not-allowed
     i.iconfont
       color #CCC
     .slot-value
@@ -54,6 +66,7 @@ import { findComponentUpward } from '../utils/assist'
 
 export default {
   name: 'bo-checkbox',
+  inheritAttrs: false,
   props: {
     disabled: {
       type: Boolean,
@@ -67,7 +80,7 @@ export default {
       type: String,
       default: '14px'
     },
-    label: String,
+    label: [String, Number, Boolean],
     value: {
       type: [String, Number, Boolean],
       default: false
@@ -88,28 +101,11 @@ export default {
     }
   },
   computed: {
-    model: {
-      get () {
-        return this.isGroup ? this.parent.value : this.currentValue
-      },
-      set (newValue) {
-        const { isGroup, isChecked } = this
-
-        if (isGroup) {
-          isChecked
-            ? this.parent.deleteItem(this.label || '')
-            : this.parent.selectItem(this.label || '')
-        } else {
-          this.$emit('input', newValue)
-        }
-      }
-    },
     isDisabled () {
       return (this.parent && this.parent.disabled) || this.disabled
     },
     isChecked () {
-      const { isGroup, model } = this
-      if (!isGroup) return model
+      if (!this.isGroup) return this.currentValue
 
       const {
         label,
@@ -121,7 +117,7 @@ export default {
       if (this.value === this.trueValue || this.value === this.falseValue) {
         return this.value === this.trueValue
       } else {
-        throw 'Value should be trueValue or falseValue.'
+        throw new Error('Value should be trueValue or falseValue.')
       }
     }
   },
@@ -130,11 +126,30 @@ export default {
     this.parent ? this.isGroup = true : this.isGroup = false
   },
   methods: {
-    toggle (event) {
-      const { isDisabled, isGroup, model, value } = this
-      if (!isDisabled) {
-        this.model = isGroup ? value : !model
+    onChange (event) {
+      const accepted = this.updateChecked(event.target.checked)
+
+      if (!accepted) {
+        event.target.checked = this.isChecked
       }
+    },
+    updateChecked (checked) {
+      if (this.isDisabled) return false
+
+      if (this.isGroup) {
+        const label = this.label === undefined ? '' : this.label
+        return checked
+          ? this.parent.selectItem(label)
+          : this.parent.deleteItem(label)
+      }
+
+      const nextValue = checked ? this.trueValue : this.falseValue
+      this.$emit('input', nextValue)
+      this.$emit('change', nextValue)
+      return true
+    },
+    toggle () {
+      return this.updateChecked(!this.isChecked)
     }
   }
 }

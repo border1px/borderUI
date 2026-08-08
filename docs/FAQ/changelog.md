@@ -1,6 +1,7 @@
 ### Unreleased
 
-暂无。
+1. 恢复 Checkbox 与 Radio 的原生表单语义、键盘操作和受控状态契约
+2. 增加 Checkbox/Radio 回归测试，覆盖自定义值、分组限制和原生 name
 
 ### 0.2.0-alpha.1 - 2026-08-07
 

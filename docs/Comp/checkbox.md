@@ -11,6 +11,9 @@ Vue.component(Checkbox.name, Checkbox);
 Checkbox组件可以单独使用，也可以组合使用。
 :::
 
+组件会渲染原生 `input[type="checkbox"]`，支持键盘焦点、Space 切换和辅助技术。
+无可见文本时可直接传入 `aria-label`。
+
 #### 单独使用
 <ClientOnly>
 <Common-code-format>
@@ -106,20 +109,27 @@ export default {
 | ------------- |:------------------------------------------------ | :-------------: | :-----: |
 | disabled      | 是否禁用                                          | Boolean         | false  |
 | iconSize      | icon尺寸                                          | String          | 24px   |
-| value         | 是否选中(等于trueValue选中,等于falseValue未选中)    | B/S             | false  |
-| trueValue     | 选中状态时的值                                     | String          |        |
-| falseValue    | 未选中状态的值                                     | String          |        |
-| label         | 需配合CheckboxGroup使用，表示该Checkbox被选中时的值 | String           |        |
+| value         | 是否选中（等于 trueValue 选中，等于 falseValue 未选中） | String / Number / Boolean | false |
+| trueValue     | 选中状态时的值                                     | String / Number / Boolean | true  |
+| falseValue    | 未选中状态的值                                     | String / Number / Boolean | false |
+| label         | 需配合 CheckboxGroup 使用，表示选中时的值           | String / Number / Boolean |       |
+
+#### Checkbox Events
+| 事件名        | 说明                                      | 回调参数 |
+| ------------- |:------------------------------------------| :------: |
+| input         | Vue 2 v-model 更新事件                     | 当前值   |
+| change        | 独立 Checkbox 状态变化事件                  | 当前值   |
 
 
-#### CheckboxBroup Props
+#### CheckboxGroup Props
 | 参数           | 说明                                       | 类型   | 默认值
 | ------------- |:------------------------------------------ | :-----: | :-----: |
 | v-model       | 被选中的值                                  | Array   | []     |
 | max           | 最多选择几个                                | Number  |         |
 | disabled      | 是否禁用                                    | Boolean | false   |
+| aria-label    | 复选框组的无障碍名称                         | String  |         |
 
-#### CheckboxBroup Events
+#### CheckboxGroup Events
 | 事件名           | 说明                                         | 类型    | 默认值
 | ------------- |:---------------------------------------------- | :-----: | :-----: |
 | change        | Checkbox被选中触发，参数为被选中Checkbox的label  | Function  |         |

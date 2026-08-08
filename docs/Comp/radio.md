@@ -7,6 +7,9 @@ Vue.component(RadioGroup.name, RadioGroup);
 Vue.component(Radio.name, Radio);
 ```
 
+组件会渲染原生 `input[type="radio"]`，支持键盘焦点和原生单选交互。
+RadioGroup 会为组内控件生成一致的 `name`，也可以通过 `name` 属性显式指定。
+
 #### 基本用法
 <ClientOnly>
 <Common-code-format>
@@ -93,7 +96,14 @@ export default {
 | ------------- |:------------------------------------------------ | :-------------: | :-----: |
 | disabled      | 是否禁用                                          | Boolean         | false  |
 | iconSize      | icon尺寸                                          | String          | 24px   |
-| label         | 需配合RadioGroup使用，被选中时的值                  | String           |        |
+| label         | 被选中时写入 v-model 的值                           | String / Number  |        |
+| name          | 独立 Radio 的原生 name                              | String           |        |
+
+#### Radio Events
+| 事件名        | 说明                                      | 回调参数 |
+| ------------- |:------------------------------------------| :------: |
+| input         | Vue 2 v-model 更新事件                     | label    |
+| change        | 独立 Radio 选中事件                         | label    |
 
 
 #### RadioGroup Props
@@ -101,6 +111,8 @@ export default {
 | ------------- |:------------------------------------------ | :-----: | :-----: |
 | v-model	    | 当前选中的标识                              | String  |         |
 | disabled      | 是否禁用                                    | Boolean | false   |
+| name          | 组内原生 Radio 共用的 name                  | String  | 自动生成 |
+| aria-label    | 单选组的无障碍名称                           | String  |         |
 
 #### RadioGroup Events
 | 事件名           | 说明                                     | 类型      | 默认值

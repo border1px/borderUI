@@ -42,6 +42,7 @@ module.exports = {
           ['/FAQ/introduction','介绍'],
           ['/FAQ/quickstart','快速上手'],
           ['/FAQ/component-api','组件 API 维护基线'],
+          ['/FAQ/release-0.2.0-alpha.2','v0.2.0-alpha.2 发布说明'],
           ['/FAQ/release-0.2.0-alpha.1','v0.2.0-alpha.1 发布说明'],
           ['/FAQ/changelog','更新日志'],
           ['/FAQ/aboutme','与我有关'],
